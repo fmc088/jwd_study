@@ -17,7 +17,7 @@ repo是管理这个项目，每一个repo下有多个.git，查看哪些.git文件在，在当前有.git才能
     			.repo/repo/repo branch
     			
     			
-    repo forall -c git指令                 -->为工程里每一个git仓执行相同的git命令
+    repo forall -c git指令  -->为工程里每一个git仓执行相同的git命令
     
     
     			
