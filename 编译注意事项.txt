@@ -1,0 +1,46 @@
+1.如果刷机完，一直重启状态的话，解决问题
+  （1）修改kernel .config配置文件 对比工具进行参照 E:\work\vr\sdk\3288_5.1_SDK_mipi_display\.config
+  （2）\\192.168.0.190\jhdzc\VR\kernel\arch\arm\boot\dts  rk3288-tb_8846.dts 配置查看对比 E:\work\vr\sdk\3288_5.1_SDK_mipi_display\
+  
+2.如果屏幕没有显示出来的话，解决问题
+  （1）在kernel当前目录下，make menuconfig 配置清单 要对应的接口，屏的选择
+  
+  
+  
+  RK3288开发板编译过程
+  1.kernel固件
+	  (1).cd kernel
+	  (2).make rockchip_defconfig
+	  (3).make rk3288-tb_8846.img
+	  (4).cp arch/arm/boot/zImage ../out/target/product/rk3288/kernel
+	  编译完成后， kernel 根目录，生成 kernel.img， resource.img 两个镜像文件。
+	2.uboot编译
+		（1）make rk3288_defconfig
+		（2）make
+		编译完成后， u-boot 根目录生成如 RK3288UbootLoader_V2.19.09.bin 的 loader 文件
+	3.Android编译
+	  （1）source build.sh
+		（2）lunch
+		（3）make -j8
+		（4）./mkimage.sh
+		完成编译后，执行 SDK 根目录下的 mkimage.sh 脚本生成固件，位于 rockdev/Image-rk288 目
+		录。
+		
+	launcher开发
+	 （1）apk放入 /VR/out/target/product/rk3288/system/app/..
+	      注意：创建的app文件要与app一一对应
+	 （2）删除VR/packages/apps/luncher3
+	 （3）通过./mkimage.sh   重新打包，不要编译
+	 
+	framework编译
+		
+		（1）使用指令：
+		     mm  编译当前目录下的模块，当前目录下要有android.mk
+		     mmm 编译指定路径下的模块，指定路径下要有android.mk
+	  （2）./mkimage.sh  打包下
+	  
+	  位置：设置界面源码
+	  package/apps/setting/src/arm/android/setting
+	  系统设置源码
+	  frameworks/base/packages/settingsProvider/src/com/android/providers/setting
+		
