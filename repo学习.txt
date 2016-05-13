@@ -70,6 +70,8 @@ repo是管理这个项目，每一个repo下有多个.git，查看哪些.git文件在，在当前有.git才能
 			例如：
       $ git checkout old_cc //先切换到位置（放到哪的分支）
       $ git cherry-pick 38361a68     # 这个 38361a68 号码，位于：//使用cherry-pick +commit编号 
+      
+      git checkout -b branch_name tag_name
  
       $ git log //查看日志
       commit 38361a68138140827b31b72f8bbfd88b3705d77a 
