@@ -54,3 +54,7 @@
 		#### make failed to build some targets (2 seconds) ####
 		最好用全编译make，Launcher3编译过程中，可能需要别的编译过程，导致没有对应jar连接，只要有生成对应的apk,那就可以用的
 		
+		
+		android代码在linux下编译的话，不能用中文（UTF-8）格式，不然会编译出错
+		在xml格式中有字符串内容要用@string/name下保存信息，
+		
