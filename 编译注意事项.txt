@@ -44,3 +44,13 @@
 	  系统设置源码
 	  frameworks/base/packages/settingsProvider/src/com/android/providers/setting
 		
+		
+		
+		Launcher3编译过程中遇到问题：使用mmm过程会出现这
+		make: Entering directory `/home/jhdzc/VR'
+		Install: out/target/product/rk3288/system/app/Launcher3/Launcher3.apk
+		make: *** No rule to make target `out/host/linux-x86/framework/host-libprotobuf-java-2.3.0-nano.jar', needed by `out/host/common/obj/JAVA_LIBRARIES/launcher_protoutil_lib_intermediates/javalib.jar'.  Stop.
+		make: Leaving directory `/home/jhdzc/VR'
+		#### make failed to build some targets (2 seconds) ####
+		最好用全编译make，Launcher3编译过程中，可能需要别的编译过程，导致没有对应jar连接，只要有生成对应的apk,那就可以用的
+		
