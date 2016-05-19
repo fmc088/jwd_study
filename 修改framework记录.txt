@@ -1,0 +1,8 @@
+1.修改系统默认旋转方向
+  VR\frameworks\base\policy\src\com\android\internal\policy\imp\PhoneWindowManager
+  return Surface.ROTATION_0改为你要的方向 修改return Surface.ROTATION_90
+  修改成功
+
+
+2.VR\frameworks\base\core\java\android\hardware\SensorManager.java
+  增加Log功能，打印信息（SensorManager不能运行的，所以logd打印不出来）

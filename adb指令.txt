@@ -2,4 +2,6 @@ adb remount
 adb push E:\3D.so\libvision-jni.so system/lib
 adb push E:\3D.so\libGLES.so system/lib/egl/
 
+adb -s emulator-5556 install helloWorld.apk
+
 
