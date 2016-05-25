@@ -1,0 +1,474 @@
+一、触摸屏部分
+http://blog.csdn.net/hanmengaidudu/article/details/46727491
+1.设备配置
+
+对于触摸屏，必须支持的事件类型有以下这么三个
+
+__set_bit(EV_SYN, input_dev->evbit);  //设备同步，每次触摸完成以后都要发送一个同步事件，来表明这次触摸已经完成
+__set_bit(EV_ABS, input_dev->evbit); //绝对坐标事件，触摸屏每次发送的坐标都是绝对坐标，不同于鼠标的相对坐标
+__set_bit(EV_KEY, input_dev->evbit); //按键事件，每次触摸都有一个BTN_TOUCH的按键事件
+
+触摸屏必须支持的按键类型
+__set_bit(BTN_TOUCH, input_dev->keybit);//touch类型按键
+触摸屏属性设置
+input_mt_init_slots(input_dev, CFG_MAX_TOUCH_POINTS);//报告最大支持的点数
+input_set_abs_params(input_dev,ABS_MT_TOUCH_MAJOR, 0, PRESS_MAX, 0, 0);//将触摸点看成一个椭圆，它的长轴长度。这个是可选项，并不影响正常使用。
+input_set_abs_params(input_dev, ABS_MT_POSITION_X, 0, ft5x0x_ts->x_max, 0, 0);//x坐标取值范围
+input_set_abs_params(input_dev, ABS_MT_POSITION_Y, 0, ft5x0x_ts->y_max, 0, 0);//y坐标取值范围
+
+2.事件发送
+
+  我们知道每次触摸完成后都必须发送一个同步事件（EV_SYN）来表明这次触摸的完成。 
+  那么对于多点触控的屏幕事件发送分为两种方法，一是每次事件同步前包括多个点，一是每次事件同步前仅包含一个点。
+
+先来看包含多个点的
+
+static void ft5x0x_report_value(struct ft5x0x_ts_data *data)
+{
+	struct ts_event *event = &data->event;
+	int i;
+	int uppoint = 0;	//已经抬起的点数
+
+	for (i = 0; i < event->touch_point; i++)	//循环处理 缓存中的所有点
+	{
+		input_mt_slot(data->input_dev, event->au8_finger_id[i]);	//发送点的ID
+		
+		if (event->au8_touch_event[i]== 0 || event->au8_touch_event[i] == 2)	//如果点按下
+		{
+			input_mt_report_slot_state(data->input_dev, MT_TOOL_FINGER,	true);	//手指按下
+			input_report_abs(data->input_dev,ABS_MT_POSITION_X,event->au16_x[i]);	//x坐标	
+			input_report_abs(data->input_dev, ABS_MT_POSITION_Y,event->au16_y[i]);	//y坐标
+			input_report_abs(data->input_dev,ABS_MT_TOUCH_MAJOR,event->pressure);	//触摸点长轴长度
+		}
+		else
+		{
+			uppoint++;								//没有按下，则表明这个手指已经抬起
+			input_mt_report_slot_state(data->input_dev, MT_TOOL_FINGER,false);	//报告手指抬起
+		}
+		
+
+	}
+
+		if(event->touch_point == uppoint)			
+		{
+			input_report_key(data->input_dev, BTN_TOUCH, 0);	//所有手指都抬起了 发送BTN_TOUCH 抬起事件
+
+		}
+		else
+		{
+			input_report_key(data->input_dev, BTN_TOUCH, event->touch_point > 0);//还有手指没抬起，发送BTN_TOUCH 按下的事件 
+
+		}
+		input_sync(data->input_dev);	//sync 设备同步
+		
+}
+然后是每次同步仅发送一个点
+
+static ft5x0x_report_value(struct ft5x0x_ts_data *data)
+
+{
+	struct ts_event *event = &data->event;
+	int i;
+
+	for (i = 0; i < event->touch_point; i++)	//循环处理 缓存中的所有点
+	{
+		input_mt_slot(data->input_dev, event->au8_finger_id[i]);	//发送点的ID
+		if (event->au8_touch_event[i]== 0 || event->au8_touch_event[i] == 2)	//如果点按下
+		{
+			input_mt_report_slot_state(data->input_dev, MT_TOOL_FINGER,	true);	//手指按下
+			input_report_abs(data->input_dev,ABS_MT_POSITION_X,event->au16_x[i]);	//x坐标	
+			input_report_abs(data->input_dev, ABS_MT_POSITION_Y,event->au16_y[i]);	//y坐标
+			input_report_abs(data->input_dev,ABS_MT_TOUCH_MAJOR,event->pressure);	//触摸点长轴长度
+		}
+		else
+		{
+			input_mt_report_slot_state(data->input_dev, MT_TOOL_FINGER,false);	//手指抬起
+		}
+		
+
+        input_mt_report_pointer_emulation(input_dev, true);//用模拟点的方法，来告知此次触摸已经完成。
+		input_sync(data->input_dev);	//sync 设备同步
+		
+    }
+}
+这两种方法都可以，但是建议选择上面那种，效率比较高。
+
+二、触摸按键部分
+
+对于触摸按键的发送可以分为两种方法，一是android提供的 virtualkey's 架构方法，一种是直接报告key event的方法。我们一一来看
+
+1.报告key event方法 
+
+在probe中添加所支持的按键类型，本人用的触摸屏上有三个按键因此 
+
+报告支持事件类型
+
+__set_bit(EV_SYN, input_dev->evbit); 
+
+__set_bit(EV_KEY, input_dev->evbit); 
+报告支持的按键 
+
+__set_bit(KEY_HOME, input_dev->keybit);   
+__set_bit(KEY_BACK, input_dev->keybit);  
+__set_bit(KEY_MENU, input_dev->keybit);
+
+触摸屏上的三个按键对应的坐标
+
+(KEY_BACK)  120:1400   (KEY_HOME) 360:1400(KEY_MENU)  500:1400
+
+key event的报告方法很简单只要报告相应的key 和设备同步sync就可以了
+
+static void ft5x0x_report_value(struct ft5x0x_ts_data *data)
+{
+	struct ts_event *event = &data->event;
+	int i;
+	for (i = 0; i < event->touch_point; i++)
+	{
+		if (event->au16_y[i]==1400)
+		{
+			if(event->au8_touch_event[i]== 0 || event->au8_touch_event[i] == 2)
+			{
+
+				switch(event->au16_x[i])
+				{
+				case 120:
+					input_report_key(data->input_dev, KEY_BACK, 1);
+					break;
+				case 360: 
+					input_report_key(data->input_dev, KEY_HOME, 1);
+					break;
+				case 500: 
+					input_report_key(data->input_dev, KEY_MENU, 1);
+					break;	
+				default: break;
+				}
+				
+			}
+			else
+			{
+
+				switch(event->au16_x[i])
+				{
+				case 120:
+					input_report_key(data->input_dev, KEY_BACK, 0);
+					break;
+				case 360: 
+					input_report_key(data->input_dev, KEY_HOME, 0);
+					break;
+				case 500: 
+					input_report_key(data->input_dev, KEY_MENU, 0);
+					break;	
+				default: break;
+				}
+				
+			}
+			input_sync(data->input_dev);
+			return;
+		}
+}
+	
+对于这种方法有一个bug，就是事件发送上去，系统并不认为是触摸屏发送的按键，系统的 触屏震动反馈 并不起作用。
+这并不符合标准的android触摸设备标准。具体怎么破本人比较菜没有找到方法，大神们谁知道 求破。
+
+2.virtualkeys方法
+
+virtualkeys是android提供的架构使用起来简单方便，推荐大家使用。直接上代码
+
+static ssize_t ft5x06_virtual_keys_show(struct kobject *kobj,		//按键的配置
+					struct kobj_attribute *attr, char *buf)
+{
+	return sprintf(buf,
+		__stringify(EV_KEY) ":" __stringify(KEY_BACK) ":120:1400:8:8"	//键类型:键值:按键区域中心x坐标:按键区域中心y坐标:按键区域宽:按键区域高
+		":" __stringify(EV_KEY) ":"
+					__stringify(KEY_HOME) ":360:1400:8:8"
+		":" __stringify(EV_KEY) ":"
+					__stringify(KEY_MENU) ":500:1400:8:8"
+		"\n");
+}
+
+static struct kobj_attribute ft5x06_virtual_keys_attr = {
+	.attr = {
+		.name = "virtualkeys.Ft5x0x_Touch_Screen",	//这里的名字必须为virtualkeys.设备名字  否则系统不会识别
+		.mode = S_IRUGO,
+	},
+	.show = &ft5x06_virtual_keys_show,
+};
+
+static struct attribute *ft5x06_properties_attrs[] = {
+	&ft5x06_virtual_keys_attr.attr,
+	NULL,
+};
+
+static struct attribute_group ft5x06_properties_attr_group = {
+	.attrs = ft5x06_properties_attrs,
+};
+
+static void ft5x06_virtual_keys_init(void)
+{
+	struct kobject *properties_kobj;
+	int ret;
+
+	properties_kobj = kobject_create_and_add("board_properties", NULL);//添加目录board_properties
+
+	if (properties_kobj)
+		ret = sysfs_create_group(properties_kobj,//生成/sys/board_properties/virtualkeys.Ft5x0x_Touch_Screen虚拟按键配置文件
+			&ft5x06_properties_attr_group);	//可以使用 cat /sys/board_properties/virtualkeys.Ft5x0x_Touch_Screen命令来查看配置是否正确
+	if (!properties_kobj || ret)
+		pr_err("failed to create board_properties\n");
+}
+然后将ft5x06_virtual_keys_init()加入到 触摸屏的init 或者probe 函数中，这样触摸键就可以使用了。
+
+三、触摸屏驱动流程
+
+i2c中加入平台初始化代码
+
+
+static struct ft5x0x_platform_data  ft5x0x_platform_i2c_data = {
+	.x_max=540,
+	.y_max=960,
+	.irq= SABRESD_CHARGE_FLT_1_B,	//中断引脚
+	.reset=SABRESD_DISP0_RST_B,	//复位引脚
+};
+触摸屏驱动初始化
+
+static int __init ft5x0x_ts_init(void)
+{
+	int ret;
+	ret = i2c_add_driver(&ft5x0x_ts_driver);
+	if (ret) {
+		printk(KERN_WARNING "Adding ft5x0x driver failed "
+		       "(errno = %d)\n", ret);
+	} else {
+		pr_info("Successfully added driver %s\n",		
+			ft5x0x_ts_driver.driver.name);
+	}
+	return ret;
+}
+probe函数
+
+#define VIRTUAL_LI		0
+#define EVENT_LI		1
+#define TOUCH_KEY		VIRTUAL_LI	
+static int ft5x0x_ts_probe(struct i2c_client *client,
+			   const struct i2c_device_id *id)
+{
+	。。。。。。。。。。
+	ft5x0x_ts = kzalloc(sizeof(struct ft5x0x_ts_data), GFP_KERNEL);//分配参数内存
+
+	..........
+	i2c_set_clientdata(client, ft5x0x_ts);参数地址传给i2c 内核
+
+	初始化一些参数
+	ft5x0x_ts->irq = client->irq;	
+	ft5x0x_ts->client = client;
+	ft5x0x_ts->pdata = pdata;
+	ft5x0x_ts->x_max = pdata->x_max - 1;
+	ft5x0x_ts->y_max = pdata->y_max - 1;
+	ft5x0x_ts->pdata->reset = FT5X0X_RESET_PIN;
+	ft5x0x_ts->pdata->irq = ft5x0x_ts->irq;
+.....................
+	err = request_threaded_irq(client->irq, NULL, ft5x0x_ts_interrupt,	//注册读取数据中断
+				   IRQF_TRIGGER_FALLING, client->dev.driver->name,
+				   ft5x0x_ts);
+	。、、、、、、、、、、、、
+	input_dev = input_allocate_device();//分配设备
+...........................................
+	__set_bit(EV_SYN, input_dev->evbit);  //注册设备支持event类型
+	__set_bit(EV_ABS, input_dev->evbit);
+	__set_bit(EV_KEY, input_dev->evbit);
+	__set_bit(BTN_TOUCH, input_dev->keybit);
+#if TOUCH_KEY == EVENT_LI				//如果使用event key的方法
+	__set_bit(KEY_HOME, input_dev->keybit);   
+	__set_bit(KEY_BACK, input_dev->keybit);  
+	__set_bit(KEY_MENU, input_dev->keybit);
+#endif	
+	input_mt_init_slots(input_dev, CFG_MAX_TOUCH_POINTS);	//设备属性
+	input_set_abs_params(input_dev,ABS_MT_TOUCH_MAJOR,
+			     0, PRESS_MAX, 0, 0);
+	input_set_abs_params(input_dev, ABS_MT_POSITION_X,
+			     0, ft5x0x_ts->x_max, 0, 0);
+	input_set_abs_params(input_dev, ABS_MT_POSITION_Y,
+			     0, ft5x0x_ts->y_max, 0, 0);
+
+	
+
+	input_dev->name ="Ft5x0x_Touch_Screen";//lijianzhang
+	err = input_register_device(input_dev);			//注册这个input设备
+	。。。。。。。。。。。
+#if TOUCH_KEY == VIRTUAL_LI		//如果使用虚拟键盘设定
+
+	ft5x06_virtual_keys_init();		
+#endif
+。。。。。。。。。。。。。。。。。。。。。
+}
+中断处理
+
+static irqreturn_t ft5x0x_ts_interrupt(int irq, void *dev_id)
+{
+	struct ft5x0x_ts_data *ft5x0x_ts = dev_id;
+	int ret = 0;
+	disable_irq_nosync(ft5x0x_ts->irq);
+	ret = ft5x0x_read_Touchdata(ft5x0x_ts);	//读取数据
+	if (ret == 0)
+		ft5x0x_report_value(ft5x0x_ts);//报告数据
+
+	enable_irq(ft5x0x_ts->irq);
+
+	return IRQ_HANDLED;
+}
+报告事件
+
+static void ft5x0x_report_value(struct ft5x0x_ts_data *data)
+{
+	struct ts_event *event = &data->event;
+	int i;
+	int uppoint = 0;
+
+	/*protocol B*/	
+	for (i = 0; i < event->touch_point; i++)
+	{
+#if TOUCH_KEY == EVENT_LI		//如果使用 key event方法
+		if (event->au16_y[i]==1400)
+		{
+			if(event->au8_touch_event[i]== 0 || event->au8_touch_event[i] == 2)
+			{
+
+				switch(event->au16_x[i])
+				{
+				case 120:
+					input_report_key(data->input_dev, KEY_BACK, 1);
+					break;
+				case 360: 
+					input_report_key(data->input_dev, KEY_HOME, 1);
+					break;
+				case 500: 
+					input_report_key(data->input_dev, KEY_MENU, 1);
+					break;	
+				default: break;
+				}
+				
+			}
+			else
+			{
+
+				switch(event->au16_x[i])
+				{
+				case 120:
+					input_report_key(data->input_dev, KEY_BACK, 0);
+					break;
+				case 360: 
+					input_report_key(data->input_dev, KEY_HOME, 0);
+					break;
+				case 500: 
+					input_report_key(data->input_dev, KEY_MENU, 0);
+					break;	
+				default: break;
+				}
+				uppoint++;
+				
+			}
+			input_sync(data->input_dev);
+			return;
+		}
+
+#endif
+	
+		input_mt_slot(data->input_dev, event->au8_finger_id[i]);
+		
+		
+		if (event->au8_touch_event[i]== 0 || event->au8_touch_event[i] == 2)
+		{
+			input_mt_report_slot_state(data->input_dev, MT_TOOL_FINGER,	true);
+			input_report_abs(data->input_dev,ABS_MT_POSITION_X,event->au16_x[i]);		//lijianzhang
+			input_report_abs(data->input_dev, ABS_MT_POSITION_Y,event->au16_y[i]);
+			input_report_abs(data->input_dev,ABS_MT_TOUCH_MAJOR,event->pressure);
+		}
+		else
+		{
+			uppoint++;
+			input_mt_report_slot_state(data->input_dev, MT_TOOL_FINGER,	false);
+		}
+		
+
+	}
+
+		if(event->touch_point == uppoint)
+		{
+			input_report_key(data->input_dev, BTN_TOUCH, 0);
+		}
+		else
+		{
+			input_report_key(data->input_dev, BTN_TOUCH, event->touch_point > 0);
+		}
+		input_sync(data->input_dev);
+		
+}
+这里驱动流程做了简略的说明，关键的代码都已经贴出来了。与设备相关代码都是厂商给的没有太实际参考价值.
+
+从android input的流程分析我们知道，驱动编译完成以后，要使触摸屏工作，还需要三个文件
+：触摸屏配置文件 （idc文件，用来配置触摸屏的一些属性）、keylayout文件（kl文件，安卓层面的按键映射文件）、characterMap文件（kcm文件，安卓层面的字符映射文件）
+我们一一来看这三个文件
+
+1.触摸屏配置文件
+
+文件所在目录访问顺序：
+
+首先ANDROID_ROOT/usr/idc目录下去找相应名字的文件并返回完整的路径名，如果找不到就从ANDROID_DATA/system/devices/idc下面去找,这里ANDROID_ROOT一般指的是/system目录，ANDROID_DATA一般指/data目录.
+
+文件名称的查找顺序首先是Vendor_XXXX_Product_XXXX_Version_XXXX.idc，然后是Vendor_XXXX_Product_XXXX.idc最后是DEVICE_NAME.idc
+
+总结来看安卓为输入设备打开配置文件依次会访问
+/system/usr/idc/Vendor_XXXX_Product_XXXX_Version_XXXX.idc
+/system/usr/idc/Vendor_XXXX_Product_XXXX.idc
+/system/usr/idc/DEVICE_NAME.idc
+/data/system/devices/idc/Vendor_XXXX_Product_XXXX_Version_XXXX.idc
+/data/system/devices/idc/Vendor_XXXX_Product_XXXX.idc
+/data/system/devices/idc/DEVICE_NAME.idc
+
+我们驱动里并没有写版本号等这些信息，因此我们设备访问的idc文件会是/system/usr/idc/DEVICE_NAME.idc。
+因此我们在这个目录下增加文件Ft5x0x_Touch_Screen.idc.对于idc文件的内容，下面是我使用的idc文件的具体内容，仅供参考
+
+
+touch.deviceType = touchScreen
+touch.orientationAware = 1
+
+touch.size.calibration = none
+touch.orientation.calibration = none                                    
+2.key layout文件
+
+key layout文件是android层面的按键映射文件，通过这个文件，用户可以对kernel发送上来的按键功能进行重新定义。
+也就是说，kernel发送上来一个home键，你可以在这里把它映射成一个back键或者其他的。一般情况下不会修改这个文件，因此我么完全可以使用默认的配置文件
+
+这个文件访问顺序
+
+/system/usr/keylayout/Vendor_XXXX_Product_XXXX_Version_XXXX.kl
+/system/usr/keylayout/Vendor_XXXX_Product_XXXX.kl
+/system/usr/keylayout/DEVICE_NAME.kl
+/data/system/devices/keylayout/Vendor_XXXX_Product_XXXX_Version_XXXX.kl
+/data/system/devices/keylayout/Vendor_XXXX_Product_XXXX.kl
+/data/system/devices/keylayout/DEVICE_NAME.kl
+/system/usr/keylayout/Generic.kl
+/data/system/devices/keylayout/Generic.kl
+
+这里不用修改因此不用做改变
+
+3.characterMap文件
+
+characterMap文件是android层面的字符映射文件，比如：你摁下了一个'e'键，平时代表'e'，shift+'e'代表'E',casplk+'e'代表'E',alt+'e'可能代表别的意思，这个配置文件就是，做这些映射的。
+一般情况下这个文件也不用修改。使用默认的就可以。这个文件的访问顺序：
+
+/system/usr/keychars/Vendor_XXXX_Product_XXXX_Version_XXXX.kcm
+/system/usr/keychars/Vendor_XXXX_Product_XXXX.kcm
+/system/usr/keychars/DEVICE_NAME.kcm
+/data/system/devices/keychars/Vendor_XXXX_Product_XXXX_Version_XXXX.kcm
+/data/system/devices/keychars/Vendor_XXXX_Product_XXXX.kcm
+/data/system/devices/keychars/DEVICE_NAME.kcm
+/system/usr/keychars/Generic.kcm
+/data/system/devices/keychars/Generic.kcm
+/system/usr/keychars/Virtual.kcm
+/data/system/devices/keychars/Virtual.kcm
+
+到了这里 我们的触摸屏已经完成了，烧写以后应该可以正常使用了。
+
+在这里分享一个小技巧，getevent 这个工具，在/dev/input/目录下使用这个命令，
+会首先得到系统中所有input设备的描述，然后会得到，kernel发送的所有input事件，当我们写完驱动以后，可以用这个命令将发送的事件打印出来，看驱动写的是否正确。
