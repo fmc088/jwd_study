@@ -4,8 +4,5 @@ adb push E:\3D.so\libGLES.so system/lib/egl/
 
 adb -s emulator-5556 install helloWorld.apk
 
-adb logcat *:E
-
-
 
 adb install E:\android.armeabi-v7a-1033\bin\SpeechJNI_NoEnc_1034.apk
