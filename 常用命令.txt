@@ -1,0 +1,19 @@
+cat /proc/kmsg  控制器获取debug信息指令
+
+grep "   " ./ -rn  搜索文本工具
+
+net use * /DEL  连接服务端断开，才能重新连接另一个用户
+ 
+java -jar signapk.jar platform.x509.pem platform.pk8  your.apk your_signed.apk   系统签名
+
+adb remount   初始化
+
+adb push E:\3D.so\libvision-jni.so system/lib 把本地文件推送到安卓系统
+
+adb push E:\3D.so\libGLES.so system/lib/egl/
+
+adb -s emulator-5556 install helloWorld.apk  安装本地的apk
+
+adb logcat *:E                               显示安装时log
+
+adb install E:\android.armeabi-v7a-1033\bin\SpeechJNI_NoEnc_1034.apk  安装本地的apk软件
