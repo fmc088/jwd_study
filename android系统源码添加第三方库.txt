@@ -1,0 +1,23 @@
+主要参考了Android源码中的Calculator应用，该应用也引用了一个第三方的jar包arity-2.1.2.jar。
+(\\192.168.0.190\jhdzc\rk3066_repo\packages\apps\Calculator)
+
+LOCAL_PATH := $(call my-dir)
+include $(CLEAR_VARS)
+LOCAL_MODULE_TAGS := optional
+LOCAL_STATIC_JAVA_LIBRARIES := libarity android-support-v4 guava  
+LOCAL_SRC_FILES := $(call all-java-files-under, src)
+#LOCAL_SDK_VERSION := current
+LOCAL_CERTIFICATE := platform
+LOCAL_PACKAGE_NAME := Calculator
+include $(BUILD_PACKAGE)
+##################################################
+include $(CLEAR_VARS)
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := libarity:arity-2.1.2.jar
+include $(BUILD_MULTI_PREBUILT)
+# Use the folloing include to make our test apk.
+include $(call all-makefiles-under,$(LOCAL_PATH))
+
+libarity是属于第三方库在当前根目录下，添加第三库的地址，剩下系统自带的库文件就需要配置了，自动会导入库
+include $(CLEAR_VARS)
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := libarity:arity-2.1.2.jar
+include $(BUILD_MULTI_PREBUILT)
