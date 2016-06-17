@@ -10,14 +10,132 @@ LOCAL_SRC_FILES := $(call all-java-files-under, src)
 LOCAL_CERTIFICATE := platform
 LOCAL_PACKAGE_NAME := Calculator
 include $(BUILD_PACKAGE)
-##################################################
+
 include $(CLEAR_VARS)
 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := libarity:arity-2.1.2.jar
 include $(BUILD_MULTI_PREBUILT)
-# Use the folloing include to make our test apk.
+
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 libarity是属于第三方库在当前根目录下，添加第三库的地址，剩下系统自带的库文件就需要配置了，自动会导入库
 include $(CLEAR_VARS)
-LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := libarity:arity-2.1.2.jar
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := libarity:arity-2.1.2.jar  （记住这里一定只要一个）
 include $(BUILD_MULTI_PREBUILT)
+
+Android.mk添加第三方jar包
+参考网站：http://www.cnblogs.com/hopetribe/archive/2012/04/23/2467060.html
+
+LOCAL_PATH:= $(call my-dir)
+include $(CLEAR_VARS)
+LOCAL_STATIC_JAVA_LIBRARIES := xsocket jackson-mapper logging jackson-core javatar log4j
+LOCAL_MODULE_TAGS := optional
+LOCAL_SRC_FILES := $(call all-subdir-java-files)
+LOCAL_PACKAGE_NAME := test
+LOCAL_CERTIFICATE := platform
+include $(BUILD_PACKAGE)
+include $(CLEAR_VARS)
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := xsocket:lib/xSocket-2.8.14.jar \
+　　　　jackson-mapper:lib/jackson-mapper-asl-1.6.2.jar	\
+　　　　logging:lib/commons-logging.jar	\
+　　　　jackson-core:lib/jackson-core-asl-1.6.2.jar	\
+　　　　javatar:lib/javatar-2.5.jar	\
+　　　　log4j:lib/log4j-1.2.15.jar
+include $(BUILD_MULTI_PREBUILT)
+# Use the folloing include to make our test apk.
+include $(call all-makefiles-under,$(LOCAL_PATH))
+以上是我的一个项目中所需要的第三方jar包，主要参考了Android源码中的Calculator应用，该应用也引用了一个第三方的jar包arity-2.1.2.jar。
+需要注意的是，当你要引用的jar包不止一个时，有两个关键的地方需要注意的。
+LOCAL_STATIC_JAVA_LIBRARIES := xsocket jackson-mapper logging jackson-core javatar log4j
+
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := xsocket:lib/xSocket-2.8.14.jar \
+　　　　jackson-mapper:lib/jackson-mapper-asl-1.6.2.jar	\
+　　　　logging:lib/commons-logging.jar	\
+　　　　jackson-core:lib/jackson-core-asl-1.6.2.jar	\
+　　　　javatar:lib/javatar-2.5.jar	\
+　　　　log4j:lib/log4j-1.2.15.jar
+
+xsocket jackson-mapper logging jackson-core javatar log4j这几个只是名字，可以随便取。LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES后面才是真正其作用的地方。如：
+xsocket:lib/xSocket-2.8.14.jar 引用的是lib目录中的xSocket-2.8.14.jar。
+
+还要注意的是 := 不要写成了+=了哦。
+
+一、编译一个简单的APK
+	LOCAL_PATH := $(call my-dir)
+	include $(CLEAR_VARS)
+	# Build all java files in the java subdirectory
+	LOCAL_SRC_FILES := $(call all-subdir-java-files)
+	# Name of the APK to build
+	LOCAL_PACKAGE_NAME := LocalPackage
+	# Tell it to build an APK
+	include $(BUILD_PACKAGE)
+二、编译一个依赖静态.jar文件的APK
+	LOCAL_PATH := $(call my-dir)
+	include $(CLEAR_VARS)
+	# List of static libraries to include in the package
+	LOCAL_STATIC_JAVA_LIBRARIES := static-library
+	# Build all java files in the java subdirectory
+	LOCAL_SRC_FILES := $(call all-subdir-java-files)
+	# Name of the APK to build
+	LOCAL_PACKAGE_NAME := LocalPackage
+	# Tell it to build an APK
+	include $(BUILD_PACKAGE)
+	注：LOCAL_STATIC_JAVA_LIBRARIES 后面应是你的APK程序所需要的JAVA库的JAR文件名。
+三、编译一个需要platform key签名的APK
+	LOCAL_PATH := $(call my-dir)
+	include $(CLEAR_VARS)
+	# Build all java files in the java subdirectory
+	LOCAL_SRC_FILES := $(call all-subdir-java-files)
+	# Name of the APK to build
+	LOCAL_PACKAGE_NAME := LocalPackage
+	LOCAL_CERTIFICATE := platform
+	# Tell it to build an APK
+	include $(BUILD_PACKAGE)
+	注：LOCAL_CERTIFICATE 后面应该是签名文件的文件名
+四、编译一个需要特殊vendor key签名的APK
+	LOCAL_PATH := $(call my-dir)
+	include $(CLEAR_VARS)
+	# Build all java files in the java subdirectory
+	LOCAL_SRC_FILES := $(call all-subdir-java-files)
+	# Name of the APK to build
+	LOCAL_PACKAGE_NAME := LocalPackage
+	LOCAL_CERTIFICATE := vendor/example/certs/app
+	# Tell it to build an APK
+	include $(BUILD_PACKAGE)
+五、装载一个普通的第三方APK
+	LOCAL_PATH := $(call my-dir)
+	include $(CLEAR_VARS)
+	# Module name should match apk name to be installed.
+	LOCAL_MODULE := LocalModuleName
+	LOCAL_SRC_FILES := $(LOCAL_MODULE).apk
+	LOCAL_MODULE_CLASS := APPS
+	LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+	LOCAL_CERTIFICATE := platform
+	include $(BUILD_PREBUILT) 
+六、装载需要.so（动态库）的第三方apk
+	LOCAL_PATH := $(my-dir)
+	include $(CLEAR_VARS)
+	LOCAL_MODULE := baiduinput_android_v1.1_1000e
+	LOCAL_SRC_FILES := $(LOCAL_MODULE).apk
+	LOCAL_MODULE_CLASS := APPS
+	LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+	LOCAL_CERTIFICATE := platform
+	include $(BUILD_PREBUILT)
+	include $(CLEAR_VARS)
+	LOCAL_MODULE := libinputcore.so
+	LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+	LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+	LOCAL_SRC_FILES := lib/$(LOCAL_MODULE)
+	OVERRIDE_BUILD_MODULE_PATH := $(TARGET_OUT_INTERMEDIATE_LIBRARIES)
+	include $(BUILD_PREBUILT)
+七、编译一个静态java库
+	LOCAL_PATH := $(call my-dir)
+	include $(CLEAR_VARS)
+	# Build all java files in the java subdirectory
+	LOCAL_SRC_FILES := $(call all-subdir-java-files)
+	# Any libraries that this library depends on
+	LOCAL_JAVA_LIBRARIES := android.test.runner
+	# The name of the jar file to create
+	LOCAL_MODULE := sample
+	# Build a static jar file.
+	include $(BUILD_STATIC_JAVA_LIBRARY)
+	注：LOCAL_JAVA_LIBRARIES表示生成的java库的jar文件名。
