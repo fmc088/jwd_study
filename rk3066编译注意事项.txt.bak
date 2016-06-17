@@ -1,7 +1,0 @@
-source build/envsetup.sh
-build/core/product_config.mk:222: *** Can not locate config makefile for product "rk3066".  Stop.
-出现这个问题就要先 lunch 选择一个类型，才不会出现那个错误
-
-
-mmm 会出现一些乱码的警告，可以忽视它，可以正常编译通过的
-    出现一些缺少jar包时，这时就要把android重新编译一遍过，才能编译局部文件
