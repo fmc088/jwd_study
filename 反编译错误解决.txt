@@ -1,0 +1,39 @@
+
+Warning: jcifs.http.NtlmServlet: can't find referenced class javax.servlet.http.HttpSession
+Warning: jcifs.http.NtlmServlet: can't find referenced class javax.servlet.http.HttpSession
+Warning: jcifs.http.NtlmServlet: can't find referenced class javax.servlet.http.HttpServletRequest
+Warning: jcifs.http.NtlmServlet: can't find referenced class javax.servlet.http.HttpServletResponse
+
+
+解决方法，在反编译文档中添加以下内容
+-dontwarn jcifs.**
+-keep class jcifs.** { *;}
+
+
+混淆时候基本用法：
+-libraryjars   libs/android-support-v4.jar
+-dontwarn android.support.v4.**
+-keep class android.support.v4.** { *; }  
+-keep interface android.support.v4.app.** { *; }  
+-keep public class * extends android.support.v4.**  
+-keep public class * extends android.app.Fragment
+
+
+-libraryjars   libs/protobuf-java-2.3.0.jar
+-dontwarn com.google.protobuf.**
+-dontwarn com.google.protobuf.micro.**
+-dontwarn com.google.protobuf.nano.**
+-keep class com.google.protobuf.** { *; }  
+-keep class com.google.protobuf.micro.** { *; }  
+-keep class com.google.protobuf.nano.** { *; }      
+
+
+LOCAL_STATIC_JAVA_LIBRARIES := android-support-v4 android-support-v13 jsr305 jcifs
+
+参考网站：http://blog.csdn.net/cbk861110/article/details/50912109
+先写个mk jcifs加载到out/....中 利用LOCAL_STATIC_JAVA_LIBRARIES 和 LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES，就是需要加载静态库。
+通过
+-dontwarn jcifs.**
+-keep class jcifs.** { *;} 来解决，出现的警告
+
+/out/target/common/obj/APPS/Settings_intermediates/classes/jcifs

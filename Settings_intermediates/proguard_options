@@ -1,0 +1,603 @@
+# view AndroidManifest.xml #generated:1747
+-keep class android.support.v4.content.FileProvider { <init>(...); }
+
+# view res/layout/app_ops_summary.xml #generated:32
+# view res/layout/manage_applications_content.xml #generated:32
+-keep class android.support.v4.view.PagerTabStrip { <init>(...); }
+
+# view res/layout/app_ops_summary.xml #generated:27
+# view res/layout/manage_applications_content.xml #generated:27
+-keep class android.support.v4.view.ViewPager { <init>(...); }
+
+# view res/layout/user_dictionary_add_word.xml #generated:25
+-keep class com.android.internal.widget.DialogTitle { <init>(...); }
+
+# view land/res/layout-land/choose_lock_pattern.xml #generated:17
+# view land/res/layout-land/confirm_lock_pattern.xml #generated:17
+# view res/layout/choose_lock_pattern.xml #generated:16
+# view res/layout/confirm_lock_pattern.xml #generated:16
+# view sw600dp-land/res/layout-sw600dp-land/choose_lock_pattern.xml #generated:17
+# view sw600dp-land/res/layout-sw600dp-land/confirm_lock_pattern.xml #generated:16
+# view sw600dp/res/layout-sw600dp/choose_lock_pattern.xml #generated:16
+# view sw600dp/res/layout-sw600dp/confirm_lock_pattern.xml #generated:16
+-keep class com.android.internal.widget.LinearLayoutWithDefaultTouchRecepient { <init>(...); }
+
+# view land/res/layout-land/choose_lock_pattern.xml #generated:86
+# view land/res/layout-land/confirm_lock_pattern.xml #generated:69
+# view res/layout/choose_lock_pattern.xml #generated:42
+# view res/layout/confirm_lock_pattern.xml #generated:35
+# view sw600dp-land/res/layout-sw600dp-land/choose_lock_pattern.xml #generated:46
+# view sw600dp-land/res/layout-sw600dp-land/confirm_lock_pattern.xml #generated:52
+# view sw600dp/res/layout-sw600dp/choose_lock_pattern.xml #generated:50
+# view sw600dp/res/layout-sw600dp/confirm_lock_pattern.xml #generated:48
+-keep class com.android.internal.widget.LockPatternView { <init>(...); }
+
+# view land/res/layout-land/choose_lock_password.xml #generated:66
+# view land/res/layout-land/confirm_lock_password.xml #generated:73
+# view res/layout/choose_lock_password.xml #generated:82
+# view res/layout/confirm_lock_password.xml #generated:70
+# view sw600dp-land/res/layout-sw600dp-land/choose_lock_password.xml #generated:85
+# view sw600dp-land/res/layout-sw600dp-land/confirm_lock_password.xml #generated:86
+# view sw600dp/res/layout-sw600dp/choose_lock_password.xml #generated:68
+# view sw600dp/res/layout-sw600dp/confirm_lock_password.xml #generated:71
+-keep class com.android.internal.widget.PasswordEntryKeyboardView { <init>(...); }
+
+# view res/layout/captioning_preview.xml #generated:34
+# view res/layout/preset_picker_item.xml #generated:32
+-keep class com.android.internal.widget.SubtitleView { <init>(...); }
+
+# view AndroidManifest.xml #generated:1345
+-keep class com.android.settings.ActivityPicker { <init>(...); }
+
+# view AndroidManifest.xml #generated:1467
+-keep class com.android.settings.AllowBindAppWidgetActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1120
+-keep class com.android.settings.ApnEditor { <init>(...); }
+
+# view AndroidManifest.xml #generated:269
+-keep class com.android.settings.ApnSettings { <init>(...); }
+
+# view AndroidManifest.xml #generated:1218
+-keep class com.android.settings.AppPicker { <init>(...); }
+
+# view AndroidManifest.xml #generated:1457
+-keep class com.android.settings.AppWidgetPickActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1432
+-keep class com.android.settings.BandMode { <init>(...); }
+
+# view AndroidManifest.xml #generated:1392
+-keep class com.android.settings.BatteryInfo { <init>(...); }
+
+# view res/xml/display_settings.xml #generated:21
+-keep class com.android.settings.BrightnessPreference { <init>(...); }
+
+# view res/xml/development_prefs.xml #generated:19
+-keep class com.android.settings.BugreportPreference { <init>(...); }
+
+# view AndroidManifest.xml #generated:1069
+-keep class com.android.settings.ChooseLockGeneric { <init>(...); }
+
+# view AndroidManifest.xml #generated:1078
+-keep class com.android.settings.ChooseLockGeneric$InternalActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1085
+-keep class com.android.settings.ChooseLockPassword { <init>(...); }
+
+# view AndroidManifest.xml #generated:1083
+-keep class com.android.settings.ChooseLockPattern { <init>(...); }
+
+# view AndroidManifest.xml #generated:1066
+-keep class com.android.settings.ConfirmLockPassword { <init>(...); }
+
+# view AndroidManifest.xml #generated:1064
+-keep class com.android.settings.ConfirmLockPattern { <init>(...); }
+
+# view AndroidManifest.xml #generated:102
+-keep class com.android.settings.CreateShortcut { <init>(...); }
+
+# view AndroidManifest.xml #generated:946
+-keep class com.android.settings.CredentialStorage { <init>(...); }
+
+# view AndroidManifest.xml #generated:1568
+-keep class com.android.settings.CryptKeeper { <init>(...); }
+
+# view AndroidManifest.xml #generated:1582
+-keep class com.android.settings.CryptKeeper$FadeToBlack { <init>(...); }
+
+# view AndroidManifest.xml #generated:1588
+-keep class com.android.settings.CryptKeeperConfirm$Blank { <init>(...); }
+
+# view res/xml/security_settings_unencrypted.xml #generated:23
+-keep class com.android.settings.CryptKeeperSettings { <init>(...); }
+
+# view res/layout/date_time_settings_setupwizard.xml #generated:34
+# view sw600dp/res/layout-sw600dp/date_time_settings_setupwizard.xml #generated:38
+-keep class com.android.settings.DateTimeSettings { <init>(...); }
+
+# view AndroidManifest.xml #generated:418
+-keep class com.android.settings.DateTimeSettingsSetupWizard { <init>(...); }
+
+# view res/xml/sound_settings.xml #generated:41
+# view res/xml/sound_settings.xml #generated:58
+-keep class com.android.settings.DefaultRingtonePreference { <init>(...); }
+
+# view AndroidManifest.xml #generated:992
+-keep class com.android.settings.DeviceAdminAdd { <init>(...); }
+
+# view AndroidManifest.xml #generated:1386
+-keep class com.android.settings.DeviceInfo$StatsReportReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:1402
+-keep class com.android.settings.Display { <init>(...); }
+
+# view res/xml/display_settings.xml #generated:42
+-keep class com.android.settings.DreamSettings { <init>(...); }
+
+# view res/xml/sim_lock_settings.xml #generated:26
+-keep class com.android.settings.EditPinPreference { <init>(...); }
+
+# view AndroidManifest.xml #generated:1757
+-keep class com.android.settings.HdmiReceiver { <init>(...); }
+
+# view res/xml/hdmi_settings.xml #generated:31
+# view res/xml/hdmi_settings_timeout.xml #generated:31
+-keep class com.android.settings.HdmiScreenZoomPreference { <init>(...); }
+
+# view AndroidManifest.xml #generated:1002
+-keep class com.android.settings.IccLockSettings { <init>(...); }
+
+# view AndroidManifest.xml #generated:1478
+-keep class com.android.settings.KeyguardAppWidgetPickActivity { <init>(...); }
+
+# view res/xml/language_settings.xml #generated:21
+-keep class com.android.settings.LocalePicker { <init>(...); }
+
+# view res/layout/locale_picker.xml #generated:22
+-keep class com.android.settings.LocalePickerFragment { <init>(...); }
+
+# view res/xml/privacy_settings.xml #generated:46
+-keep class com.android.settings.MasterClear { <init>(...); }
+
+# view AndroidManifest.xml #generated:1136
+-keep class com.android.settings.MediaFormat { <init>(...); }
+
+# view AndroidManifest.xml #generated:882
+-keep class com.android.settings.MonitoringCertInfoActivity { <init>(...); }
+
+# view res/xml/security_settings_biometric_weak.xml #generated:58
+# view res/xml/security_settings_chooser.xml #generated:33
+# view res/xml/security_settings_lockscreen.xml #generated:33
+# view res/xml/security_settings_password.xml #generated:45
+# view res/xml/security_settings_pattern.xml #generated:49
+# view res/xml/security_settings_pin.xml #generated:45
+-keep class com.android.settings.OwnerInfoSettings { <init>(...); }
+
+# view res/xml/language_settings.xml #generated:91
+-keep class com.android.settings.PointerSpeedPreference { <init>(...); }
+
+# view res/xml/wireless_settings.xml #generated:91
+-keep class com.android.settings.ProxySelector { <init>(...); }
+
+# view AndroidManifest.xml #generated:1412
+-keep class com.android.settings.RadioInfo { <init>(...); }
+
+# view AndroidManifest.xml #generated:1707
+-keep class com.android.settings.RegulatoryInfoDisplayActivity { <init>(...); }
+
+# view res/xml/sound_settings.xml #generated:22
+-keep class com.android.settings.RingerVolumePreference { <init>(...); }
+
+# view AndroidManifest.xml #generated:73
+-keep class com.android.settings.Screenshot { <init>(...); }
+
+# view AndroidManifest.xml #generated:613
+-keep class com.android.settings.ScreenshotSetting { <init>(...); }
+
+# view AndroidManifest.xml #generated:941
+-keep class com.android.settings.SetFullBackupPassword { <init>(...); }
+
+# view AndroidManifest.xml #generated:84
+-keep class com.android.settings.Settings { <init>(...); }
+
+# view AndroidManifest.xml #generated:1013
+-keep class com.android.settings.Settings$AccessibilitySettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1525
+-keep class com.android.settings.Settings$AccountSyncSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:198
+-keep class com.android.settings.Settings$AdvancedWifiSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1356
+-keep class com.android.settings.Settings$AndroidBeamSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:282
+-keep class com.android.settings.Settings$BluetoothSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1031
+-keep class com.android.settings.Settings$CaptioningSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1595
+-keep class com.android.settings.Settings$CryptKeeperSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1608
+-keep class com.android.settings.Settings$DataUsageSummaryActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:401
+-keep class com.android.settings.Settings$DateTimeSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1160
+-keep class com.android.settings.Settings$DevelopmentSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:958
+-keep class com.android.settings.Settings$DeviceAdminSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:648
+-keep class com.android.settings.Settings$DeviceInfoSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:619
+-keep class com.android.settings.Settings$DisplaySettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1623
+-keep class com.android.settings.Settings$DreamSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:443
+-keep class com.android.settings.Settings$InputMethodAndLanguageSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:459
+-keep class com.android.settings.Settings$KeyboardLayoutPickerActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:427
+-keep class com.android.settings.Settings$LocalePickerActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:845
+-keep class com.android.settings.Settings$LocationSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:684
+-keep class com.android.settings.Settings$ManageApplicationsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1691
+-keep class com.android.settings.Settings$NotificationAccessSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:812
+-keep class com.android.settings.Settings$NotificationStationActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1656
+-keep class com.android.settings.Settings$PaymentSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1498
+-keep class com.android.settings.Settings$PowerUsageSummaryActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1192
+-keep class com.android.settings.Settings$PrintJobSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1176
+-keep class com.android.settings.Settings$PrintSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:923
+-keep class com.android.settings.Settings$PrivacySettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:778
+-keep class com.android.settings.Settings$RunningServicesActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:864
+-keep class com.android.settings.Settings$SecuritySettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:570
+-keep class com.android.settings.Settings$SoundSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:484
+-keep class com.android.settings.Settings$SpellCheckersSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1100
+-keep class com.android.settings.Settings$StorageSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:795
+-keep class com.android.settings.Settings$StorageUseActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:324
+-keep class com.android.settings.Settings$TetherSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1046
+-keep class com.android.settings.Settings$TextToSpeechSettingsActivity { <init>(...); }
+
+# view sw600dp/res/layout-sw600dp/settings_top_level.xml #generated:23
+-keep class com.android.settings.Settings$TopLevelSettings { <init>(...); }
+
+# view AndroidManifest.xml #generated:894
+-keep class com.android.settings.Settings$TrustedCredentialsSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1221
+-keep class com.android.settings.Settings$UsbSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:521
+-keep class com.android.settings.Settings$UserDictionarySettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1640
+-keep class com.android.settings.Settings$UserSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:380
+-keep class com.android.settings.Settings$VpnSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1369
+-keep class com.android.settings.Settings$WifiDisplaySettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:360
+-keep class com.android.settings.Settings$WifiP2pSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:133
+-keep class com.android.settings.Settings$WifiSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:112
+-keep class com.android.settings.Settings$WirelessSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:665
+-keep class com.android.settings.SettingsLicenseActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:675
+-keep class com.android.settings.SettingsSafetyLegalActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1681
+-keep class com.android.settings.SmsDefaultDialog { <init>(...); }
+
+# view res/xml/wireless_settings.xml #generated:26
+-keep class com.android.settings.SmsListPreference { <init>(...); }
+
+# view AndroidManifest.xml #generated:97
+-keep class com.android.settings.SubSettings { <init>(...); }
+
+# view AndroidManifest.xml #generated:1442
+-keep class com.android.settings.TestingSettings { <init>(...); }
+
+# view AndroidManifest.xml #generated:1449
+-keep class com.android.settings.TestingSettingsBroadcastReceiver { <init>(...); }
+
+# view res/xml/wireless_settings.xml #generated:42
+-keep class com.android.settings.TetherSettings { <init>(...); }
+
+# view AndroidManifest.xml #generated:1489
+-keep class com.android.settings.UsageStats { <init>(...); }
+
+# view res/xml/display_settings.xml #generated:25
+-keep class com.android.settings.WallpaperTypeSettings { <init>(...); }
+
+# view res/xml/display_settings.xml #generated:47
+-keep class com.android.settings.WarnedListPreference { <init>(...); }
+
+# view res/xml/security_settings_misc.xml #generated:105
+-keep class com.android.settings.WrappingSwitchPreference { <init>(...); }
+
+# view res/xml/date_time_prefs.xml #generated:37
+-keep class com.android.settings.ZonePicker { <init>(...); }
+
+# view res/layout/captioning_preview.xml #generated:43
+-keep class com.android.settings.accessibility.CaptionPropertiesFragment { <init>(...); }
+
+# view res/xml/captioning_settings.xml #generated:57
+# view res/xml/captioning_settings.xml #generated:67
+# view res/xml/captioning_settings.xml #generated:72
+# view res/xml/captioning_settings.xml #generated:76
+-keep class com.android.settings.accessibility.ColorPreference { <init>(...); }
+
+# view res/xml/captioning_settings.xml #generated:62
+-keep class com.android.settings.accessibility.EdgeTypePreference { <init>(...); }
+
+# view res/xml/captioning_settings.xml #generated:27
+-keep class com.android.settings.accessibility.LocalePreference { <init>(...); }
+
+# view res/xml/captioning_settings.xml #generated:41
+-keep class com.android.settings.accessibility.PresetPreference { <init>(...); }
+
+# view res/xml/accessibility_settings.xml #generated:30
+-keep class com.android.settings.accessibility.ToggleCaptioningPreferenceFragment { <init>(...); }
+
+# view res/xml/accessibility_settings.xml #generated:60
+-keep class com.android.settings.accessibility.ToggleGlobalGesturePreferenceFragment { <init>(...); }
+
+# view res/xml/accessibility_settings.xml #generated:35
+-keep class com.android.settings.accessibility.ToggleScreenMagnificationPreferenceFragment { <init>(...); }
+
+# view AndroidManifest.xml #generated:1550
+-keep class com.android.settings.accounts.AddAccountSettings { <init>(...); }
+
+# view AndroidManifest.xml #generated:1563
+-keep class com.android.settings.accounts.ChooseAccountActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1540
+-keep class com.android.settings.accounts.SyncSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:748
+-keep class com.android.settings.applications.InstalledAppDetailsTop { <init>(...); }
+
+# view res/layout/manage_applications_apps.xml #generated:46
+# view res/layout/preference_linearcolor.xml #generated:21
+# view res/layout/running_processes_view.xml #generated:44
+-keep class com.android.settings.applications.LinearColorBar { <init>(...); }
+
+# view res/xml/application_settings.xml #generated:29
+# view res/xml/application_settings.xml #generated:35
+# view res/xml/application_settings.xml #generated:42
+-keep class com.android.settings.applications.ManageApplications { <init>(...); }
+
+# view res/xml/development_prefs.xml #generated:59
+-keep class com.android.settings.applications.ProcessStatsUi { <init>(...); }
+
+# view res/layout/manage_applications_running.xml #generated:20
+-keep class com.android.settings.applications.RunningProcessesView { <init>(...); }
+
+# view AndroidManifest.xml #generated:1734
+-keep class com.android.settings.bluetooth.BluetoothDiscoverableTimeoutReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:1268
+-keep class com.android.settings.bluetooth.BluetoothDiscoveryReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:1258
+-keep class com.android.settings.bluetooth.BluetoothPairingDialog { <init>(...); }
+
+# view AndroidManifest.xml #generated:1318
+-keep class com.android.settings.bluetooth.BluetoothPairingRequest { <init>(...); }
+
+# view AndroidManifest.xml #generated:1333
+-keep class com.android.settings.bluetooth.BluetoothPermissionActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1325
+-keep class com.android.settings.bluetooth.BluetoothPermissionRequest { <init>(...); }
+
+# view res/xml/device_picker.xml #generated:24
+# view res/xml/wifi_access_points.xml #generated:20
+-keep class com.android.settings.bluetooth.BluetoothProgressCategory { <init>(...); }
+
+# view AndroidManifest.xml #generated:313
+-keep class com.android.settings.bluetooth.DevicePickerActivity { <init>(...); }
+
+# view res/layout/bluetooth_device_picker.xml #generated:22
+-keep class com.android.settings.bluetooth.DevicePickerFragment { <init>(...); }
+
+# view AndroidManifest.xml #generated:1277
+-keep class com.android.settings.bluetooth.DockEventReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:1288
+-keep class com.android.settings.bluetooth.DockService { <init>(...); }
+
+# view AndroidManifest.xml #generated:1290
+-keep class com.android.settings.bluetooth.RequestPermissionActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1311
+-keep class com.android.settings.bluetooth.RequestPermissionHelperActivity { <init>(...); }
+
+# view res/layout/settings_storage_miscfiles.xml #generated:20
+-keep class com.android.settings.deviceinfo.FileItemInfoLayout { <init>(...); }
+
+# view AndroidManifest.xml #generated:1117
+-keep class com.android.settings.deviceinfo.MiscFilesHandler { <init>(...); }
+
+# view res/layout/preference_memoryusage.xml #generated:26
+-keep class com.android.settings.deviceinfo.PercentageBarChart { <init>(...); }
+
+# view AndroidManifest.xml #generated:1089
+-keep class com.android.settings.deviceinfo.Status { <init>(...); }
+
+# view res/xml/wireless_settings.xml #generated:51
+-keep class com.android.settings.ethernet.EthernetSettings { <init>(...); }
+
+# view res/xml/ethernet_settings.xml #generated:39
+-keep class com.android.settings.ethernet.EthernetStaticIP { <init>(...); }
+
+# view res/layout/preference_batteryhistory.xml #generated:17
+-keep class com.android.settings.fuelgauge.BatteryHistoryChart { <init>(...); }
+
+# view AndroidManifest.xml #generated:503
+-keep class com.android.settings.inputmethod.InputMethodAndSubtypeEnablerActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:514
+-keep class com.android.settings.inputmethod.InputMethodDialogReceiver { <init>(...); }
+
+# view res/xml/language_settings.xml #generated:26
+-keep class com.android.settings.inputmethod.SpellCheckersPreference { <init>(...); }
+
+# view AndroidManifest.xml #generated:541
+-keep class com.android.settings.inputmethod.UserDictionaryAddWordActivity { <init>(...); }
+
+# view res/xml/location_mode.xml #generated:20
+# view res/xml/location_mode.xml #generated:25
+# view res/xml/location_mode.xml #generated:30
+-keep class com.android.settings.location.RadioButtonPreference { <init>(...); }
+
+# view res/xml/wireless_settings.xml #generated:37
+-keep class com.android.settings.nfc.AndroidBeam { <init>(...); }
+
+# view AndroidManifest.xml #generated:1671
+-keep class com.android.settings.nfc.PaymentDefaultDialog { <init>(...); }
+
+# view AndroidManifest.xml #generated:1153
+-keep class com.android.settings.quicklaunch.BookmarkPicker { <init>(...); }
+
+# view AndroidManifest.xml #generated:1142
+-keep class com.android.settings.quicklaunch.QuickLaunchSettings { <init>(...); }
+
+# view res/xml/wireless_settings.xml #generated:56
+-keep class com.android.settings.remote.RemoteSetting { <init>(...); }
+
+# view res/xml/accessibility_settings.xml #generated:65
+# view res/xml/language_settings.xml #generated:84
+-keep class com.android.settings.tts.TextToSpeechSettings { <init>(...); }
+
+# view res/layout/user_limits.xml #generated:27
+-keep class com.android.settings.users.AppRestrictionsFragment { <init>(...); }
+
+# view AndroidManifest.xml #generated:767
+-keep class com.android.settings.users.AppRestrictionsFragment$Activity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1741
+-keep class com.android.settings.users.ProfileUpdateReceiver { <init>(...); }
+
+# view res/xml/wireless_settings.xml #generated:47
+-keep class com.android.settings.vpn2.VpnSettings { <init>(...); }
+
+# view res/xml/display_settings.xml #generated:60
+-keep class com.android.settings.wfd.WifiDisplaySettings { <init>(...); }
+
+# view res/layout/preference_widget_sync_toggle.xml #generated:33
+-keep class com.android.settings.widget.AnimatedImageView { <init>(...); }
+
+# view res/layout/data_usage_chart.xml #generated:17
+-keep class com.android.settings.widget.ChartDataUsageView { <init>(...); }
+
+# view res/layout/data_usage_chart.xml #generated:33
+-keep class com.android.settings.widget.ChartGridView { <init>(...); }
+
+# view res/layout/data_usage_chart.xml #generated:43
+# view res/layout/data_usage_chart.xml #generated:52
+-keep class com.android.settings.widget.ChartNetworkSeriesView { <init>(...); }
+
+# view res/layout/data_usage_chart.xml #generated:61
+# view res/layout/data_usage_chart.xml #generated:69
+# view res/layout/data_usage_chart.xml #generated:77
+# view res/layout/data_usage_chart.xml #generated:89
+-keep class com.android.settings.widget.ChartSweepView { <init>(...); }
+
+# view res/layout/data_usage_detail.xml #generated:84
+-keep class com.android.settings.widget.PieChartView { <init>(...); }
+
+# view AndroidManifest.xml #generated:1717
+-keep class com.android.settings.widget.SettingsAppWidgetProvider { <init>(...); }
+
+# view AndroidManifest.xml #generated:241
+-keep class com.android.settings.wifi.WifiAPITest { <init>(...); }
+
+# view AndroidManifest.xml #generated:230
+-keep class com.android.settings.wifi.WifiConfigInfo { <init>(...); }
+
+# view AndroidManifest.xml #generated:219
+-keep class com.android.settings.wifi.WifiInfo { <init>(...); }
+
+# view AndroidManifest.xml #generated:166
+-keep class com.android.settings.wifi.WifiPickerActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:1302
+-keep class com.android.settings.wifi.WifiScanModeActivity { <init>(...); }
+
+# view sw600dp-land/res/layout-sw600dp-land/wifi_settings_for_setup_wizard_xl.xml #generated:105
+# view sw600dp/res/layout-sw600dp/wifi_settings_for_setup_wizard_xl.xml #generated:105
+-keep class com.android.settings.wifi.WifiSettings { <init>(...); }
+
+# view res/layout/setup_preference.xml #generated:19
+-keep class com.android.settings.wifi.WifiSettings$ProportionalOuterFrame { <init>(...); }
+
+# view AndroidManifest.xml #generated:190
+-keep class com.android.settings.wifi.WifiSettingsForSetupWizardXL { <init>(...); }
+
+# view AndroidManifest.xml #generated:177
+-keep class com.android.settings.wifi.WifiSetupActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:250
+-keep class com.android.settings.wifi.WifiStatusTest { <init>(...); }
+
+# onClick res/layout/user_dictionary_add_word.xml #generated:65
+-keepclassmembers class * { *** onClickCancel(...); }
+
+# onClick res/layout/user_dictionary_add_word.xml #generated:74
+-keepclassmembers class * { *** onClickConfirm(...); }
+
