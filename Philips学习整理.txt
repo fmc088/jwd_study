@@ -1,0 +1,61 @@
+1.软件设置更新：
+	后台服务：PhilipsUpdateService.apk（在查找源码）（参考瑞芯微的RKUpdateService.apk源码）
+	（1）通过USB配置Wifi和更新服务器地址信息（如何通过USB配置？）；
+	（2）启动服务；
+	（3）服务首先先判断是否联网和配置服务器地址
+	
+	 -- 从服务端获取配置信息
+	（4）从服务器下载SPin.xml配置信息；
+	（5）解析SPin.xml配置文件，执行更新操作将配置信息写入系统设置中
+	     --主要是通过Settings.System的put和get方法保存和获取各项设置数据；  
+	（6）删除SPin.xml配置文件
+	
+	 -- 本地生成配置信息
+	（7）生成当前系统设置信息写入到SPout.xml
+	（8）提交SPout.xml到服务端
+	（9）删除SPout.xml文件
+	 这里设定一定连接服务器的间隔时间，定时生成SPout.xml文件到服务端
+
+2.使用Setings.System的get和put方法保存和获取xml设置
+  （1）framework层的 SettingProvider 和 android.provider.Settings.java 之间的关系应用程序使用
+       Settings.System.putInt(ContentResolver cr, String name, int value);
+       Settings.System.getInt(ContentResolver cr, String name, int def);
+       对设置值获取和设置该对应的设置值
+ 	详细方法：
+      添加一个系统设置的方法： 
+      1、首先在 Settings.java 中添加一个公有的静态key，你可以将你的设置项加到Settings类中的子类 class Global 中，会对应在数据库中生成一个key/value对，Global对应数据库的URI：
+   
+      public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/global");      
+      比如添加 jwd_debug_flag 设置项：
+      public static final class Global extends NameValueTable {
+        //NameValueTable使用来接对应的数据库（URI）并对数据库操作
+        。。。
+        public static final String JWD_DEBUG_FLAG = "jwd_debug_flag";
+      
+      }
+      然后在 System 类中：
+      public static final class System extends NameValueTable
+      {
+         。。。
+         private static final HashSet<String> MOVED_TO_GLOBAL = new HashSet<String>();
+      
+         MOVED_TO_GLOBAL.add(Settings.Global.AIRPLANE_MODE_ON);
+      }
+      
+      当你调用 Settings.System.putInt 时最终会调回到 Global 类的 putIntForUser 方法，接着会转到 NameValueCache 中的 putIntForUser 方法将键值存入数据库。
+      
+      使用下面的方法添加或者更新：
+      Settings.System.putInt(ContentResolver,Settings.Global.JWD_DEBUG_FLAG,1);
+      
+   
+   获取一项系统设置的方法：  
+      Settings.System.getInt(ContentResolver,Settings.Global.JWD_DEBUG_FLAG,默认值);
+           
+   配置 JWD_DEBUG_FLAG 的默认值：
+   在SettingsProvider中添加系统的默认设置，这里是直接对db进行操作：
+ 
+   1、在SettingsProvider 的res/value/default.xml 中为 JWD_DEBUG_FLAG 设置项添加一个默认值；
+      <integer name="def_jwd_debug_flag">0</integer>
+ 
+   2、在  com.android.providers.settings.DatabaseHelper 中的 loadSystemSettings 方法中添加     默认值：
+     loadIntegerSetting(stmt, Settings.Global.JWD_DEBUG_FLAG,R.integer.def_jwd_debug_flag);
