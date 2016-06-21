@@ -7,7 +7,7 @@
 	 -- 从服务端获取配置信息
 	（4）从服务器下载SPin.xml配置信息；
 	（5）解析SPin.xml配置文件，执行更新操作将配置信息写入系统设置中
-	     --主要是通过Settings.System的put和get方法保存和获取各项设置数据；  
+	     --主要是通过Settings.System的put和get方法保存和获取各项设置数据； （参照第二步骤） 
 	（6）删除SPin.xml配置文件
 	
 	 -- 本地生成配置信息
@@ -54,8 +54,68 @@
    配置 JWD_DEBUG_FLAG 的默认值：
    在SettingsProvider中添加系统的默认设置，这里是直接对db进行操作：
  
-   1、在SettingsProvider 的res/value/default.xml 中为 JWD_DEBUG_FLAG 设置项添加一个默认值；
+   （1）在SettingsProvider 的res/value/default.xml 中为 JWD_DEBUG_FLAG 设置项添加一个默认值；
       <integer name="def_jwd_debug_flag">0</integer>
  
-   2、在  com.android.providers.settings.DatabaseHelper 中的 loadSystemSettings 方法中添加     默认值：
+   （2）在  com.android.providers.settings.DatabaseHelper 中的 loadSystemSettings 方法中添加     默认值：
      loadIntegerSetting(stmt, Settings.Global.JWD_DEBUG_FLAG,R.integer.def_jwd_debug_flag);
+     
+3.使用PULL方式解析SPin.xml。
+   
+   在SPin.xml文件中将相同TAG的标签归为一类，有：
+   Configuration：记录当前xml的版本跟编码信息；
+   Setting：解析到Setting时，创建一个Setting列表，以后每遇到一个Setting就添加一个；
+   WLANNetworks：解析到是WLANNetworks时创建WifiConnect和WifiDelete信息的列表：
+                 ArrayList<WifiConnect> wifiConnectList = new ArrayList<WifiConnect>();
+                 ArrayList<WifiDelete> wifiDeleteList = new ArrayList<wifiDeleteList>(); 
+   AddOrUpdate：解析到AddOrUpdate时，创建一个 WifiConnect 对象，并添加到wifiConnectList； Delete： 创建一个WifiDelete对象，并添加到 wifiDeleteList；       
+   UninstallApps：同WLANNetworks；
+   InstallApps：同WLANNetworks；
+   因为需要解析的文件较大，将解析的动作放到一个异步任务中。
+   HashMap<String,Bundle> settinList = new HashMap<String,Bundle>();
+   			Bundle bundle = new Bundle();
+				bundle.putString("id", parser.getAttributeValue(null, "ID"));
+				bundle.putString("locked", parser.getAttributeValue(null, "Locked"));
+				bundle.putString("value", parser.getAttributeValue(null, "Value"));
+				settinList.put(parser.getAttributeValue(null, "ID"), bundle);
+				通过xml中的ID号来取得各个Setting项的内容
+	如：String address = settinList.get(“PRDMServerAddress”);//取出服务器地址
+4.原来的文件只是配置说明，保留，copy到新的配置文件SPin_new.xml(去除了apk,升级文件，桌面背景图片和锁屏图片)；
+
+	（1）文档中安装apk单独另存为其他类型文件有apk
+	    <InstallApps>
+	  	<InstallApp Package="UEsDBAoAA......" />
+	  	头标识：<InstallApp Package="  
+	  	尾标识：/>
+	  	中间内容UEsDBAoAA......存储为0001.apk文件
+	  	。。。同样存储为000n.apk文件为止，这部分相应的新的配置文件修改为；
+	    <InstallApps>
+	  	<InstallApp Package="0001.apk." value="0001.apk的存储路径名" />
+	  	...
+	  	<InstallApp Package="000n.apk." value="000n.apk的存储路径名" />
+	  	</InstallApps>
+	
+	（2）升级文件
+	    <Setting ID="Firmware" Locked="true" Value="UktGV2YA......." />
+	     UktGV2YA.......文件存储为update.img, 这部分相应的新的配置文件修改为； 	             
+	    <Setting ID="Firmware" Locked="true" Value="update.img文件路径名" />
+	 
+	（3）桌面背景图片文件
+	    <Setting ID="Wallpaper"
+	             Locked="true" 
+	             Value="data:image/png;base64,iVBORw0KGgo.../>
+	    iVBORw0KGgo...文件存储为Wallpaper_png.tmp,这部分相应的新的配置文件修改为；
+	    <Setting ID="Wallpaper"
+	             Locked="true" 
+	             Value="Wallpaper_png.tmp路径名"
+	    ValueHash="{hash encoded in base64}" />
+	             
+	（4）锁屏图片文件
+	    <Setting ID="Lockscreen"
+	             Locked="true" 
+	             Value="data:image/png;base64,iVBORw0KGgoAAAA.../>
+	    iVBORw0KGgoAAAA...文件存储为Lockscreen_png.tmp,这部分相应的新的配置文件修改为；
+	    <Setting ID="Lockscreen"
+	             Locked="true" 
+	             Value="Lockscreen_png.tmp路径名"
+	    ValueHash="{hash encoded in base64}" />
