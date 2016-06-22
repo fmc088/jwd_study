@@ -1,0 +1,7 @@
+1修改根目录buidspec.sh脚本：（关键）
+ TARGET_BUILD_VARIANT:=user 37行 选择目标，还有一部分选择编译过程
+ TARGET_BUILD_TYPE:=release 53行 选择编译类型
+2.修改device\rockchip\PSP1100下 vendorsetup.sh （关键）
+  add_lunch_combo PSP1100-user //根据你的要求修改-PSP1100-user菜单项到Lunch菜单去
+3.修改build\tools下 buildinfo.sh（可以不改）
+  echo "ro.build.fingerprint=Philips/PSP1100/PSP1100:4.4.2/KOT49H/user.jhlsc.20151213.203752:user/test-keys" 43行
