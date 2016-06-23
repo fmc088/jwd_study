@@ -1,0 +1,57 @@
+[15:03:17]jhdzc@jwd:~/rk3066_repo/kernel_jdm$ cd arch/arm/boot
+
+[15:03:18]jhdzc@jwd:~/rk3066_repo/kernel_jdm/arch/arm/boot$ ll
+
+[15:03:54]jhdzc@jwd:~/rk3066_repo/kernel_jdm/arch/arm/boot$ cd ..
+
+[15:03:57]jhdzc@jwd:~/rk3066_repo/kernel_jdm/arch/arm$ cd ..
+
+[15:03:58]jhdzc@jwd:~/rk3066_repo/kernel_jdm/arch$ cd ..\
+[15:04:00]> ^C
+[15:04:02]jhdzc@jwd:~/rk3066_repo/kernel_jdm/arch$ cd ..
+
+[15:04:08]jhdzc@jwd:~/rk3066_repo/kernel_jdm$ make menuconfig
+
+[15:04:57]jhdzc@jwd:~/rk3066_repo/kernel_jdm$ make clean
+
+[15:05:14]jhdzc@jwd:~/rk3066_repo/kernel_jdm$ make kernel.img -j24
+
+[15:06:15]jhdzc@jwd:~/rk3066_repo/kernel_jdm$ ll
+
+[15:06:28]jhdzc@jwd:~/rk3066_repo/kernel_jdm$ cd arch/arm/boot
+
+[15:06:29]jhdzc@jwd:~/rk3066_repo/kernel_jdm/arch/arm/boot$ ll
+
+[15:07:55]jhdzc@jwd:~/rk3066_repo/kernel_jdm$ make clean
+
+[15:09:13]jhdzc@jwd:~/rk3066_repo/kernel_jdm$ mv kernel.img kernel_mma7660_11.img
+[15:09:19]jhdzc@jwd:~/rk3066_repo/kernel_jdm$ cd arch/arm/boot
+   
+[15:09:42]jhdzc@jwd:~/rk3066_repo/kernel_jdm/arch/arm/boot$ mv Image Image_mma7660_11
+[15:09:44]jhdzc@jwd:~/rk3066_repo/kernel_jdm/arch/arm/boot$ cd ..
+[15:09:46]jhdzc@jwd:~/rk3066_repo/kernel_jdm/arch/arm$ cd ..
+[15:09:49]jhdzc@jwd:~/rk3066_repo/kernel_jdm/arch$ cd ..
+[15:09:51]jhdzc@jwd:~/rk3066_repo/kernel_jdm$ cd ..
+[15:10:27]jhdzc@jwd:~/rk3066_repo$ cp kernel_jdm/arch/arm/boot/Image_mc3xxx_11 out/target/product/PSP1100/kernel
+[15:10:34]jhdzc@jwd:~/rk3066_repo$ ./mkimage.sh ota
+
+[15:11:08]jhdzc@jwd:~/rk3066_repo/rockdev$ rm Image-PSP1100_f_mc3xxx/ -rf
+[15:11:14]jhdzc@jwd:~/rk3066_repo/rockdev$ rm Image-PSP1100_f_mma7660/ -rf
+[15:11:35]jhdzc@jwd:~/rk3066_repo/rockdev$ mv Image-PSP1100 Image-PSP1100_f_mc3xxx
+[15:11:41]jhdzc@jwd:~/rk3066_repo/rockdev$ cd Image-PSP1100_f_mc3xxx/
+[15:11:42]jhdzc@jwd:~/rk3066_repo/rockdev/Image-PSP1100_f_mc3xxx$ ll\
+[15:11:45]> ^C
+[15:11:47]jhdzc@jwd:~/rk3066_repo/rockdev/Image-PSP1100_f_mc3xxx$ ll
+
+[15:12:17]jhdzc@jwd:~/rk3066_repo/rockdev/Image-PSP1100_f_mc3xxx$ cd ..
+[15:12:19]jhdzc@jwd:~/rk3066_repo/rockdev$ cd ..
+[15:12:42]jhdzc@jwd:~/rk3066_repo$ cp kernel_jdm/arch/arm/boot/Image_mma7660_11 out/target/product/PSP1100/kernel
+[15:12:48]jhdzc@jwd:~/rk3066_repo$ ./mkimage.sh ota
+
+[15:13:03]jhdzc@jwd:~/rk3066_repo$ cd rockdev/
+[15:13:05]jhdzc@jwd:~/rk3066_repo/rockdev$ ll
+
+[15:13:27]jhdzc@jwd:~/rk3066_repo/rockdev$ mv Image-PSP1100 Image-PSP1100_f_mma7660
+[15:13:34]jhdzc@jwd:~/rk3066_repo/rockdev$ cd Image-PSP1100_f_mma7660              
+[15:13:54]jhdzc@jwd:~/rk3066_repo/rockdev/Image-PSP1100_f_mma7660$ cp ../../kernel_jdm/kernel_mma7660_11.img kernel.img
+[15:13:56]jhdzc@jwd:~/rk3066_repo/rockdev/Image-PSP1100_f_mma7660$ ll
