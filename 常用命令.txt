@@ -22,3 +22,9 @@ adb -s emulator-5556 install helloWorld.apk  安装本地的apk
 adb logcat *:E                               显示安装时log
 
 adb install E:\android.armeabi-v7a-1033\bin\SpeechJNI_NoEnc_1034.apk  安装本地的apk软件
+
+adb reboot recovery 进入recovery模式
+
+tar -vczf bootable.tar.gz bootable //打包
+tar -zxvf ......   //解包
+mv bootable.tar.gz /home/pub/. //移动，/home/pub/下文件是共享文件
