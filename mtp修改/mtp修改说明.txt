@@ -1,0 +1,51 @@
+（1）修改不弹出USB连接设置 在/frameworks/base/ 需要重新全部编译，make clean功能才能显示出来
+index 25e112d..bcce2bf
+--- a/services/usb/java/com/android/server/usb/UsbDeviceManager.java
++++ b/services/usb/java/com/android/server/usb/UsbDeviceManager.java
+@@ -775,7 +775,8 @@ public class UsbDeviceManager {
+                             intent, 0, null, UserHandle.CURRENT);
+                     notification.color = mContext.getResources().getColor(
+                             com.android.internal.R.color.system_notification_accent_color);
+-                    notification.setLatestEventInfo(mContext, title, message, pi);
++                    //notification.setLatestEventInfo(mContext, title, message, pi);
++                    notification.setLatestEventInfo(mContext, title, message, null);
+                     notification.visibility = Notification.VISIBILITY_PUBLIC;
+                     mNotificationManager.notifyAsUser(null, id, notification,
+                             UserHandle.ALL);
+
+
+（2）开启MTP模式  在packages/apps/Settings/ 开机启动放松
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index 021ae1d..7c5abd0 100755
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -2215,6 +2215,12 @@
+                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+             </intent-filter>
+        </receiver>
++       
++       <receiver android:name="com.android.settings.deviceinfo.BootCompletedReceiver" >
++            <intent-filter>
++                <action android:name="android.intent.action.BOOT_COMPLETED" />
++            </intent-filter>
++        </receiver>
+ 
+        <!-- SCREENSHOT -->
+         <activity android:name="Settings$ScreenshotSettingsActivity"
+diff --git a/src/com/android/settings/deviceinfo/Memory.java b/src/com/android/settings/deviceinfo/Memory.java
+old mode 100644
+new mode 100755
+index 1d0e8d6..89e4b42
+--- a/src/com/android/settings/deviceinfo/Memory.java
++++ b/src/com/android/settings/deviceinfo/Memory.java
+@@ -111,7 +111,7 @@ public class Memory extends SettingsPreferenceFragment implements Indexable {
+             }
+         }
+ 
+-        setHasOptionsMenu(true);
++        //setHasOptionsMenu(true);
+     }
+ 
+     private void addCategory(StorageVolumePreferenceCategory category) {
+
+（3）把BootCompletedReceiver.java拷贝到VR\packages\apps\Settings\src\com\android\settings\deviceinfo\下
