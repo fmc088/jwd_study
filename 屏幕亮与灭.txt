@@ -1,0 +1,9 @@
+参考网站：http://blog.csdn.net/eyu8874521/article/details/7912199
+关于int flags
+　　各种锁的类型对CPU 、屏幕、键盘的影响：
+PARTIAL_WAKE_LOCK:保持CPU 运转，屏幕和键盘灯有可能是关闭的。
+SCREEN_DIM_WAKE_LOCK：保持CPU 运转，允许保持屏幕显示但有可能是灰的，允许关闭键盘灯
+SCREEN_BRIGHT_WAKE_LOCK：保持CPU 运转，允许保持屏幕高亮显示，允许关闭键盘灯
+FULL_WAKE_LOCK：保持CPU 运转，保持屏幕高亮显示，键盘灯也保持亮度
+ACQUIRE_CAUSES_WAKEUP：正常唤醒锁实际上并不打开照明。相反，一旦打开他们会一直仍然保持(例如来世user的activity)。当获得wakelock，这个标志会使屏幕或/和键盘立即打开。一个典型的使用就是可以立即看到那些对用户重要的通知。
+ON_AFTER_RELEASE：设置了这个标志，当wakelock释放时用户activity计时器会被重置，导致照明持续一段时间。如果你在wacklock条件中循环，这个可以用来减少闪烁

@@ -1,0 +1,3 @@
+SpeechJNIHardEnc.apk是硬加密版本
+
+将apk服务包安装到android系统

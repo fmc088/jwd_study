@@ -1,0 +1,8 @@
+(1) SpeechVCJni文件夹拷贝到/hardware/rockchip/下
+
+讯飞语音：
+1、\bin\Resources\iflytek放置到内置sdcard根目录   
+2、把\bin\SpeechJNI_NoEnc_1034.apk 拷贝到VR\out\target\product\rk3288\system\priv-app\SpeechJNI_NoEnc_1034 （SpeechJNI_NoEnc_1034文件夹要先创建）
+3、安装sample\TestSpeechSuitePack.apk
+4、进入TestSpeechSuitePacka.apk应用，到识别标签卡，在参数设置里面-模式-选择Clound。即可体验识别
+5、多唤醒，按住mic按钮，喊你好语音助理，即可体验唤醒

@@ -7,7 +7,7 @@ find -name " " 当前目录下查找文件
 
 locate " " 根目录查询
 
-net use * /DEL  连接服务端断开，才能重新连接另一个用户
+net use * /DEL  连接服务端断开，才能重新连接另一个用户(如果不成功，就重新启动电脑)
  
 java -jar signapk.jar platform.x509.pem platform.pk8  your.apk your_signed.apk   系统签名
 

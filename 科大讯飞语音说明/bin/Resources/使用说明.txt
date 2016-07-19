@@ -1,0 +1,10 @@
+将资源拷贝到机器的存储卡内
+
+唤醒对应的资源文件夹：iflytek/res/vw
+合成对应的资源文件夹：iflytek/res/tts
+识别对应的资源文件夹：iflytek/res/sr
+
+使用时将资源文件夹拷到机器的存储卡中，存放位置任意，例如存放在sdcard/xxx/iflytek/res/vw。
+在sample中使用使用时只需找到对应的资源路径即可
+
+build.xml和property.properties是自动打包工具，将资源打成zip文件并复制到配置文件property.properties中指定的目标目录中
