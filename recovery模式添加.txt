@@ -1,6 +1,6 @@
 1.界面这里是一一对应的：\bootable\recovery\default_device.cpp
   28行 添加ITEMS增加数组的名称
- rk3066_repo\bootable\recovery\default_device.cpp
-  28行 添加ITEMS增加数组名称
+ rk3066_repo\device\rockchip\rksdk\recovery\recovery_ui.cpp
+  31行 添加ITEMS增加数组名称
 2.具体的逻辑判断：rk3066_repo\bootable\recovery\recovery.cpp
   1020行 switch (chosen_item) 选择这里是逻辑判断的代码

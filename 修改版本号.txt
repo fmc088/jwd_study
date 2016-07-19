@@ -1,0 +1,5 @@
+1.\build\tools\buildinfo.sh 
+   7ÐÐ 
+2.jhdzc\rk3066_repo\out\target\product\PSP1100\system\build.prop
+
+3.rk3066_repo\out\target\product\PSP1100\recovery\root\default.prop
