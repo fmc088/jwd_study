@@ -1,0 +1,116 @@
+D/SurfaceFlinger(  156): Set power mode=2, type=0 flinger=0xb84ba550
+I/hwcomposer(  156): hwc_blank dpy[0],blank[0]
+I/DisplayManagerService(  456): Display device changed: DisplayDeviceInfo{"Built-in Screen": uniqueId="local:0", 1440 x 2560, 60.387 fps, supp
+D/DisplayManager(  456): onDisplayEvent: displayId=0, event=2
+D/DisplayManager(  975): onDisplayEvent: displayId=0, event=2
+D/DisplayManager(  999): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1115): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1183): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1204): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1224): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1242): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1285): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1318): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1500): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1520): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1630): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1730): onDisplayEvent: displayId=0, event=2
+D/DisplayPowerState(  456): setScreenBrightness: brightness=6
+D/DisplayManager( 1761): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1825): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1786): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1909): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1929): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 2091): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1950): onDisplayEvent: displayId=0, event=2
+D/DisplayManager(  975): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 1440 x 2464, real 1440 x 256
+D/DisplayManager( 1224): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 1440 x 2464, real 1440 x 256
+D/DisplayManager( 2024): onDisplayEvent: displayId=0, event=2
+D/DisplayPowerController(  456): send timeout msg after 1500
+D/DisplayManager(  975): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 1440 x 2464, real 1440 x 256
+D/DisplayManager(  975): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 1440 x 2464, real 1440 x 256
+D/DisplayPowerState(  456): setScreenBrightness: brightness=10
+D/DisplayManager(  975): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 1440 x 2464, real 1440 x 256
+I/SensorEvent(  456): -------size = 3
+E/my      (  456): addSensorEvent: 3
+D/DisplayManager(  975): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 1440 x 2464, real 1440 x 256
+D/Sensors (  456): int sensors_poll_context_t::activate(int, int)
+D/DisplayManager( 1242): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 1440 x 2464, real 1440 x 256
+D/DisplayManager(  975): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 1440 x 2464, real 1440 x 256
+D/DisplayPowerState(  456): setScreenBrightness: brightness=14
+D/DisplayManager(  975): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 1440 x 2464, real 1440 x 256
+D/DisplayPowerState(  456): setScreenBrightness: brightness=18
+V/KeyguardServiceDelegate(  456): onScreenTurnedOn(showListener = com.android.internal.policy.impl.PhoneWindowManager$2@3253d1b9)
+V/ActivityStackSupervisor(  456): Display changed displayId=0
+D/DisplayManager(  456): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 1440 x 2464, real 1440 x 256
+D/DisplayManager(  456): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 1440 x 2464, real 1440 x 256
+V/KeyguardServiceDelegate(  456): **** SHOWN CALLED ****
+D/DisplayPowerState(  456): setScreenBrightness: brightness=26
+D/PhoneWindowManager(  456): cancelPendingPowerKeyAction =================  =======
+D/DisplayPowerState(  456): setScreenBrightness: brightness=29
+E/WifiStateMachine(  456): ACTION_SCREEN_ON...
+D/DisplayPowerState(  456): setScreenBrightness: brightness=36
+D/DisplayPowerState(  456): setScreenBrightness: brightness=39
+E/WifiStateMachine(  456): cancelDelayedScan -> 11
+E/WifiStateMachine(  456): wifi network checker is off.
+D/WifiStateMachine(  456): backgroundScan enabled=false startBackgroundScanIfNeeded:false
+E/WifiStateMachine(  456): handleScreenStateChanged Exit: true
+D/DisplayPowerState(  456): setScreenBrightness: brightness=43
+D/DisplayPowerState(  456): setScreenBrightness: brightness=46
+D/DisplayPowerState(  456): setScreenBrightness: brightness=50
+D/DisplayPowerState(  456): setScreenBrightness: brightness=53
+E/WifiStateMachine(  456): setSuspendOptimizations: 4 false
+E/WifiStateMachine(  456): mSuspendOptNeedsDisabled 4
+D/DisplayPowerState(  456): setScreenBrightness: brightness=57
+D/DisplayPowerState(  456): setScreenBrightness: brightness=60
+D/DisplayPowerState(  456): setScreenBrightness: brightness=64
+D/DisplayPowerState(  456): setScreenBrightness: brightness=67
+D/DisplayPowerState(  456): setScreenBrightness: brightness=71
+D/DisplayPowerState(  456): setScreenBrightness: brightness=74
+D/DisplayPowerState(  456): setScreenBrightness: brightness=78
+D/DisplayPowerState(  456): setScreenBrightness: brightness=81
+D/DisplayPowerState(  456): setScreenBrightness: brightness=84
+D/DisplayPowerState(  456): setScreenBrightness: brightness=88
+D/DisplayPowerState(  456): setScreenBrightness: brightness=91
+D/DisplayPowerState(  456): setScreenBrightness: brightness=95
+D/DisplayPowerState(  456): setScreenBrightness: brightness=98
+D/DisplayPowerState(  456): setScreenBrightness: brightness=102
+D/DisplayPowerState(  456): setScreenBrightness: brightness=105
+D/DisplayPowerState(  456): setScreenBrightness: brightness=108
+D/DisplayPowerState(  456): setScreenBrightness: brightness=112
+D/DisplayPowerState(  456): setScreenBrightness: brightness=115
+D/DisplayPowerState(  456): setScreenBrightness: brightness=119
+D/DisplayPowerState(  456): setScreenBrightness: brightness=122
+D/DisplayPowerState(  456): setScreenBrightness: brightness=126
+D/DisplayPowerState(  456): setScreenBrightness: brightness=129
+D/DisplayPowerState(  456): setScreenBrightness: brightness=133
+D/DisplayPowerState(  456): setScreenBrightness: brightness=136
+D/DisplayPowerState(  456): setScreenBrightness: brightness=139
+D/DisplayPowerState(  456): setScreenBrightness: brightness=143
+D/DisplayPowerState(  456): setScreenBrightness: brightness=146
+D/DisplayPowerState(  456): setScreenBrightness: brightness=150
+D/DisplayPowerState(  456): setScreenBrightness: brightness=153
+D/DisplayPowerState(  456): setScreenBrightness: brightness=157
+D/DisplayPowerState(  456): setScreenBrightness: brightness=160
+D/DisplayPowerState(  456): setScreenBrightness: brightness=163
+D/DisplayPowerState(  456): setScreenBrightness: brightness=167
+D/DisplayPowerState(  456): setScreenBrightness: brightness=170
+D/DisplayPowerState(  456): setScreenBrightness: brightness=174
+D/DisplayPowerState(  456): setScreenBrightness: brightness=177
+D/DisplayPowerState(  456): setScreenBrightness: brightness=181
+D/DisplayPowerState(  456): setScreenBrightness: brightness=184
+D/DisplayPowerState(  456): setScreenBrightness: brightness=188
+D/SurfaceControl(  456): Excessive delay in setPowerMode(): 952ms
+D/DisplayPowerState(  456): setScreenBrightness: brightness=191
+I/Choreographer( 1242): Skipped 47 frames!  The application may be doing too much work on its main thread.
+D/DisplayPowerState(  456): setScreenBrightness: brightness=193
+D/DisplayPowerState(  456): setScreenBrightness: brightness=197
+I/DisplayPowerController(  456): Unblocked screen on after 999 ms
+D/DisplayPowerController(  456): send timeout msg after 1500
+D/DisplayPowerState(  456): setScreenBrightness: brightness=200
+D/DisplayPowerController(  456): send timeout msg after 1500
+D/DisplayPowerController(  456): send timeout msg after 1500
+D/DisplayPowerController(  456): MSG_BUTTON_LIGHTS_TIME_OUT
+E/Lights  (  456): write_int failed to open sys/class/leds/rk29_key_led/brightness
+I/Lights  (  456): >>> Enter set_keyboard_light
+^C
