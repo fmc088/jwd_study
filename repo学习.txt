@@ -16,10 +16,7 @@ repo是管理这个项目，每一个repo下有多个.git，查看哪些.git文件在，在当前有.git才能
     3.查看当前所有工程分支：
     			.repo/repo/repo branch
     			
-    			
-    			
-    repo forall -c git指令  -->为工程里每一个git仓执行相同的git命令
-    
+    repo forall -c git指令  -->为工程里每一个git仓执行相同的git命令//repo forall -c 'git fetch rk'
     
     			
     2..repo/repo/repo checkout vr-text//切换到自定义的分支
@@ -109,3 +106,18 @@ repo是管理这个项目，每一个repo下有多个.git，查看哪些.git文件在，在当前有.git才能
    git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。
    
    git rm -r 文件名 删除文件
+   
+   常见错误提示
+   $ git commit
+    error: invalid object 100644 13da9eeff5a9150cf2135aaed4d2e337f97b8114 for 'spec/routing/splits_routing_spec.rb'
+    error: Error building trees
+    解决方法：'spec/routing/splits_routing_spec.rb'把对应的文件剪切到另一个文件，再重新拷贝到spec/routing/下，在重新git commit就不会出现那个问题
+    
+    解决两个分支冲突：
+    git merge test2.x
+    Automatic merge failed; fix conflicts and then commit the result.//自动合并失败，需要手动解决冲突事件
+    修改冲突的文件后，git add 文件 然后，git commit
+    
+    
+    
+    
