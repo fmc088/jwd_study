@@ -1,0 +1,312 @@
+Kd543210
+[  389.987618] bcmsdh_sdmmc_suspend Enter func->num=1
+=[ ll89.987633] bcmsdh_sdmmc_suspend ExitrManagerService(  480): acquireWakeLocEIneerfanc lock=640123899, flags=0x1, tag="R-LJum 2
+ice PoderMa85] dwc_otg_ucd=re0um p d=b1de
+           ag 3S9rv8ce08  d0c_ ugdhcdWakspondSuusa deyLicked:omW
+e  l89.998496] fne40=00lusp smspknLo kSRTm:0y=1x15
+[/P39e.0a30ge] eattcry su8pe:  pdateU rr=9t ci-1Su4mvar05o aed8 mstk0xulchs=0A
+                                                                              [ee3, mU0er94t [iLASuRmarLL0: ,nter Tikill_=0an3su36e m
+0.D18o87rMPMa srSperv oe d vi0)s uomaletesafayrow1.S3a mseteLocked: mDisplayReady=false, policy=0, mWakefulness=0, mWakeLockSummary=0x1, mUserActivitySummary=0x0, mBootCompleted=true, mccr
+           enBr9g.tn89s2o st:nPatg ssspfadsef
+                                             devocerMcoapleService(  48 a:tecquiring susp0.d1b mcecr
+PowerMana90.019265] PM: noirq suspend of devices complete after 0.348 erService.WakeLocsecs
+[  390.019272] Disablks"ing non-boot CPUs ...
+[  390.020008] CPU2: shu
+tdown
+[  390.02/8i4p CyPan: ehu  ow0
+ g t90s02a132f rocishia_pdn0t i_sospind:aynkfnu"=7,ltusnenc_wek"upunxqu
+                                                                       [  "9oc02:14,  pkp2_60 x 134t,r:ea[  560 x024156]lGPge0tINTEN: 00040030
+14  3x 1202,160] 87 fps, suppoGteO6eINreshRENes0[600300],   t90i02 174]ensity 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 175598O55, type BUILT_IN, state OFF, FLAG_SECURIN ENAG0SUPP0RT08PR[TE39E.1BU0FERS}3
+                                                         ]D/eswmeMcaagerSebrviIeQ  480): releaseWakeLockInternal: lock=640123899 [RILJ], flags=026x0
+es =39le1p,04W] waoeuS ima:y=000muaryLouked  yWaRQf130
+0D 0o00rM0na40r20r0ic0( 00804:
+e[  mU90r10t11i]yrommarip0pi,ctex_Tisuoet=a (_n5m=8, suspe)d_D/PowerManagerService(  480)a upda=0teDisplayPowxrS
+erA 3iv.1y5u6ma y=02: Booted secondary proxes mroo[Co3p0e1e58tr]e,Pm2ciseupr
+                                                                            [  3e0.B0os2In CoU3:sBofald 
+c/ndwrr arogesSorvi[ ( 94810:3R4leCPi3  suupe
+                                             [  3o0.1r 69o] rM: ngirS rviue. ak Lovises
+D/plsteaaMter er2 5 ms)csg
+                          t is90ayInfo: displ0yI] PM: ear=0, iny =Displayme onfo{"Buevtcin coreee", uftqreId 2l3 msecsca[:0",0.p072570 mm13h4,tremc02 Bu0 s eed ,slat es = 1p 0560 0Hz41sl t aeqest0app00400Hz, actual 50000000HZ div = 1)
+[  390.107266] rk_sdmmc: BOO0 x 1294, 60.387 fps, supportedRefreshRates [60.387T dw_mci_setro_buio  1, dergunsitye3cl (537.8823 x 537.3884)k_mm, waykrSoank o, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state OFF, FLAG_SECURE, FLAG_SUPPORTS_t OToCTED BUocE [}
+0D/
+   [s 3a0M10a36r]  310.: w_tcisslt_Ioso: di pary. =mm inf
+                                                         [D 3p0.y0nf9{" mic_-on Screen", uniqueId "local:0", app 2560 x 1344, real 2560 x 1440, largest app 2560 x 2414, smalle m53  89031x7431]3rk4)dmmi: lOOerdw_cci0,eapp_bun:Ofr 0e crkemDc dlrna ou55 o5t noyma  UIoT_INm state OFF, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+D/DisplayManag
+[  3  .1076 1] dic_lagInco_ esspeayusb0,evnce=Dmodla
+60 x 1344, real 256 39x 1440,1largest app ] 60 x[2414, smallestN_pFK1LL0   nt9r, fk.3l_ las_rssumer 5
+  D/0.sp3a47a acerd _s10)c_resums Eaterfo:uni->luy=2=0[ i39o.D33p54y nfo{dhuslmminrecume ",itn s[  e 0FF3 540G SbcURdh sdmG__UePumTSEnROrECunD-BnumE1
+a[pV3ync1f3407]prwsmearlikc i7 590c500t.rksBmmLT IN_mct_pe_nFFi yL  _oEC RE, eLApvi e yoretadkne,I9 .local30"PMapr 2u60 xf 3ev,crs lom5le e af4e, l1.g62 msepp
+S  P90T1_34OT]CTE: BusFFER }
+t /D0s3lay-2nag9:(2:81.0:27et3is lTyI
+ [  325.0 x 8344                     fo 3d0s16a89d] ,ealtod:ibpltyryfo="B vl412n t=r.0nh=2 nit=e c "90cahg0a
+r  l 05682087 1-40- -argesr 81p_25at pl2g14, ima l st7
+p  490.188632] CPU1: Booted secondary processor
+0 x 1294, 60.387 fps, supportedRefreshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state OFF, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+D/SurfaceControl(  480): Excessive delay in setPowerMode(): 430ms
+D/PowerManagerService(  480): Setting HAL interactive mode to false
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpufreq/interactive/input_boost: No such file or directory
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpu7/online: No such file or directory
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpu6/online: No such file or directory
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpu5/online: No such file or directory
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpu4/online: No such file or directory
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpu3/online: Permission denied
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpu2/online: Permission denied
+D/PowerManagerService(  480): Setting HAL auto-suspend mode to true
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=true, policy=0, mWakefulness=0, mWakeLockSummary=0x0, mUserActivitySummary=0x0, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): Releasing suspend blocker "PowerManagerService.Display".
+D/PowerManagerService(  480): acquireWakeLockInternal: lock=709537190, flags=0x1, tag="ActivityManager-Sleep", ws=null, uid=1000, pid=480
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Asleep, mWakeLockSummary=0x1
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Asleep, mUserActivitySummary=0x0, nextTimeout=0 (395773 ms ago)
+I/AKMD2   (  176): Suspended.
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=true, policy=0, mWakefulness=0, mWakeLockSummary=0x1, mUserActivitySummary=0x0, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): Acquiring suspend blocker "PowerManagerService.WakeLocks".
+D/PhoneWindowManager(  480): interceptKeyTq keycode=224 interactive=false keyguardActive=false policyFlags=2000000
+D/PowerManagerService(  480): wakeUpNoUpdateLocked: eventTime=395836, uid=1000
+I/PowerManagerService(  480): Waking up from sleep (uid 1000)...
+I/PowerManagerService(  480): setWakefulnessLocked  wakefulness =  1 reason = 0
+D/PowerManagerService(  480): Acquiring suspend blocker "PowerManagerService.Broadcasts".
+D/PowerManagerService(  480): userActivityNoUpdateLocked: eventTime=395836, event=0, flags=0x0, uid=1000
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Awake, mWakeLockSummary=0x1
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Awake, mUserActivitySummary=0x1, nextTimeout=2147872483 (in 2147476605 ms)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=false, policy=3, mWakefulness=1, mWakeLockSummary=0x1, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): Acquiring suspend blocker "PowerManagerService.Display".
+D/PhoneWindowManager(  480): interceptKeyTq keycode=224 interactive=true keyguardActive=false policyFlags=22000000
+D/PowerManagerService(  480): wakeUpNoUpdateLocked: eventTime=395836, uid=1000
+D/PowerManagerService(  480): releaseWakeLockInternal: lock=709537190 [ActivityManager-Sleep], flags=0x0
+I/DisplayPowerController(  480): Blocking screen on until initial contents have been drawn.
+I/PhoneWindowManager(  480): Screen turning on...
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Awake, mWakeLockSummary=0x0
+D/PhoneWindowManager(  480): interceptKeyTq keycode=224 interactive=true keyguardActive=false policyFlags=22000000
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Awake, mUserActivitySummary=0x1, nextTimeout=2147872483 (in 2147476568 ms)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=false, policy=3, mWakefulness=1, mWakeLockSummary=0x0, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): Releasing suspend blocker "PowerManagerService.WakeLocks".
+D/DisplayPowerController(  480): button lights toggle
+D/ActivityManagerService(  480): awakeFromSleepingLocked: previously pausing activity didn't pause
+E/Lights  (  480): write_int failed to open sys/class/leds/rk29_key_led/brightness
+I/Lights  (  480): >>> Enter set_keyboard_light
+D/PowerManagerService(  480): wakeUpNoUpdateLocked: eventTime=395913, uid=1000
+D/DisplayPowerController(  480): send timeout msg after 1500
+D/PhoneWindowManager(  480): interceptKeyTq keycode=224 interactive=true keyguardActive=false policyFlags=22000000
+D/PowerManagerService(  480): wakeUpNoUpdateLocked: eventTime=395913, uid=1000
+D/DisplayPowerController(  480): send timeout msg after 1500
+D/PowerManagerService(  480): Setting HAL auto-suspend mode to false
+D/PowerManagerService(  480): Setting HAL interactive mode to true
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpufreq/interactive/input_boost: No such file or directory
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpu7/online: No such file or directory
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpu6/online: No such file or directory
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpu5/online: No such file or directory
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpu4/online: No such file or directory
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpu3/online: Permission denied
+E/RKPowerHAL(  480): Error opening /sys/devices/system/cpu/cpu2/online: Permission denied
+D/SurfaceFlinger(  157): Set power mode=2, type=0 flinger=0xb8808550
+I/hwcomposer(  157): hwc_blank dpy[0],blank[0]
+I/PhoneWindowManager(  480): Win Window{31826d6 u0 NavigationBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{1259315f u0 StatusBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}: isVisibleOrBehindKeyguardLw=true
+V/PhoneWindowManager(  480): Fullscreen window: Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+I/PhoneWindowManager(  480): Win Window{373e3541 u0 com.android.systemui.ImageWallpaper}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): force=false forcefkg=false top=Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+V/PhoneWindowManager(  480): ** SHOWING status bar: top is not fullscreen
+D/PhoneWindowManager(  480): interceptKeyTq keycode=224 interactive=true keyguardActive=false policyFlags=22000000
+D/PowerManagerService(  480): wakeUpNoUpdateLocked: eventTime=395940, uid=1000
+D/PhoneWindowManager(  480): interceptKeyTq keycode=224 interactive=true keyguardActive=false policyFlags=22000000
+D/PowerManagerService(  480): wakeUpNoUpdateLocked: eventTime=395940, uid=1000
+I/DisplayManagerService(  480): Display device changed: DisplayDeviceInfo{"Built-in Screen": uniqueId="local:0", 1440 x 2560, 60.387 fps, supportedRefreshRates [60.387], density 320, 537.8823 x 537.3884 dpi, appVsyncOff 0, presDeadline 17559855, touch INTERNAL, rotation 0, type BUILT_IN, state ON, FLAG_DEFAULT_DISPLAY, FLAG_ROTATES_WITH_CONTENT, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+D/DisplayManager(  480): onDisplayEvent: displayId=0, event=2
+D/DisplayManager(  810): onDisplayEvent: displayId=0, event=2
+D/DisplayManager(  967): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1011): onDisplayEvent: displayId=0, event=2
+D/DisplayManager(  832): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1095): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1074): onDisplayEvent: displayId=0, event=2
+I/PhoneWindowManager(  480): Win Window{31826d6 u0 NavigationBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{1259315f u0 StatusBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}: isVisibleOrBehindKeyguardLw=true
+D/DisplayManager( 1113): onDisplayEvent: displayId=0, event=2
+V/PhoneWindowManager(  480): Fullscreen window: Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+I/PhoneWindowManager(  480): Win Window{373e3541 u0 com.android.systemui.ImageWallpaper}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): force=false forcefkg=false top=Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+V/PhoneWindowManager(  480): ** SHOWING status bar: top is not fullscreen
+D/DisplayManager( 1249): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1131): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1293): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1207): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1482): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1156): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1444): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1593): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1538): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1619): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1654): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1509): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1566): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1740): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1113): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 2560 x 1344, real 2560 x 1440, largest app 2560 x 2414, smallest app 1440 x 1294, 60.387 fps, supportedRefreshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+E/Lights  (  480): write_int failed to open sys/class/leds/battery_led/brightness
+I/PhoneWindowManager(  480): Win Window{31826d6 u0 NavigationBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{1259315f u0 StatusBar}: isVisibleOrBehindKeyguardLw=true
+D/DisplayManager(  810): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 2560 x 1344, real 2560 x 1440, largest app 2560 x 2414, smallest app 1440 x 1294, 60.387 fps, supportedRefreshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+I/PhoneWindowManager(  480): Win Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}: isVisibleOrBehindKeyguardLw=true
+V/PhoneWindowManager(  480): Fullscreen window: Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+I/PhoneWindowManager(  480): Win Window{373e3541 u0 com.android.systemui.ImageWallpaper}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): force=false forcefkg=false top=Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+V/PhoneWindowManager(  480): ** SHOWING status bar: top is not fullscreen
+D/PowerManagerService(  480): acquireWakeLockInternal: lock=640123899, flags=0x1, tag="RILJ", ws=null, uid=1001, pid=1113
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Awake, mWakeLockSummary=0x1
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Awake, mUserActivitySummary=0x1, nextTimeout=2147872483 (in 2147476495 ms)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=false, policy=3, mWakefulness=1, mWakeLockSummary=0x1, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): Acquiring suspend blocker "PowerManagerService.WakeLocks".
+D/PowerManagerService(  480): releaseWakeLockInternal: lock=640123899 [RILJ], flags=0x0
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Awake, mWakeLockSummary=0x0
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Awake, mUserActivitySummary=0x1, nextTimeout=2147872483 (in 2147476489 ms)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=false, policy=3, mWakefulness=1, mWakeLockSummary=0x0, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): Releasing suspend blocker "PowerManagerService.WakeLocks".
+D/DisplayManager(  810): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 2560 x 1344, real 2560 x 1440, largest app 2560 x 2414, smallest app 1440 x 1294, 60.387 fps, supportedRefreshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+I/PhoneWindowManager(  480): mNavigationBar frame: Rect(0, 1344 - 2560, 1440)
+D/DisplayManager(  810): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 2560 x 1344, real 2560 x 1440, largest app 2560 x 2414, smallest app 1440 x 1294, 60.387 fps, supportedRefreshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+I/PhoneWindowManager(  480): mDock rect: (0,0 - 2560,1344)
+V/PhoneWindowManager(  480): Status bar: dock=[0,50][2560,1344] content=[0,50][2560,1344] cur=[0,50][2560,1344]
+V/PhoneWindowManager(  480): layoutWindowLw(com.android.launcher3/com.android.launcher3.Launcher): IN_SCREEN, INSET_DECOR
+D/DisplayManager(  810): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 2560 x 1344, real 2560 x 1440, largest app 2560 x 2414, smallest app 1440 x 1294, 60.387 fps, supportedRefreshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+V/PhoneWindowManager(  480): Compute frame com.android.launcher3/com.android.launcher3.Launcher: sim=#120 attach=null type=1 flags=0x81910100 pf=[0,0][2560,1440] df=[0,0][2560,1440] of=[0,0][2560,1440] cf=[0,50][2560,1344] vf=[0,50][2560,1344] dcf=[0,0][2560,1440] sf=[0,50][2560,1344]
+D/DisplayManager(  810): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 2560 x 1344, real 2560 x 1440, largest app 2560 x 2414, smallest app 1440 x 1294, 60.387 fps, supportedRefreshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+V/PhoneWindowManager(  480): layoutWindowLw(com.android.systemui.ImageWallpaper): IN_SCREEN
+V/PhoneWindowManager(  480): Compute frame com.android.systemui.ImageWallpaper: sim=#0 attach=null type=2013 flags=0x00000318 pf=[0,0][2560,1440] df=[-10000,-10000][10000,10000] of=[0,0][2560,1440] cf=[0,0][2560,1440] vf=[0,50][2560,1344] dcf=[0,0][2560,1440] sf=[0,50][2560,1344]
+D/DisplayManager(  810): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 2560 x 1344, real 2560 x 1440, largest app 2560 x 2414, smallest app 1440 x 1294, 60.387 fps, supportedRefreshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+I/PhoneWindowManager(  480): Win Window{31826d6 u0 NavigationBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{1259315f u0 StatusBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}: isVisibleOrBehindKeyguardLw=true
+V/PhoneWindowManager(  480): Fullscreen window: Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+I/PhoneWindowManager(  480): Win Window{373e3541 u0 com.android.systemui.ImageWallpaper}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): force=false forcefkg=false top=Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+V/PhoneWindowManager(  480): ** SHOWING status bar: top is not fullscreen
+D/DisplayManager(  810): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 2560 x 1344, real 2560 x 1440, largest app 2560 x 2414, smallest app 1440 x 1294, 60.387 fps, supportedRefreshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+I/PhoneWindowManager(  480): Waking up...
+D/Sensors (  480): int sensors_poll_context_t::activate(int, int)
+D/DisplayManager( 1131): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0",  p902160 x 1344, real945630 x 1440, largest app 2560 x 2414, smallest app 1440 x 1294, 60.387 fps, supportedRef]e hRi-ephy.0y3_cl, =o4a00o001,[d n90ty 384 ( r7.batter 537.38e4)ddte, layerStack 0, appVsyncOff 0, presDeadline 175b98 5a tepy_cUaLT_er_ etece 1
+ FL39_.E1UR7,]FLsG->UhyORyS_cRkTE2T0D00UFFERS}
+V/Ke[guar Se90ic5D2le78te * 4*0): onSc**e***rned*n*svowsidetnct = c*m.**d*oi**i*
+@3 1893e7)3.9]pUsPngnBufnerwMan mor$
+           1V0A PivityStadiSuTrrvisoer In80)r Dt pnhy ceanned- ispaayed=
+13 4,9r.a322580 ^^14^^,^^a^^est^apev2ce0 od2uplaEndan, mnft=DidilabIedo{" u l90in 21r2]nOT  Viq eIRA": c, O0"  aR  LAG: 0
+4, sm0.le2t 1pp**4*0 x**2**, **.3** opt  snpecr!!dR*fre*hR**e**[*0*38
+e[ li9e 9455475 U t peSEUIrkl serttaevent Upp_syATEffO0,ECrED
+                          T_ N,1.0a41 O], nLAGidEusREgaFLeG: UPgh-ORTSdPRonEigED_: FnERo}
+
+D/Di3pl.0Ma32g] a  ro0d:woek:isela unfe:  Usp_aTAd==, NFIo=Ris
+l[ s39ap1 2414 xr1224, lc.c 7cdps, bupnormodee0reshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+I/PhoneWindowManager(  480): Win Window{31826d6 u0 NavigationBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{1259315f u0 StatusBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}: isVisibleOrBehindKeyguardLw=true
+V/PhoneWindowManager(  480): Fullscreen window: Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+I/PhoneWindowManager(  480): Win Window{373e3541 u0 com.android.systemui.ImageWallpaper}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): force=false forcefkg=false top=Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+V/PhoneWindowManager(  480): ** SHOWING status bar: top is not fullscreen
+D/PowerManagerService(  480): acquireWakeLockInternal: lock=1049443785, flags=0x40000001, tag="*alarm*", ws=WorkSource{1000}, uid=1000, pid=480
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Awake, mWakeLockSummary=0x1
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Awake, mUserActivitySummary=0x1, nextTimeout=2147872483 (in 2147476415 ms)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=false, policy=3, mWakefulness=1, mWakeLockSummary=0x1, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): Acquiring suspend blocker "PowerManagerService.WakeLocks".
+D/PowerManagerService(  480): updateIsPoweredLocked: wasPowered=false, mIsPowered=true, oldPlugType=0, mPlugType=1, mBatteryLevel=91
+D/PowerManagerService(  480): wakeUpNoUpdateLocked: eventTime=396073, uid=1000
+D/PowerManagerService(  480): userActivityNoUpdateLocked: eventTime=396073, event=0, flags=0x0, uid=1000
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Awake, mUserActivitySummary=0x1, nextTimeout=2147872720 (in 2147476646 ms)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=false, policy=3, mWakefulness=1, mWakeLockSummary=0x1, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+I/EntropyMixer(  480): Writing entropy...
+V/KeyguardServiceDelegate(  480): **** SHOWN CALLED ****
+D/PhoneWindowManager(  480): mKeyguardDelegate.ShowListener.onShown.
+W/PhoneWindowManager(  480): Setting mKeyguardDrawComplete
+D/PhoneWindowManager(  480): finishScreenTurningOn: mAwake=true, mScreenOnEarly=true, mScreenOnFully=false, mKeyguardDrawComplete=true, mWindowManagerDrawComplete=false
+I/PhoneWindowManager(  480): mNavigationBar frame: Rect(0, 1344 - 2560, 1440)
+I/PhoneWindowManager(  480): mDock rect: (0,0 - 2560,1344)
+V/PhoneWindowManager(  480): Status bar: dock=[0,50][2560,1344] content=[0,50][2560,1344] cur=[0,50][2560,1344]
+V/PhoneWindowManager(  480): layoutWindowLw(com.android.launcher3/com.android.launcher3.Launcher): IN_SCREEN, INSET_DECOR
+V/PhoneWindowManager(  480): Compute frame com.android.launcher3/com.android.launcher3.Launcher: sim=#120 attach=null type=1 flags=0x81910100 pf=[0,0][2560,1440] df=[0,0][2560,1440] of=[0,0][2560,1440] cf=[0,50][2560,1344] vf=[0,50][2560,1344] dcf=[0,0][2560,1440] sf=[0,50][2560,1344]
+V/PhoneWindowManager(  480): layoutWindowLw(com.android.systemui.ImageWallpaper): IN_SCREEN
+V/PhoneWindowManager(  480): Compute frame com.android.systemui.ImageWallpaper: sim=#0 attach=null type=2013 flags=0x00000318 pf=[0,0][2560,1440] df=[-10000,-10000][10000,10000] of=[0,0][2560,1440] cf=[0,0][2560,1440] vf=[0,50][2560,1344] dcf=[0,0][2560,1440] sf=[0,50][2560,1344]
+I/PhoneWindowManager(  480): Win Window{31826d6 u0 NavigationBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{1259315f u0 StatusBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}: isVisibleOrBehindKeyguardLw=true
+V/PhoneWindowManager(  480): Fullscreen window: Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+I/PhoneWindowManager(  480): Win Window{373e3541 u0 com.android.systemui.ImageWallpaper}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): force=false forcefkg=false top=Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+V/PhoneWindowManager(  480): ** SHOWING status bar: top is not fullscreen
+I/PhoneWindowManager(  480): mNavigationBar frame: Rect(0, 1344 - 2560, 1440)
+I/PhoneWindowManager(  480): mDock rect: (0,0 - 2560,1344)
+V/PhoneWindowManager(  480): Status bar: dock=[0,50][2560,1344] content=[0,50][2560,1344] cur=[0,50][2560,1344]
+V/PhoneWindowManager(  480): layoutWindowLw(com.android.launcher3/com.android.launcher3.Launcher): IN_SCREEN, INSET_DECOR
+V/PhoneWindowManager(  480): Compute frame com.android.launcher3/com.android.launcher3.Launcher: sim=#120 attach=null type=1 flags=0x81910100 pf=[0,0][2560,1440] df=[0,0][2560,1440] of=[0,0][2560,1440] cf=[0,50][2560,1344] vf=[0,50][2560,1344] dcf=[0,0][2560,1440] sf=[0,50][2560,1344]
+V/PhoneWindowManager(  480): layoutWindowLw(com.android.systemui.ImageWallpaper): IN_SCREEN
+V/PhoneWindowManager(  480): Compute frame com.android.systemui.ImageWallpaper: sim=#0 attach=null type=2013 flags=0x00000318 pf=[0,0][2560,1440] df=[-10000,-10000][10000,10000] of=[0,0][2560,1440] cf=[0,0][2560,1440] vf=[0,50][2560,1344] dcf=[0,0][2560,1440] sf=[0,50][2560,1344]
+I/PhoneWindowManager(  480): Win Window{31826d6 u0 NavigationBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{1259315f u0 StatusBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}: isVisibleOrBehindKeyguardLw=true
+V/PhoneWindowManager(  480): Fullscreen window: Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+I/PhoneWindowManager(  480): Win Window{373e3541 u0 com.android.systemui.ImageWallpaper}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): force=false forcefkg=false top=Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+V/PhoneWindowManager(  480): ** SHOWING status bar: top is not fullscreen
+I/PhoneWindowManager(  480): mNavigationBar frame: Rect(0, 1344 - 2560, 1440)
+I/PhoneWindowManager(  480): mDock rect: (0,0 - 2560,1344)
+V/PhoneWindowManager(  480): Status bar: dock=[0,50][2560,1344] content=[0,50][2560,1344] cur=[0,50][2560,1344]
+V/PhoneWindowManager(  480): layoutWindowLw(com.android.launcher3/com.android.launcher3.Launcher): IN_SCREEN, INSET_DECOR
+V/PhoneWindowManager(  480): Compute frame com.android.launcher3/com.android.launcher3.Launcher: sim=#120 attach=null type=1 flags=0x81910100 pf=[0,0][2560,1440] df=[0,0][2560,1440] of=[0,0][2560,1440] cf=[0,50][2560,1344] vf=[0,50][2560,1344] dcf=[0,0][2560,1440] sf=[0,50][2560,1344]
+V/PhoneWindowManager(  480): layoutWindowLw(com.android.systemui.ImageWallpaper): IN_SCREEN
+V/PhoneWindowManager(  480): Compute frame com.android.systemui.ImageWallpaper: sim=#0 attach=null type=2013 flags=0x00000318 pf=[0,0][2560,1440] df=[-10000,-10000][10000,10000] of=[0,0][2560,1440] cf=[0,0][2560,1440] vf=[0,50][2560,1344] dcf=[0,0][2560,1440] sf=[0,50][2560,1344]
+I/PhoneWindowManager(  480): Win Window{31826d6 u0 NavigationBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{1259315f u0 StatusBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}: isVisibleOrBehindKeyguardLw=true
+V/PhoneWindowManager(  480): Fullscreen window: Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+I/PhoneWindowManager(  480): Win Window{373e3541 u0 com.android.systemui.ImageWallpaper}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): force=false forcefkg=false top=Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+V/PhoneWindowManager(  480): ** SHOWING status bar: top is not fullscreen
+E/WifiStateMachine(  480): ACTION_SCREEN_ON...
+I/PhoneWindowManager(  480): All windows ready for display!
+W/PhoneWindowManager(  480): Setting mWindowManagerDrawComplete
+D/PhoneWindowManager(  480): finishScreenTurningOn: mAwake=true, mScreenOnEarly=true, mScreenOnFully=false, mKeyguardDrawComplete=true, mWindowManagerDrawComplete=true
+I/PhoneWindowManager(  480): Finished screen turning on...
+I/DisplayPowerController(  480): Unblocked screen on after 310 ms
+I/PhoneWindowManager(  480): Win Window{31826d6 u0 NavigationBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{1259315f u0 StatusBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}: isVisibleOrBehindKeyguardLw=true
+V/PhoneWindowManager(  480): Fullscreen window: Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+I/PhoneWindowManager(  480): Win Window{373e3541 u0 com.android.systemui.ImageWallpaper}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): force=false forcefkg=false top=Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+V/PhoneWindowManager(  480): ** SHOWING status bar: top is not fullscreen
+D/gralloc (  157): alloc_device_free
+D/gralloc (  157): alloc_device_free
+D/DisplayPowerController(  480): send timeout msg after 1500
+E/WifiStateMachine(  480): cancelDelayedScan -> 11
+E/WifiStateMachine(  480): wifi network checker is off.
+D/WifiStateMachine(  480): backgroundScan enabled=false startBackgroundScanIfNeeded:false
+E/WifiStateMachine(  480): handleScreenStateChanged Exit: true
+D/PowerManagerService(  480): Releasing suspend blocker "PowerManagerService.Broadcasts".
+E/WifiStateMachine(  480): setSuspendOptimizations: 4 false
+E/WifiStateMachine(  480): mSuspendOptNeedsDisabled 4
+I/ValidateNoPeople(  480): skipping global notification
+D/UsbDeviceManager(  480): Usb state is true false false
+I/ValidateNoPeople(  480): skipping global notification
+D/Tethering(  480): UsbManager.ACTION_USB_STATE: true, false, false
+D/xzj     (  832): false---------------------------ooooooooooo,stop mtp service---------------true
+D/RKUpdateReceiver( 1011): action = android.hardware.usb.action.USB_STATE
+D/UsbDeviceManager(  480): Usb state is true true false
+D/Tethering(  480): UsbManager.ACTION_USB_STATE: true, false, false
+D/xzj     (  832): true---------------------------ooooooooooo,stop mtp service---------------true
+D/RKUpdateReceiver( 1011): action = android.hardware.usb.action.USB_STATE
+D/MtpService(  832): updating state; isCurrentUser=true, mMtpLocked=false
+D/MtpService(  832): addStorageLocked 65537 /storage/emulated/0
+D/MtpService(  832): updating state; isCurrentUser=true, mMtpLocked=false
+D/MtpService(  832): starting MTP server in MTP mode
+D/MtpService(  832): addStorageLocked 65537 /storage/emulated/0
+D/DisplayPowerController(  480): send timeout msg after 1500
+D/SurfaceControl(  480): Excessive delay in setPowerMode(): 1805ms
+D/gralloc (  157): alloc_device_free
+D/DisplayPowerController(  480): send timeout msg after 1500
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=true, policy=3, mWakefulness=1, mWakeLockSummary=0x1, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): releaseWakeLockInternal: lock=1049443785 [*alarm*], flags=0x0
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Awake, mWakeLockSummary=0x0
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Awake, mUserActivitySummary=0x1, nextTimeout=2147872720 (in 2147474657 ms)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=true, policy=3, mWakefulness=1, mWakeLockSummary=0x0, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): Releasing suspend blocker "PowerManagerService.WakeLocks".
+D/DisplayPowerController(  480): MSG_BUTTON_LIGHTS_TIME_OUT
+E/Lights  (  480): write_int failed to open sys/class/leds/rk29_key_led/brightness
+I/Lights  (  480): >>> Enter set_keyboard_light

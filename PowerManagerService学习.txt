@@ -1,0 +1,80 @@
+mWakefulness 置成WAKEFULNESS_AWAKE状态，mWakefulness 标识系统当前状态共有四种定义： 
+WAKEFULNESS_ASLEEP：表示系统当前处于休眠状态，只能被wakeUp()调用唤醒。 
+WAKEFULNESS_AWAKE：表示系统目前处于正常运行状态。 
+WAKEFULNESS_DREAMING：表示系统当前正处于屏保的状态。 
+WAKEFULNESS_DOZING：表示系统正处于“doze”状态。这种状态下只有低耗电的“屏保”可以运行，其他应用进程都被挂起。//打盹模式
+
+SystemReady()方法代码如下： 
+mAppOps = appOps; 
+mDreamManager = getLocalService(DreamManagerInternal.class); 
+mDisplayManagerInternal = getLocalService(DisplayManagerInternal.class); 
+mPolicy = getLocalService(WindowManagerPolicy.class); 
+mBatteryManagerInternal = getLocalService(BatteryManagerInternal.class); 
+PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE); 
+mScreenBrightnessSettingMinimum = pm.getMinimumScreenBrightnessSetting(); 
+mScreenBrightnessSettingMaximum = pm.getMaximumScreenBrightnessSetting(); 
+mScreenBrightnessSettingDefault = pm.getDefaultScreenBrightnessSetting(); 
+  
+获取与PowerManager相关的本地服务，比如屏保（mDreamManager），屏幕显示（mDisplayManagerInternal），窗口策略（mPolicy），电池电量（mBatteryManagerInternal）等服务，然后初始化屏幕最大亮度，最小亮度，和默认亮度； 
+
+SensorManager sensorManager = new SystemSensorManager(mContext, mHandler.getLooper()); 
+mBatteryStats = BatteryStatsService.getService(); 
+mNotifier = new Notifier(Looper.getMainLooper(), mContext, mBatteryStats,
+        mAppOps, createSuspendBlockerLocked("PowerManagerService.Broadcasts"),
+        mPolicy); 
+mWirelessChargerDetector = new WirelessChargerDetector(sensorManager,
+        createSuspendBlockerLocked("PowerManagerService.WirelessChargerDetector"), mHandler); 
+mSettingsObserver = new SettingsObserver(mHandler); 
+mLightsManager = getLocalService(LightsManager.class); 
+mAttentionLight = mLightsManager.getLight(LightsManager.LIGHT_ID_ATTENTION); 
+创建sensorManager 对象，用于与sensor交互，比如距离传感器，光线传感器，加速度传感器（doze上使用）。获取电池状态服务，和背光服务； 
+创建mNotifier 对象，在通过mNotifier 发送通知时候，会传入底层申请PowerManagerService.Broadcasts的wakelock锁。 
+创建mSettingsObserver 监听系统设置变化，比如亮屏时间，自动背光，屏幕亮度，屏保，低电模式等等 
+  
+总而言之在SystemReady方法中完成的主要工作如下： 
+获取与PowerManagerServcie相关的系统服务以及本地服务； 
+获取屏幕最大，最小以及默认亮度值； 
+创建SensorManager 对象，用于和SensorService交互； 
+创建Notifier对象，用于通知系统中电源状态的改变； 
+创建WirelessChargerDetector对象，用于检测无线充电的传感器 
+调用DisplayManagerService的initPowerManagement()方法来初始化Power显示模块。
+注册SettingsObserver监听系统设置的变化 
+
+
+setWakefulnessLocked()函数将mWakefulness赋值为wakefulness和mDirty |= DIRTY_WAKEFULNESS;这两个标志在后面更新电源状态时有重要作用，同时调用到mNotifier中的onWakefulnessChangeStarted调用到handleEarlyInteractiveChange调用到PhoneWindowManager的startedWakingUp函数，来通知到PhoneWindowManager屏幕开始启动； 
+调用mNotifier向系统中通知系统被唤醒； 
+更新用户活动，将mDirty |= DIRTY_USER_ACTIVITY置位;来重新计算亮屏时间。 
+  
+在updatePowerStateLocked()中更新电源状态，updatePowerStateLocked为PowerManagerService的核心函数，后面会详细介绍，这里简单介绍在wakeup中的流程。在updatePowerStateLocked()中的updateDisplayPowerStateLocked()函数中将mDisplayPowerRequest.policy设置成POLICY_BRIGHT；然后调用：
+mDisplayReady = mDisplayManagerInternal.requestPowerState(mDisplayPowerRequest,mRequestWaitForNegativeProximity); 
+  
+通过调用到DisplayManagerService中对屏幕状态作出相应的改变，通过去与WindowManagerService执行亮屏之前的屏幕绘制过程，与LightServcie交互来点亮屏幕背光灯。
+
+用户活动——userActivity
+
+userActivity()接口用于用户进程向PowerManagerService报告用户影响系统休眠的活动。例如， 用户点击屏幕时，系统会调用该方法来告诉PowerManagerService用户点击的时间，这样PowerManagerService将更新内部保存的时间值，从而推迟系统休眠的时间。userActivity()方法主要通过调用内部的userActivityInternal()方法来完成工作。 
+在userActivityInternal()中并没有做任何操作，仅仅是将mLastUserActivityTime 更新为当前event的时间eventTime，mDirty |= DIRTY_USER_ACTIVITY;置位操作。具体操作仍然是在PowerManagerService中的核心函数updatePowerStateLocked()中完成； 
+在updateUserActivitySummaryLocked()中 
+final int sleepTimeout = getSleepTimeoutLocked();
+final int screenOffTimeout = getScreenOffTimeoutLocked(sleepTimeout);
+final int screenDimDuration = getScreenDimDurationLocked(screenOffTimeout);
+
+mUserActivitySummary = 0;
+if (mLastUserActivityTime >= mLastWakeTime) {
+    nextTimeout = mLastUserActivityTime
+            + screenOffTimeout - screenDimDuration;
+    if (now < nextTimeout) {
+        mUserActivitySummary = USER_ACTIVITY_SCREEN_BRIGHT;
+    } else {
+        nextTimeout = mLastUserActivityTime + screenOffTimeout;
+        if (now < nextTimeout) {
+            mUserActivitySummary = USER_ACTIVITY_SCREEN_DIM;
+        }
+    } 
+重新计算睡眠超时时间，灭屏超时时间，暗屏超时时间，将mUserActivitySummary 置为0，通过计算上一次的用户事件时间与超时时间作对比，来判断将屏幕置为亮屏 (USER_ACTIVITY_SCREEN_BRIGHT)还是暗屏(USER_ACTIVITY_SCREEN_DIM)，前提是手机处于非睡眠状态。 
+if (mUserActivitySummary != 0 && nextTimeout >= 0) {
+    Message msg = mHandler.obtainMessage(MSG_USER_ACTIVITY_TIMEOUT);
+    msg.setAsynchronous(true);
+    mHandler.sendMessageAtTime(msg, nextTimeout);
+} 
+如果时间还没到，则返回发送一个MSG_USER_ACTIVITY_TIMEOUT的定时消息，当处理时间到了，会在消息的处理方法handleUserActivityTimeout中重新调用updatePowerStateLocked()电源状态。再次调用时会根据当前的状态重新计算mUserActivitySummary 的值。 

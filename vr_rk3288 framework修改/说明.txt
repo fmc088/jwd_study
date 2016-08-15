@@ -1,0 +1,4 @@
+PowerManagerService_0815 是通过开机和屏亮监听来进行操作
+
+framework apk\开机启动apk\ 是做开机启动   节点位置"/sys/devices/ff100000.adc/key.30/get_gsensor_value" 如果节点位置不是的话，需要修改
+

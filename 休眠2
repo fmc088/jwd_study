@@ -1,0 +1,134 @@
+D/PhoneWindowManager(  480): interceptKeyTq keycode=26 interactive=true keyguardActive=false policyFlags=22000000
+D/PowerManagerService(  480): acquireWakeLockInternal: lock=584759548, flags=0x1, tag="PhoneWindowManager.mPowerKeyWakeLock", ws=null, uid=1000, pid=480
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Awake, mWakeLockSummary=0x1
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Awake, mUserActivitySummary=0x1, nextTimeout=2147613697 (in 2147438265 ms)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=true, policy=3, mWakefulness=1, mWakeLockSummary=0x1, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): Acquiring suspend blocker "PowerManagerService.WakeLocks".
+V/PhoneWindowManager(  480): truehungUp=false, mScreenshotChordVolumeDownKeyTriggered=false, mScreenshotChordVolumeDownKeyTriggered=false
+D/PhoneWindowManager(  480): interceptPowerKeyDown =================  =======
+D/PhoneWindowManager(  480): interceptKeyTq keycode=26 interactive=true keyguardActive=false policyFlags=22000000
+D/PhoneWindowManager(  480): cancelPendingPowerKeyAction =================  =======
+D/PowerManagerService(  480): goToSleepNoUpdateLocked  str = 1
+D/PowerManagerService(  480): goToSleepNoUpdateLocked: eventTime=175430, reason=4, flags=0, uid=1000
+I/PowerManagerService(  480): Going to sleep due to power button (uid 1000)...
+I/PowerManagerService(  480): setWakefulnessLocked  wakefulness =  3 reason = 4
+D/PowerManagerService(  480): goToSleepNoUpdateLocked  wakeLock mFlags = 1
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Dozing, mWakeLockSummary=0x1
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Dozing, mUserActivitySummary=0x1, nextTimeout=2147613697 (in 2147438092 ms)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=true, policy=3, mWakefulness=3, mWakeLockSummary=0x1, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+I/PhoneWindowManager(  480): Going to sleep...
+D/PowerManagerService(  480): Acquiring suspend blocker "PowerManagerService.Broadcasts".
+D/Sensors (  480): int sensors_poll_context_t::activate(int, int)
+D/PowerManagerService(  480): releaseWakeLockInternal: lock=584759548 [PhoneWindowManager.mPowerKeyWakeLock], flags=0x0
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Dozing, mWakeLockSummary=0x0
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Dozing, mUserActivitySummary=0x1, nextTimeout=2147613697 (in 2147438089 ms)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=true, policy=3, mWakefulness=3, mWakeLockSummary=0x0, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): Releasing suspend blocker "PowerManagerService.WakeLocks".
+D/PowerManagerService(  480): reallyGoToSleepNoUpdateLocked: eventTime=175609, uid=1000
+I/PowerManagerService(  480): Sleeping (uid 1000)...
+I/PowerManagerService(  480): setWakefulnessLocked  wakefulness =  0 reason = 2
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Asleep, mWakeLockSummary=0x0
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Asleep, mUserActivitySummary=0x0, nextTimeout=0 (175611 ms ago)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=false, policy=0, mWakefulness=0, mWakeLockSummary=0x0, mUserActivitySummary=0x0, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+E/WifiStateMachine(  480): ACTION_SCREEN_OFF...
+D/mali_winsys(  480): EGLint new_window_surface(egl_winsys_display*, void*, EGLSurface, EGLConfig, egl_winsys_surface**, egl_color_buffer_format*, EGLBoolean) returns 0x3000
+D/gralloc (  157): -----------------------------START usage=333
+D/gralloc (  157): [31,14745600,0], usage=333,ion_heap_type=0
+D/gralloc (  157): heap_mask=10,ION_HEAP=10
+D/PowerManagerService(  480): acquireWakeLockInternal: lock=110651624, flags=0x1, tag="WifiSuspend", ws=null, uid=1000, pid=480
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Asleep, mWakeLockSummary=0x1
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Asleep, mUserActivitySummary=0x0, nextTimeout=0 (175655 ms ago)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=false, policy=0, mWakefulness=0, mWakeLockSummary=0x1, mUserActivitySummary=0x0, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): Acquiring suspend blocker "PowerManagerService.WakeLocks".
+D/gralloc (  157): Isfb=0,[1440,2560,1440,5760],fmt=1,byte_stride=5760
+E/WifiStateMachine(  480): cancelDelayedScan -> 6
+D/WifiStateMachine(  480): backgroundScan enabled=false startBackgroundScanIfNeeded:false
+E/WifiStateMachine(  480): handleScreenStateChanged Exit: false
+D/gralloc (  157): alloc_device_free
+D/gralloc (  157): -----------------------------START usage=b00
+D/gralloc (  157): [31,14745600,0], usage=b00,ion_heap_type=0
+D/gralloc (  157): heap_mask=10,ION_HEAP=10
+D/gralloc (  157): Isfb=0,[2560,1440,2560,10240],fmt=1,byte_stride=10240
+D/gralloc (  157): -----------------------------START usage=b00
+D/gralloc (  157): [31,14745600,0], usage=b00,ion_heap_type=0
+D/gralloc (  157): heap_mask=10,ION_HEAP=10
+D/PowerManagerService(  480): releaseWakeLockInternal: lock=110651624 [WifiSuspend], flags=0x0
+D/PowerManagerService(  480): updateWakeLockSummaryLocked: mWakefulness=Asleep, mWakeLockSummary=0x0
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Asleep, mUserActivitySummary=0x0, nextTimeout=0 (175717 ms ago)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=false, policy=0, mWakefulness=0, mWakeLockSummary=0x0, mUserActivitySummary=0x0, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+D/PowerManagerService(  480): Releasing suspend blocker "PowerManagerService.WakeLocks".
+E/WifiStateMachine(  480): setSuspendOptimizations: 4 true
+E/WifiStateMachine(  480): mSuspendOptNeedsDisabled 0
+D/gralloc (  157): Isfb=0,[2560,1440,2560,10240],fmt=1,byte_stride=10240
+D/gralloc (  157): -----------------------------START usage=b00
+D/gralloc (  157): [31,14745600,0], usage=b00,ion_heap_type=0
+D/gralloc (  157): heap_mask=10,ION_HEAP=10
+D/gralloc (  157): Isfb=0,[2560,1440,2560,10240],fmt=1,byte_stride=10240
+D/PowerManagerService(  480): Releasing suspend blocker "PowerManagerService.Broadcasts".
+I/PhoneWindowManager(  480): Screen turned off...
+D/DisplayPowerController(  480): screen off, so turn off btn && keyboard lights
+D/SurfaceFlinger(  157): Set power mode=0, type=0 flinger=0xb8808550
+I/hwcomposer(  157): hwc_blank dpy[0],blank[1]
+I/DisplayManagerService(  480): Display device changed: DisplayDeviceInfo{"Built-in Screen": uniqueId="local:0", 1440 x 2560, 60.387 fps, supportedRefreshRates [60.387], density 320, 537.8823 x 537.3884 dpi, appVsyncOff 0, presDeadline 17559855, touch INTERNAL, rotation 0, type BUILT_IN, state OFF, FLAG_DEFAULT_DISPLAY, FLAG_ROTATES_WITH_CONTENT, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+D/DisplayManager(  480): onDisplayEvent: displayId=0, event=2
+V/ActivityStackSupervisor(  480): Display changed displayId=0
+D/DisplayManager(  810): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1011): onDisplayEvent: displayId=0, event=2
+D/DisplayManager(  832): onDisplayEvent: displayId=0, event=2
+D/DisplayManager(  480): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 2560 x 1344, real 2560 x 1440, largest app 2560 x 2414, smallest app 1440 x 1294, 60.387 fps, supportedRefreshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state OFF, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+D/DisplayManager( 1074): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1095): onDisplayEvent: displayId=0, event=2
+I/PhoneWindowManager(  480): Win Window{31826d6 u0 NavigationBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{1259315f u0 StatusBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}: isVisibleOrBehindKeyguardLw=true
+D/DisplayManager( 1207): onDisplayEvent: displayId=0, event=2
+V/PhoneWindowManager(  480): Fullscreen window: Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+I/PhoneWindowManager(  480): Win Window{373e3541 u0 com.android.systemui.ImageWallpaper}: isVisibleOrBehindKeyguardLw=true
+D/DisplayManager( 1293): onDisplayEvent: displayId=0, event=2
+I/PhoneWindowManager(  480): force=false forcefkg=false top=Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+V/PhoneWindowManager(  480): ** SHOWING status bar: top is not fullscreen
+D/DisplayManager( 1509): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1538): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1740): onDisplayEvent: displayId=0, event=2
+D/DisplayManager(  967): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1156): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1444): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1566): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1593): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1619): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1654): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1131): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1249): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1482): onDisplayEvent: displayId=0, event=2
+D/DisplayManager( 1113): onDisplayEvent: displayId=0, event=2
+D/DisplayManager(  480): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 2560 x 1344, real 2560 x 1440, largest app 2560 x 2414, smallest app 1440 x 1294, 60.387 fps, supportedRefreshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state OFF, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+I/PhoneWindowManager(  480): Win Window{31826d6 u0 NavigationBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{1259315f u0 StatusBar}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): Win Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}: isVisibleOrBehindKeyguardLw=true
+V/PhoneWindowManager(  480): Fullscreen window: Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+I/PhoneWindowManager(  480): Win Window{373e3541 u0 com.android.systemui.ImageWallpaper}: isVisibleOrBehindKeyguardLw=true
+I/PhoneWindowManager(  480): force=false forcefkg=false top=Window{3edd440f u0 com.android.launcher3/com.android.launcher3.Launcher}
+V/PhoneWindowManager(  480): ** SHOWING status bar: top is not fullscreen
+D/DisplayManager( 1113): getDisplayInfo: displayId=0, info=DisplayInfo{"Built-in Screen", uniqueId "local:0", app 2560 x 1344, real 2560 x 1440, largest app 2560 x 2414, smallest app 1440 x 1294, 60.387 fps, supportedRefreshRates [60.387], rotation 1, density 320 (537.8823 x 537.3884) dpi, layerStack 0, appVsyncOff 0, presDeadline 17559855, type BUILT_IN, state OFF, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS}
+D/DisplayManager(  131.4 g7tD] pPa1Info: displayId=0, inftdDwnp
+ap  144. x62274 d6i-38h .sys_cpk, 24ppo00e                     [y 1fo{"Bui4t-i7]SCPe1n"B oniqueId "local:0", app 2560 x 1344, reat 2 se xnd440, largest app 2560 x 241y  soclsssr
+y[ O1f4., 5r00D rdl2ne-l7dc9l55c0t beanUILodI:4 0
+S[P 1T4.T18_BU]FEPU}                            [a e 4.F15F47G_S38U s,spLAG_SUagO1
+1: shutdown
+s[la1In.2:23i2] ay:d=0,ncifo filelysIefo ...ilo-enD0.i52la933naUer(  810): getC
+c  e74, 27iq5eIdw"mo_rlck",iapff0500 0.13sdm c:al 2m60 pm14o0,fya gsutpepd 256pax 
+[4, 74.l27s93apFr14z0ng us9r s60c38prfcss ss p..t
+B[F 1R4}A27S55U EesFarG_nUPPasTs .RO EonE.tfperBU.LT0 s, onas7oc8s
+82P4]edwmnc_ercecvicef  c0000 rcsdimcWadeLmciIpmenoalf lo p=st2su294nd 
+                                                                       [a 1=0x22 t0g= PILJsu ps=nu e, u 2=13001-2i 09:16
+0/9ow18M99a eTSe
+                vice(  480): updateWakeLockSummaryLocked: mWakefulness=Asleep, mWakeLockSummary=0x1
+D/PowerManagerService(  480): updateUserActivitySummaryLocked: mWakefulness=Asleep, mUserActivitySummary=0x0, nextTimeout=0 (176297 ms ago)
+D/PowerManagerService(  480): updateDisplayPowerStateLocked: mDisplayReady=false, policy=0, mWakefulness=0, mWakeLockSummary=0x1, mUserActivitySummary=0x0, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+[  174.326859] PM: suspend entry 2013-01-21 09:36:31.058341916 UTC
+[  174.326878] PM: Syncing filesystems ... done.
+[  174.327863] dwmmc_rockchip ff0c0000.rksdmmc: dw_mci_pm_notify:  suspend prepare
+[  174.327880] Freezing user space processes ... (elapsed 0.020 seconds) done.
+[  174.348502] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[  174.349908] Suspending console(s) (use no_console_suspend to debug)
+01-armoff-logdp-osc_offddrc_off2345d

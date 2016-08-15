@@ -1,0 +1,31 @@
+Œª÷√‘⁄   framework/base
+ --- a/packages/SystemUI/src/com/android/systemui/BootReceiver.java
++++ b/packages/SystemUI/src/com/android/systemui/BootReceiver.java
+@@ -22,6 +22,7 @@ import android.content.Context;
+ import android.content.Intent;
+ import android.provider.Settings;
+ import android.util.Log;
++import java.io.IOException;
+ 
+ /**
+  * Performs a number of miscellaneous, non-system-critical actions
+@@ -33,7 +34,18 @@ public class BootReceiver extends BroadcastReceiver {
+     @Override
+     public void onReceive(final Context context, Intent intent) {
+         boolean disableSystemUI = android.os.SystemProperties.getBoolean("config.disable_systemui", true);
+-       if(disableSystemUI){
++      if(Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction()))
++               {
++                       try {
++                         Log.i(TAG, "---------ACTION_BOOT_COMPLETED---start--");
++                                              Runtime.getRuntime().exec("input keyevent KEYCODE_POWER");
++                                          Log.i(TAG, "------BootReceiver ACTION_BOOT_COMPLETED--------");
++                                 } catch (IOException e) {
++                                         Log.e(TAG,"BootReceiver scheduleStartProfilesLocked "+e.getMessage());
++                                         e.printStackTrace();
++                               }
++               }
++       if(disableSystemUI){            
+                Log.e(TAG, "BootReceiver:config.disable_systemui=true");
+                return ;
+        }
