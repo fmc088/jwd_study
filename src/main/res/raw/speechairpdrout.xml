@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration Type="SpeechAirPDR" Direction="out"
+    ID="PSP11002345678"
+    Version="2.8.01"
+    FileVersion="1">
+    <!-- Direction = "in" for PDRin.config and "out" for PDRout.config. ID = SpeechAir Serial Number if running on a SpeechAir or UUID otherwise. FileVersion = version of the xml configuration file in case the XML structure will change in future versions -->
+
+    <Setting ID="PRDMServerAddress"
+        Locked="True"
+        Value="http://prdm.mycompany.com:8080/PRDMweb" />
+    <!-- If the "locked" value for a setting is set to "True" the setting cannot be changed by the user. On the server http://prdm.mycompany.com:8080/PRDMweb the PRDM web service is running, the port has to be added to the server address. Supports HTTP and HTTPS. PDR has to connect to this server on a regular basis (see setting "poll interval") to send the current settings (PDRout.config) and receive new settings (PDRin.config) -->
+
+    <Setting ID="PRDMServerPollInterval"
+        Locked="True"
+        Value="1440" />
+    <!-- Value in minutes. In this case the PDR will connect to the configured PRDMServerAddress once a day (1440 minutes = 24 hours) -->
+
+    <Setting ID="DataListURL"
+        Locked="True"
+        Value="http://prdm.mycompany.com/example_list.csv" />
+    <!-- PDR will download this file via http-get commands (according to the poll-interval PatientListRefreshInterval) and will use it as a new data-list -->
+
+    <Setting ID="DataListRefreshInterval"
+        Locked="True"
+        Value="60" />
+    <!-- Value in minutes. In this case the PDR will connect to the configured PatientListURL once every hour (60 minutes = 1 hour) -->
+
+    <Setting ID="DataListVisibleColumn1"
+        Locked="True"
+        Value="1" />
+    <!-- defines the column (1-10) which will be displayed in the data-list overview -->
+
+    <Setting ID="DataListVisibleColumn2"
+        Locked="True"
+        Value="10" />
+    <!-- defines the column (1-10) which will be displayed in the data-list overview -->
+
+    <Setting ID="DataListAuthorColumn"
+        Locked="True"
+        Value="1" />
+    <!-- defines the column (1-10) which contains the Author -->
+
+    <Setting ID="SliderConfiguration"
+        Locked="True"
+        Value="International" />
+    <!-- configuration for the slide switch -->
+
+    <Setting ID="SmartButton"
+        Locked="True"
+        Value="EOL" />
+    <!-- configuration for the smart button above the slide switch -->
+
+    <Setting ID="RecordScreenText1"
+        Locked="True"
+        Value="Author" />
+    <!-- this string is displayed on the 1st line of the configurable text-field on the GUI -->
+
+    <Setting ID="RecordScreenText2"
+        Locked="True"
+        Value="Worktype" />
+    <!-- this string is displayed on the 2nd line of the configurable text-field on the GUI -->
+
+    <Setting ID="RecordScreenText3"
+        Locked="True"
+        Value="ListColumn1" />
+    <!-- this string is displayed on the 3rd line of the configurable text-field on the GUI -->
+
+    <Setting ID="RecordScreenText4"
+        Locked="True"
+        Value="ListColumn2" />
+    <!-- this string is displayed on the 4th line of the configurable text-field on the GUI -->
+
+    <Setting ID="DeleteDictations"
+        Locked="True"
+        Value="10 days" />
+    <!-- defines the purge interval, or delete after download -->
+
+    <Setting ID="SendAfterEOL"
+        Locked="True"
+        Value="False" />
+    <!-- if this is True, the PDR will send the file automatically after EOL has been pressed -->
+
+    <Setting ID="VoiceActivation"
+        Locked="True"
+        Value="False" />
+    <!-- activate/deactivate VoiceActivation -->
+
+    <Setting ID="EditMode"
+        Locked="True"
+        Value="Overwrite" />
+    <!-- Edit Mode INS/OVR/APP/ASK -->
+
+    <Setting ID="MicrophoneSensitivity"
+        Locked="True"
+        Value="Medium" />
+    <!-- configures the microphone sensitivity for both microphones -->
+
+    <Setting ID="MicrophoneDirectivityInHand"
+        Locked="True"
+        Value="Directional" />
+    <!-- defines which microphone will be used during recording if the device is held in hand -->
+
+    <Setting ID="MicrophoneDirectivityOnDesk"
+        Locked="True"
+        Value="Meeting" />
+    <!-- defines which microphone will be used during recording if the device rests on the desk -->
+
+    <Setting ID="RecordNotificationBeep"
+        Locked="True"
+        Value="False" />
+    <!-- defines which microphone will be used during recording if the device rests on the desk -->
+
+    <Setting ID="JumpBackTime"
+        Locked="True"
+        Value="2" />
+    <!-- defines the jump back time in seconds -->
+
+    <Setting ID="AudioFormat"
+        Locked="True"
+        Value="DS2" />
+    <!-- Recording Format WAV or DS2 -->
+
+    <Setting ID="NetworkShare"
+        Locked="True"
+        Path="192.168.1.1/DataFolder/"
+        Username="username"
+        Password="password"
+        SubfolderType="Author"/>
+    <!-- Network Share Path and credentials for storing files -->
+
+    <Setting ID="EmailSending"
+        Locked="True"
+        Value="False" />
+    <!-- enable/disable e-mail sending feature -->
+
+    <Setting ID="MobileServer1"
+        Locked="True"
+        URL="192.168.1.1/upload.php"
+        Username="testuser"
+        Password="password"/>
+    <!-- MobileServer1 configuration -->
+
+    <Setting ID="MobileServer2"
+        Locked="True"
+        URL="192.168.1.1/upload.php"
+        Username="testuser"
+        Password="password"/>
+    <!-- MobileServer2 configuration -->
+
+    <Setting ID="MobileServer3"
+        Locked="True"
+        URL="192.168.1.1/upload.php"
+        Username="testuser"
+        Password="password"/>
+    <!-- MobileServer3 configuration -->
+
+    <Setting ID="MobileServer4"
+        Locked="True"
+        URL="192.168.1.1/upload.php"
+        Username="testuser"
+        Password="password"/>
+    <!-- MobileServer4 configuration -->
+
+    <Setting ID="MobileServer5"
+        Locked="True"
+        URL="192.168.1.1/upload.php"
+        Username="testuser"
+        Password="password"/>
+    <!-- MobileServer5 configuration -->
+
+    <Setting ID="DictationHub"
+        Locked="True"
+        Value="True" />
+    <!-- DictationHub on/off -->
+
+    <Setting ID="SpeechLive"
+        Locked="True"
+        Value="True" />
+    <!-- SpeechLive on/off -->
+
+    <Setting ID="Authors"
+        Locked="True"
+        Item1="Smith"
+        Item2="Wood"
+        Item3="Johnson"
+        Item4=""
+        Item5=""
+        Item6=""
+        Item7=""
+        Item8=""
+        Item9=""
+        Item10=""
+        Item11=""
+        Item12=""
+        Item13=""
+        Item14=""
+        Item15=""
+        Item16=""
+        Item17=""
+        Item18=""
+        Item19=""
+        Item20="" />
+    <!-- configures all Authors -->
+
+    <Setting ID="DefaultAuthor"
+        Locked="True"
+        Value="3" />
+    <!-- defines the default Author -->
+
+    <Setting ID="Worktypes"
+        Locked="True"
+        Item1="letter"
+        Item2="fax"
+        Item3="e-mail"
+        Item4=""
+        Item5=""
+        Item6=""
+        Item7=""
+        Item8=""
+        Item9=""
+        Item10=""
+        Item11=""
+        Item12=""
+        Item13=""
+        Item14=""
+        Item15=""
+        Item16=""
+        Item17=""
+        Item18=""
+        Item19=""
+        Item20="" />
+    <!-- configures all Worktypes -->
+
+    <Setting ID="DefaultWorktype"
+        Locked="True"
+        Value="2" />
+    <!-- defines the default Worktype -->
+
+    <Setting ID="Categories"
+        Locked="True"
+        Item1="a"
+        Item2="b"
+        Item3="c"
+        Item4="d"
+        Item5="e"
+        Item6=""
+        Item7=""
+        Item8=""
+        Item9=""
+        Item10=""
+        Item11=""
+        Item12=""
+        Item13=""
+        Item14=""
+        Item15=""
+        Item16=""
+        Item17=""
+        Item18=""
+        Item19=""
+        Item20="" />
+    <!-- configures all Categories -->
+
+    <Setting ID="DefaultCategory"
+        Locked="True"
+        Value="5" />
+    <!-- defines the default Category -->
+
+    <Setting ID="Delivery"
+        Locked="True"
+        Item1="Email"
+        Item2="SR"
+        Item3="Transcription service"
+        Item4="2 speakers - TS3"
+        Item5="3 speakers - TS2"
+        Item6=""
+        Item7=""
+        Item8=""
+        Item9=""
+        Item10=""
+        Item11=""
+        Item12=""
+        Item13=""
+        Item14=""
+        Item15=""
+        Item16=""
+        Item17=""
+        Item18=""
+        Item19=""
+        Item20="" />
+    <!-- configures the delivery types -->
+
+    <Setting ID="DefaultDelivery"
+        Locked="True"
+        Value="4" />
+    <!-- defines the default delivery type -->
+
+    <Setting ID="MandatoryAuthor"
+        Locked="True"
+        Value="False" />
+    <!-- mandatory user input of Author -->
+
+    <Setting ID="MandatoryWorktype"
+        Locked="True"
+        Value="False" />
+    <!-- mandatory user input of Worktype -->
+
+    <Setting ID="MandatoryCategory"
+        Locked="True"
+        Value="False" />
+    <!-- mandatory user input of Category -->
+
+    <Setting ID="MandatoryBarcode"
+        Locked="True"
+        Value="False" />
+    <!-- mandatory user input of Barcode -->
+
+    <Setting ID="MandatoryDataList"
+        Locked="True"
+        Value="False" />
+    <!-- mandatory user input of data list -->
+
+    <Setting ID="MandatoryDelivery"
+        Locked="True"
+        Value="False" />
+    <!-- mandatory user input of delivery option -->
+
+    <Setting ID="UseEncryption"
+        Locked="True"
+        Value="False" />
+    <!-- enable/disable Encryption for MobileServer/DictationHub -->
+
+    <Setting ID="EncryptionKey"
+        Locked="True"
+        Value="1234567890123456" />
+    <!-- Encryption Key for MobileServer/DictationHub -->
+
+</Configuration>

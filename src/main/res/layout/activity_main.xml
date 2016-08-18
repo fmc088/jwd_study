@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.multisoft.prdmproto.MainActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Server URL" />
+
+    <EditText
+        android:id="@+id/serverURLedit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:ems="10"
+        android:text="http://192.168.1.145:80/PRDM" >
+
+
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Domain" />
+
+        <EditText
+            android:id="@+id/DomainEdit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView2"
+            android:ems="10"
+            android:text="WIN-4H8PQ36DVR4" >
+        </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User" />
+
+        <EditText
+            android:id="@+id/UserEdit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView3"
+            android:ems="10"
+            android:text="sa" >
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password" />
+
+        <EditText
+            android:id="@+id/PasswordEdit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView4"
+            android:ems="10"
+            android:text="PROMSQL#1">
+        </EditText>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/serverURLedit"
+        android:layout_below="@+id/serverURLedit"
+        android:text="Send" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/getFileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/fileUrlText"
+            android:text="Get file" />
+        <EditText
+            android:id="@+id/fileUrlText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="api/DownloadFile/img/1">
+        </EditText>
+        <EditText
+            android:id="@+id/originalExtensionText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="" >
+        </EditText>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/xmlEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?>" />
+
+</LinearLayout>

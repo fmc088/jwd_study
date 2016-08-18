@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration Type="SpeechAir" Direction="out"
+    ID="001807"
+    Version="rk3066-eng 4.4.2 KOT49H eng.jhlsc.20140414.214957 test-keys"
+    FileVersion="1">
+    <!-- Direction = "in" for SAin.config and "out" for SAout.config. ID = SpeechAir Serial Number. Version = Build number of the SpeechAir firmware. FileVersion = version of the xml configuration file in case the XML structure will change in future versions ID = SpeechAir Serial Number. Direction = "in" for SAin.config and "out" for SAout.config.  FileVersion = version of the xml configuration file in case the XML structure will change in future versions -->
+
+    <Setting ID="PRDMServerAddress"
+        Locked="true"
+        Value="http://prdm.mycompany.com:8080/PRDMweb" />
+    <!-- If the "locked" value for a setting is set to "true" the setting cannot be changed by the user on the SpeechAir itself. On the server http://prdm.mycompany.com:8080/PRDMweb the PRDM web service is running, the port has to be added to the server address. Supports HTTP and HTTPS. SpeechAir has to connect to this server on a regular basis (see setting "poll interval") to send the current settings (SAout.config) and receive new settings (SAin.config) -->
+
+    <Setting ID="PRDMServerPollInterval"
+        Locked="true"
+        Value="1440" />
+    <!-- Value in minutes. In this case the SpeechAir will connect to the configured PRDMServerAddress once a day (1440 minutes = 24 hours) -->
+
+    <Setting ID="WLANEnabled"
+        Locked="true"
+        Value="true" />
+
+    <Setting ID="UserNetworksEnabled"
+        Locked="true"
+        Value="true" />
+    <!-- If true, the user is allowed to add new WLAN configurations on the SpeechAir device. -->
+
+    <WLANNetworks>
+
+        <Network SSID="net1"
+            Locked="true"
+            SecurityMode="None"
+            ProxyMode="Manual"
+            ProxyHostName="proxy.mycompany.com"
+            ProxyPort="8081"
+            ProxyByPass="mycompany.com" />
+        <!-- Shows the connection settings for wireless network "net1" without security  -->
+
+        <Network SSID="net2"
+            Locked="true"
+            SecurityMode="WEP"
+            WEPPassword="password2"
+            ProxyMode="None" />
+        <!-- Shows the connection settings for wireless network "net2" with security mode WEP -->
+
+        <Network SSID="net3"
+            Locked="true"
+            SecurityMode="WPA"
+            WPAPassword="password3"
+            ProxyMode="None" />
+        <!-- Shows the connection settings for wireless network "net3" with security mode WPA (="WPA/WPA2 PSK" on the device) -->
+
+        <Network SSID="homenetA"
+            Locked="false"
+            SecurityMode="WPA"
+            WPAPassword="myhomenetworkpassword"
+            ProxyMode="None" />
+        <!-- This network "homenetA" has been configured by the SpeechAir user directly on the device, that's why the "locked" value is "false". The SAout config has to list ALL networks which are configured on the device. -->
+
+    </WLANNetworks>
+
+    <Setting ID="BluetoothEnabled"
+        Locked="true"
+        Value="true" />
+
+    <Setting ID="VPNEnabled"
+        Locked="true"
+        Value="false" />
+
+    <Setting ID="Wallpaper"
+        Locked="true"
+        ValueHash="ZhZzhEJzJcIdHgOifjGVZuln1eRIG+o9KfqvyGzsYFI=" />
+    <!-- The hash value will help PRDM to compare the current Wallpaper activated on the device with the Wallpaper picture configured in PRDM without sending the picture file itself (to reduce traffic) -->
+
+    <Setting ID="AutorotateScreenEnabled"
+        Locked="true"
+        Value="true" />
+
+    <InstalledApps>   <!-- Lists the information (package name, version code, version name, display name) of ALL apps currently installed on the SpeechAir device -->
+        <App PackageName="com.dev1.app1" VersionCode="11" VersionName="3.0.2" DisplayName="First Application" />
+        <App PackageName="com.dev3.app4" VersionCode="3" VersionName="1.1.0" DisplayName="Other Application" />
+        <App PackageName="com.dev3.app5" VersionCode="25" VersionName="2.0.0" DisplayName="Another Application" />
+        <App PackageName="com.dev4.app4" VersionCode="4" VersionName="4.4.4" DisplayName="Application 4" />  <!-- This app has been installed by PRDM, see SAin configuration -->
+        <App PackageName="com.dev5.app5" VersionCode="5" VersionName="5.5.5" DisplayName="Application 5" />  <!-- This app has been installed by PRDM, see SAin configuration -->
+    </InstalledApps>
+
+    <Setting ID="UninstallAppEnabled"
+        Locked="true"
+        Value="false" />
+    <!-- If set to "false", this setting should disallow the user to modify/uninstall apps on the device, and also disallow to remove applications by moving the app icons to the bin via drag and drop -->
+
+    <Setting ID="SmartButtonStartApp"
+        Locked="true"
+        Value="com.speech" />
+    <!-- This setting allows the administrator to configure, if an app should be started when the SpeechAir slider gets moved to the RECORD position. In this example, moving the SpeechAir slider to the RECORD position would start the Philips dictation app. -->
+
+    <Setting ID="LocationAccessEnabled"
+        Locked="true"
+        Value="true" />
+    <!-- If Value is set to "true", this setting allows apps to access the location information.  -->
+
+    <Setting ID="ScreenLockMode"
+        Locked="true"
+        Value="PIN" />
+
+    <Setting ID="ScreenLockPIN"
+        Locked="true"
+        Value="1234" />
+
+    <Setting ID="ScreenLockPassword"
+        Locked="true"
+        Value="password" />
+
+    <Setting ID="ShowOwnerInfoOnLockscreen"
+        Locked="true"
+        Value="true" />
+
+    <Setting ID="OwnerInfo"
+        Locked="true"
+        Value="Property of myCompany.  +43 1 26441588452  admin@mycompany.com" />
+
+    <Setting ID="VisiblePasswordsEnabled"
+        Locked="true"
+        Value="true" />
+    <!-- Make passwords visible -->
+
+    <Setting ID="UnknownSourcesEnabled"
+        Locked="true"
+        Value="true" />
+    <!-- Allow installation of apps from unknown sources -->
+
+    <Setting ID="AppVerificationEnabled"
+        Locked="true"
+        Value="true" />
+    <!-- Disallow or warn before installation of apps that may cause harm -->
+
+    <Setting ID="CameraEnabled"
+        Locked="true"
+        Value="true" />
+    <!-- Allow to use the camera. -->
+
+    <Setting ID="USBDataTransferEnabled"
+        Locked="true"
+        Value="true" />
+    <!-- Enable USB data transfer  -->
+
+    <Setting ID="Language"
+        Locked="true"
+        Value="en-US" />
+    <!-- In this case language is set to English (United States) -->
+
+    <Setting ID="SpellCheckerEnabled"
+        Locked="true"
+        Value="true" />
+
+    <Setting ID="BackupRestoreEnabled"
+        Locked="true"
+        Value="true" />
+    <!-- Enables "Back up my data" -->
+
+    <Setting ID="GoogleAccountSetupEnabled"
+        Locked="true"
+        Value="true" />
+    <!-- Allow Google Account setup -->
+
+    <Setting ID="AutomaticDateTimeEnabled"
+        Locked="true"
+        Value="true" />
+    <!-- Automatic date & time -->
+
+    <Setting ID="NTPServerAddress"
+        Locked="true"
+        Value="xyz.pool.ntp.org" />
+
+    <Setting ID="TimeZone"
+        Locked="true"
+        Value="GMT_plus100_Amsterdam_Berlin" />
+    <!-- This value would set the time zone to "Amsterdam, Berlin (GMT +1:00)" -->
+
+    <Setting ID="Use24HourFormatEnabled"
+        Locked="true"
+        Value="true" />
+    <!-- Use 24-hour format -->
+
+    <Setting ID="DateFormat"
+        Locked="true"
+        Value="DDMMYYYY" />
+    <!-- Choose date format. This value "DDMMYYYY" would set the date format to "31/12/2015" -->
+
+    <!-- In the SAout the Firmware tag is missing as it's enough to have the Firmware version build at the top of the settings list ("Version="rk3066-eng 4.4.2 KOT49H eng.jhlsc.20140414.214957 test-keys") -->
+
+    <Setting ID="DeveloperOptionsEnabled"
+        Locked="true"
+        Value="true" />
+
+</Configuration>
