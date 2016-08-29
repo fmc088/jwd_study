@@ -74,30 +74,5 @@ public class BootReceiver extends BroadcastReceiver{
 		}
 		return prop;
 	}
-//	public void showJudgment(Context context){
-//		String path = "/sys/devices/ff100000.adc/key.30/get_gsensor_value";
-//		String str = mygetString(path);
-//		PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-//		Log.i(TAG, "curren data = "+str);
-//		if("0".equals(str.trim())){ //读取0时亮屏
-//			if(!pm.isScreenOn()){
-//				if(null != pm){
-//					pm.wakeUp(SystemClock.uptimeMillis());
-//				}
-//			}
-//		}else if("fail".equals(str.trim())){//读取节点异常
-//			Log.i(TAG, "----mygetString IOException---");
-//		}else if("1".equals(str.trim())){//读取到1时屏幕灭屏，
-//			if(pm.isScreenOn()){
-//	            if(null != pm){
-//	            	pm.goToSleep(SystemClock.uptimeMillis(),
-//                            PowerManager.GO_TO_SLEEP_REASON_POWER_BUTTON, 0);
-//	            	pm.goToSleep(SystemClock.uptimeMillis());
-//	            }
-//			}
-//		}else{
-//			Log.i(TAG, "---PowerThread get the error data " +str);
-//		}
-//	}
 
 }

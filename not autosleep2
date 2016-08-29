@@ -1,0 +1,33 @@
+D/PowerManagerService(  454): -------ScreenReceiver-----goToSleepNoUpdateLocked---mDirty--4
+I/PowerManagerService(  454): updatePowerStateLocked mSystemReady = true,mDirty = 5
+I/PowerManagerService(  454): updatePowerStateLocked  wakefulness =  1
+F/PowerManagerService(  454): updateIsPoweredLocked mDirty = 5
+I/PowerManagerService(  454): updatePowerStateLocked  wakefulness  dirtyPhase2 =  5,dirtyPhase1 = 5
+D/PowerManagerService(  454): updateWakeLockSummaryLocked: mWakefulness=Awake, mWakeLockSummary=0x0
+D/PowerManagerService(  454): updateUserActivitySummaryLocked: sleepTimeout=-1, screenOffTimeout15000, screenDimDuration=3000
+D/PowerManagerService(  454): updateUserActivitySummaryLocked: nextTimeout =300736, mLastUserActivityTime288736, mLastWakeTime=288736, now=289111
+D/PowerManagerService(  454): updateUserActivitySummaryLocked: mWakefulness=Awake, mUserActivitySummary=0x1, nextTimeout=300736 (in 11624 ms)
+I/PowerManagerService(  454): updateDisplayPowerStateLocked diry =  5,screenBrightness = 102,mDisplayPowerRequest.policy = 3
+D/PowerManagerService(  454): updateDisplayPowerStateLocked: mDisplayReady=false, policy=3, mWakefulness=1, mWakeLockSummary=0x0, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+I/PowerManagerService(  454): updatePowerStateLocked mSystemReady = true,mDirty = 8
+I/PowerManagerService(  454): updatePowerStateLocked  wakefulness =  1
+F/PowerManagerService(  454): updateIsPoweredLocked mDirty = 8
+I/PowerManagerService(  454): updatePowerStateLocked  wakefulness  dirtyPhase2 =  8,dirtyPhase1 = 8
+I/PowerManagerService(  454): updateDisplayPowerStateLocked diry =  8,screenBrightness = 102,mDisplayPowerRequest.policy = 3
+D/PowerManagerService(  454): updateDisplayPowerStateLocked: mDisplayReady=true, policy=3, mWakefulness=1, mWakeLockSummary=0x0, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+I/PowerManagerService(  454): finishWakefulnessChangeLocked  wakefulness =  1
+D/PowerManagerService(  454): -------goToSleep---handleUserActivityTimeout--handleMessage----start---
+D/PowerManagerService(  454): handleUserActivityTimeout
+D/PowerManagerService(  454): handleUserActivityTimeout old mDirty = 0
+D/PowerManagerService(  454): handleUserActivityTimeout new mDirty = 4.DIRTY_USER_ACTIVITY = 4
+I/PowerManagerService(  454): updatePowerStateLocked mSystemReady = true,mDirty = 4
+I/PowerManagerService(  454): updatePowerStateLocked  wakefulness =  1
+F/PowerManagerService(  454): updateIsPoweredLocked mDirty = 4
+I/PowerManagerService(  454): updatePowerStateLocked  wakefulness  dirtyPhase2 =  4,dirtyPhase1 = 4
+D/PowerManagerService(  454): updateUserActivitySummaryLocked: sleepTimeout=-1, screenOffTimeout15000, screenDimDuration=3000
+D/PowerManagerService(  454): updateUserActivitySummaryLocked: nextTimeout =300736, mLastUserActivityTime288736, mLastWakeTime=288736, now=291022
+D/PowerManagerService(  454): updateUserActivitySummaryLocked: mWakefulness=Awake, mUserActivitySummary=0x1, nextTimeout=300736 (in 9713 ms)
+I/PowerManagerService(  454): updateDisplayPowerStateLocked diry =  4,screenBrightness = 102,mDisplayPowerRequest.policy = 3
+D/PowerManagerService(  454): updateDisplayPowerStateLocked: mDisplayReady=true, policy=3, mWakefulness=1, mWakeLockSummary=0x0, mUserActivitySummary=0x1, mBootCompleted=true, mScreenBrightnessBoostInProgress=false
+I/PowerManagerService(  454): finishWakefulnessChangeLocked  wakefulness =  1
+D/PowerManagerService(  454): -------goToSleep--handleUserActivityTimeout--handleMessage----end---

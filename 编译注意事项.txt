@@ -58,4 +58,8 @@
 		android代码在linux下编译的话，只能用中文（UTF-8）格式才能在android系统下编译成功的，正常显示
 		在xml格式中有字符串内容要用@string/name下保存信息（以后android开发 经常要用string.xml arrt.xml等不要在layout下直接赋值，）
 		
+		出现错误，问题解决
+		 *** No rule to make target `out/target/product/generic/system/framework/framework-res.apk', needed by `out/target/product/generic/system/framework/framework.jar'.
+		 这时可以先编译mmm frameworks/base/core/res/能够生成新的out/target/product/generic/system/framework/framework-res.apk，再重新编译mmm frameworks/base,就可以编译成功
+		
 		

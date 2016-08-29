@@ -1,0 +1,498 @@
+diff --git a/packages/SystemUI/AndroidManifest.xml b/packages/SystemUI/AndroidManifest.xml
+index 5b3dc41..884ef8a 100755
+--- a/packages/SystemUI/AndroidManifest.xml
++++ b/packages/SystemUI/AndroidManifest.xml
+@@ -385,6 +385,12 @@
+                 <category android:name="android.intent.category.DEFAULT" />
+             </intent-filter>
+         </activity>
++        
++        <receiver android:name="com.android.systemui.ScreenOnReceiver">
++            <intent-filter android:priority="1000">
++                <action android:name="android.intent.action.SCREEN_ON" />
++            </intent-filter>
++        </receiver>
+ 
+      <!-- $_rbox_$_modify_$_by cx,add for unmount usb safely -->
+         <activity android:name=".usb.UsbStorageUnmountDialog"
+diff --git a/packages/SystemUI/src/com/android/systemui/ScreenOnReceiver.java b/packages/SystemUI/src/com/android/systemui/ScreenOnReceiver.java
+new file mode 100755
+index 0000000..4c0f0cd
+--- /dev/null
++++ b/packages/SystemUI/src/com/android/systemui/ScreenOnReceiver.java
+@@ -0,0 +1,65 @@
++package com.android.systemui;^M
++^M
++import java.io.BufferedReader;^M
++import java.io.FileReader;^M
++import java.io.IOException;^M
++^M
++import android.content.BroadcastReceiver;^M
++import android.content.Context;^M
++import android.content.Intent;^M
++import android.os.PowerManager;^M
++import android.os.SystemClock;^M
++import android.util.Log;^M
++^M
++public class ScreenOnReceiver extends BroadcastReceiver{^M
++       String path = "/sys/devices/ff100000.adc/key.30/get_gsensor_value";//节点文件路径^M
++       private PowerManager pm = null;// 电源管理对象^M
++       @Override^M
++       public void onReceive(Context context, Intent intent) {^M
++               String action = intent.getAction();^M
++               if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) { ^M
++                       Log.i("ScreenOnReceiver", "ScreenOnReceiver = "+Intent.ACTION_SCREEN_ON);^M
++                          screenOnDone(context);^M
++               }  ^M
++               ^M
++       }^M
++       public void screenOnDone(Context context){^M
++               if(null == pm){^M
++                       pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);^M
++               }^M
++               String str = mygetString(path);^M
++               Log.i("ScreenOnReceiver", "screenOnDone str = "+str);^M
++               if("1".equals(str)){^M
++                       if(pm.isScreenOn()){^M
++                               new Thread(){^M
++                                       @Override^M
++                                       public void run() {^M
++                                               // TODO Auto-generated method stub^M
++                                               super.run();^M
++                                               try {^M
++                                                       Thread.sleep(1000);^M
++                                               } catch (InterruptedException e) {^M
++                                                       // TODO Auto-generated catch block^M
++                                                       e.printStackTrace();^M
++                                               }^M
++                                               pm.goToSleep(SystemClock.uptimeMillis());^M
++                                       }^M
++                                       ^M
++                               }.start();^M
++                       }^M
++               }^M
++       }^M
++       ^M
++       public String mygetString (String path){^M
++               String prop = "fail";^M
++               try {^M
++                       BufferedReader reader = new BufferedReader(new FileReader(path));^M
++                       prop = reader.readLine();^M
++                       reader.close();^M
++               } catch (IOException e) {^M
++                       // TODO Auto-generated catch block^M
++                       e.printStackTrace();^M
++               }^M
++               return prop;^M
++       }^M
++}^M
+diff --git a/policy/src/com/android/internal/policy/impl/PhoneWindowManager.java b/policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+index d25051e..98be754 100755
+--- a/policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
++++ b/policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+@@ -151,13 +151,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+                        Log.d(TAG,"000000000000000:"+msg);
+                }
+        }
+-    static final boolean DEBUG = false;
++    static final boolean DEBUG = true;
+     static final boolean localLOGV = false;
+-    static final boolean DEBUG_INPUT = false;
+-    static final boolean DEBUG_KEYGUARD = false;
+-    static final boolean DEBUG_LAYOUT = false;
+-    static final boolean DEBUG_STARTING_WINDOW = false;
+-    static final boolean DEBUG_WAKEUP = false;
++    static final boolean DEBUG_INPUT = true;
++    static final boolean DEBUG_KEYGUARD = true;
++    static final boolean DEBUG_LAYOUT = true;
++    static final boolean DEBUG_STARTING_WINDOW = true;
++    static final boolean DEBUG_WAKEUP = true;
+     static final boolean SHOW_STARTING_ANIMATIONS = false;
+     static final boolean SHOW_PROCESSES_ON_ALT_MENU = false;
+        static final boolean DEBUG_3D_FUNCTIONS = false;//djw:add for 3d functions
+@@ -5820,8 +5820,38 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+         },300);
+         finishScreenTurningOn();
+     }
++    
++    public String mygetString (String path){
++               String prop = "fail";
++               try {
++                       BufferedReader reader = new BufferedReader(new FileReader(path));
++                       prop = reader.readLine();
++                       reader.close();
++               } catch (IOException e) {
++                       // TODO Auto-generated catch block
++                       e.printStackTrace();
++               }
++               return prop;
++        }
++        public void wakeUpToSleep(){
++               new Thread(){
++                       @Override
++                       public void run() {
++                               // TODO Auto-generated method stub
++                               super.run();
++                               
++                               try {
++                                       Thread.sleep(1000);
++          Runtime.getRuntime().exec("input keyevent KEYCODE_POWER");
++                               } catch (IOException | InterruptedException e) {
++                                 e.printStackTrace();
++                               }                  
++                       }
++               }.start();
++       }
+ 
+     private void finishScreenTurningOn() {
++       
+         final ScreenOnListener listener;
+         final boolean enableScreen;
+         synchronized (mLock) {
+@@ -5838,6 +5868,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+             }
+ 
+             if (DEBUG_WAKEUP) Slog.i(TAG, "Finished screen turning on...");
++           // if("1".equals(str.trim())){
++           //  Slog.d(TAG, str +"  FMC wakeupToSleep");
++           //   wakeUpToSleep();
++            // }
+             listener = mScreenOnListener;
+             mScreenOnListener = null;
+             mScreenOnFully = true;
+diff --git a/services/core/java/com/android/server/power/PowerManagerService.java b/services/core/java/com/android/server/power/PowerManagerService.java
+old mode 100644
+new mode 100755
+index 9f302f1..d9e7c38
+--- a/services/core/java/com/android/server/power/PowerManagerService.java
++++ b/services/core/java/com/android/server/power/PowerManagerService.java
+@@ -26,7 +26,7 @@ import com.android.server.am.BatteryStatsService;
+ import com.android.server.lights.Light;
+ import com.android.server.lights.LightsManager;
+ import com.android.server.Watchdog;
+-
++import java.io.IOException;
+ import android.Manifest;
+ import android.content.BroadcastReceiver;
+ import android.content.ContentResolver;
+@@ -97,7 +97,7 @@ public final class PowerManagerService extends SystemService
+         implements Watchdog.Monitor {
+     private static final String TAG = "PowerManagerService";
+ 
+-    private static final boolean DEBUG = false;
++    private static final boolean DEBUG = true;
+     private static final boolean DEBUG_SPEW = DEBUG && true;
+ 
+     // Message: Sent when a user activity timeout occurs to update the power state.
+@@ -467,6 +467,9 @@ public final class PowerManagerService extends SystemService
+ 
+        private DisplayManager mDisplayManager;
+        private WifiManager mWifiManager;
++       
++       private String path = "/sys/devices/ff100000.adc/key.30/get_gsensor_value";
++       private static final int MSG_GOTOSLEEP_STATE = 2000;
+ 
+     public PowerManagerService(Context context) {
+         super(context);
+@@ -573,6 +576,14 @@ public final class PowerManagerService extends SystemService
+             filter=new IntentFilter();
+             filter.addAction("android.intent.action.HDMI_PLUG");
+             mContext.registerReceiver(new HdmiReceiver(), filter,null,mHandler);
++            
++            filter=new IntentFilter();
++            filter.addAction(Intent.ACTION_BOOT_COMPLETED);
++            mContext.registerReceiver(new BootCompletedReceiver(), filter,null,myHandler);
++            
++            filter=new IntentFilter();
++            filter.addAction(Intent.ACTION_SCREEN_ON);
++            mContext.registerReceiver(new ScreenReceiver(), filter,null,myHandler);
+ 
+             // Register for settings changes.
+             final ContentResolver resolver = mContext.getContentResolver();
+@@ -1214,7 +1225,7 @@ public final class PowerManagerService extends SystemService
+ 
+     private boolean wakeUpNoUpdateLocked(long eventTime, int uid) {
+         if (DEBUG_SPEW) {
+-            Slog.d(TAG, "wakeUpNoUpdateLocked: eventTime=" + eventTime + ", uid=" + uid);
++            Slog.d(TAG, "wakeUpNoUpdateLocked: eventTime=" + eventTime + ", uid=" + uid+",mWakefulness = "+mWakefulness);
+         }
+ 
+         if (eventTime < mLastSleepTime || mWakefulness == WAKEFULNESS_AWAKE
+@@ -1255,19 +1266,38 @@ public final class PowerManagerService extends SystemService
+         }
+     }
+ 
++  public String mygetString (String path){
++               String prop = "fail";
++               try {
++                       BufferedReader reader = new BufferedReader(new FileReader(path));
++                       prop = reader.readLine();
++                       reader.close();
++               } catch (IOException e) {
++                       // TODO Auto-generated catch block
++                       e.printStackTrace();
++               }
++               return prop;
++        }
+     // This method is called goToSleep for historical reasons but we actually start
+     // dozing before really going to sleep.
+     @SuppressWarnings("deprecation")
+     private boolean goToSleepNoUpdateLocked(long eventTime, int reason, int flags, int uid) {
++       
++       String str = mygetString(path);
++
++       Slog.d(TAG, "goToSleepNoUpdateLocked  str = " +str );   
+         if (DEBUG_SPEW) {
+             Slog.d(TAG, "goToSleepNoUpdateLocked: eventTime=" + eventTime
+                     + ", reason=" + reason + ", flags=" + flags + ", uid=" + uid);
+         }
+ 
++                         Slog.d(TAG, "goToSleepNoUpdateLocked  mWakefulness = " +mWakefulness );       
+         if (eventTime < mLastWakeTime
+                 || mWakefulness == WAKEFULNESS_ASLEEP
+                 || mWakefulness == WAKEFULNESS_DOZING
+-                || !mBootCompleted || !mSystemReady) {
++                || !mBootCompleted || !mSystemReady  || "0".equals(str.trim())) {
++                
++                Slog.d(TAG, "goToSleepNoUpdateLocked  not goToSleep" );        
+             return false;
+         }
+ 
+@@ -1305,6 +1335,10 @@ public final class PowerManagerService extends SystemService
+             final int numWakeLocks = mWakeLocks.size();
+             for (int i = 0; i < numWakeLocks; i++) {
+                 final WakeLock wakeLock = mWakeLocks.get(i);
++                
++                Slog.d(TAG, "goToSleepNoUpdateLocked  wakeLock mFlags = "+wakeLock.mFlags );   
++                
++                
+                 switch (wakeLock.mFlags & PowerManager.WAKE_LOCK_LEVEL_MASK) {
+                     case PowerManager.FULL_WAKE_LOCK:
+                     case PowerManager.SCREEN_BRIGHT_WAKE_LOCK:
+@@ -1335,7 +1369,7 @@ public final class PowerManagerService extends SystemService
+ 
+     private boolean napNoUpdateLocked(long eventTime, int uid) {
+         if (DEBUG_SPEW) {
+-            Slog.d(TAG, "napNoUpdateLocked: eventTime=" + eventTime + ", uid=" + uid);
++            Slog.d(TAG, "napNoUpdateLocked: eventTime=" + eventTime + ", uid=" + uid+",mWakefulness = "+mWakefulness);
+         }
+ 
+         if (eventTime < mLastWakeTime || mWakefulness != WAKEFULNESS_AWAKE
+@@ -1359,7 +1393,7 @@ public final class PowerManagerService extends SystemService
+     private boolean reallyGoToSleepNoUpdateLocked(long eventTime, int uid) {
+         if (DEBUG_SPEW) {
+             Slog.d(TAG, "reallyGoToSleepNoUpdateLocked: eventTime=" + eventTime
+-                    + ", uid=" + uid);
++                    + ", uid=" + uid + ",mWakefulness =" +mWakefulness);
+         }
+ 
+         if (eventTime < mLastWakeTime || mWakefulness == WAKEFULNESS_ASLEEP
+@@ -1379,10 +1413,14 @@ public final class PowerManagerService extends SystemService
+     }
+ 
+     private void setWakefulnessLocked(int wakefulness, int reason) {
++       
++       Slog.i(TAG, "setWakefulnessLocked  wakefulness =  " + wakefulness +" reason = "+reason);
++       Slog.i(TAG, "setWakefulnessLocked  mWakefulness =  " + mWakefulness +" reason = "+reason);
+         if (mWakefulness != wakefulness) {
+             finishWakefulnessChangeLocked();
+ 
+             mWakefulness = wakefulness;
++            
+             mWakefulnessChanging = true;
+             mDirty |= DIRTY_WAKEFULNESS;
+             mNotifier.onWakefulnessChangeStarted(wakefulness, reason);
+@@ -1390,6 +1428,7 @@ public final class PowerManagerService extends SystemService
+     }
+ 
+     private void finishWakefulnessChangeLocked() {
++       Slog.i(TAG, "finishWakefulnessChangeLocked  wakefulness =  " + mWakefulness);
+         if (mWakefulnessChanging) {
+             mNotifier.onWakefulnessChangeFinished(mWakefulness);
+             mWakefulnessChanging = false;
+@@ -1405,6 +1444,12 @@ public final class PowerManagerService extends SystemService
+      * way each time.  The point is to gather all of the transition logic here.
+      */
+     private void updatePowerStateLocked() {
++         Slog.i(TAG, "updatePowerStateLocked mSystemReady = "+mSystemReady+",mDirty = "+mDirty);
++         
++         
++         Slog.i(TAG, "updatePowerStateLocked  wakefulness =  " + mWakefulness);
++         
++
+         if (!mSystemReady || mDirty == 0) {
+             return;
+         }
+@@ -1427,6 +1472,7 @@ public final class PowerManagerService extends SystemService
+             for (;;) {
+                 int dirtyPhase1 = mDirty;
+                 dirtyPhase2 |= dirtyPhase1;
++                Slog.i(TAG, "updatePowerStateLocked  wakefulness  dirtyPhase2 =  " + dirtyPhase2 +",dirtyPhase1 = "+dirtyPhase1);
+                 mDirty = 0;
+ 
+                 updateWakeLockSummaryLocked(dirtyPhase1);
+@@ -1461,6 +1507,8 @@ public final class PowerManagerService extends SystemService
+      * Sets DIRTY_IS_POWERED if a change occurred.
+      */
+     private void updateIsPoweredLocked(int dirty) {
++       
++       Slog.wtf(TAG, "updateIsPoweredLocked mDirty = "+mDirty);
+         if ((dirty & DIRTY_BATTERY_STATE) != 0) {
+             final boolean wasPowered = mIsPowered;
+             final int oldPlugType = mPlugType;
+@@ -1587,23 +1635,30 @@ public final class PowerManagerService extends SystemService
+             final int numWakeLocks = mWakeLocks.size();
+             for (int i = 0; i < numWakeLocks; i++) {
+                 final WakeLock wakeLock = mWakeLocks.get(i);
++                Slog.d(TAG, "updateWakeLockSummaryLocked wakeLock.mFlags = "+wakeLock.mFlags);
+                 switch (wakeLock.mFlags & PowerManager.WAKE_LOCK_LEVEL_MASK) {
+                     case PowerManager.PARTIAL_WAKE_LOCK:
++                    Slog.d(TAG, "updateWakeLockSummaryLocked PowerManager.PARTIAL_WAKE_LOCK ");
+                         mWakeLockSummary |= WAKE_LOCK_CPU;
+                         break;
+                     case PowerManager.FULL_WAKE_LOCK:
++                    Slog.d(TAG, "updateWakeLockSummaryLocked PowerManager.FULL_WAKE_LOCK");
+                         mWakeLockSummary |= WAKE_LOCK_SCREEN_BRIGHT | WAKE_LOCK_BUTTON_BRIGHT;
+                         break;
+                     case PowerManager.SCREEN_BRIGHT_WAKE_LOCK:
++                    Slog.d(TAG, "updateWakeLockSummaryLocked PowerManager.SCREEN_BRIGHT_WAKE_LOCK");
+                         mWakeLockSummary |= WAKE_LOCK_SCREEN_BRIGHT;
+                         break;
+                     case PowerManager.SCREEN_DIM_WAKE_LOCK:
++                    Slog.d(TAG, "updateWakeLockSummaryLocked PowerManager.SCREEN_DIM_WAKE_LOCK");
+                         mWakeLockSummary |= WAKE_LOCK_SCREEN_DIM;
+                         break;
+                     case PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK:
++                    Slog.d(TAG, "updateWakeLockSummaryLocked PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK");
+                         mWakeLockSummary |= WAKE_LOCK_PROXIMITY_SCREEN_OFF;
+                         break;
+                     case PowerManager.DOZE_WAKE_LOCK:
++                    Slog.d(TAG, "updateWakeLockSummaryLocked PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK");
+                         mWakeLockSummary |= WAKE_LOCK_DOZE;
+                         break;
+                 }
+@@ -1647,6 +1702,7 @@ public final class PowerManagerService extends SystemService
+      * This function must have no other side-effects.
+      */
+     private void updateUserActivitySummaryLocked(long now, int dirty) {
++       
+         // Update the status of the user activity timeout timer.
+         if ((dirty & (DIRTY_WAKE_LOCKS | DIRTY_USER_ACTIVITY
+                 | DIRTY_WAKEFULNESS | DIRTY_SETTINGS)) != 0) {
+@@ -2801,13 +2857,60 @@ public final class PowerManagerService extends SystemService
+         }
+     }
+ 
++               private Handler myHandler = new Handler(){
++
++               @Override
++               public void handleMessage(Message msg) {
++                       // TODO Auto-generated method stub
++                       super.handleMessage(msg);
++//                     Slog.d(TAG,"-------goToSleep-----handleMessage----start---");
++                       goToSleepNoUpdateLocked(SystemClock.uptimeMillis(),PowerManager.GO_TO_SLEEP_REASON_POWER_BUTTON, 0,1000);
++                       updatePowerStateLocked();
++                       Slog.d(TAG,"-------goToSleep----handleMessage----end---");
++               }
++               
++       };
++               private final class ScreenReceiver extends BroadcastReceiver{
++       @Override
++       public void onReceive(Context context, Intent intent) {
++               String action = intent.getAction();
++//             Slog.d(TAG,"------------------ScreenReceiver -------------- = "+action);
++               String str = mygetString(path);
++//             Slog.d(TAG, "  ScreenReceiver acquire() str " + str + "\".");
++               if("1".equals(str)){
++                           Slog.d(TAG,"-------ScreenReceiver-----goToSleepNoUpdateLocked-----");
++                           Message msg = myHandler.obtainMessage(MSG_GOTOSLEEP_STATE);  
++              msg.setAsynchronous(true);  
++              myHandler.sendMessageAtTime(msg, SystemClock.uptimeMillis()+2000);
++
++//                             Slog.d(TAG,"--------ScreenReceiver----goToSleepNoUpdateLocked----2222---");
++        }
++       }
++    }
++     
++    private final class BootCompletedReceiver extends BroadcastReceiver{
++       @Override
++       public void onReceive(Context context, Intent intent) {
++               String action = intent.getAction();
++       //      Slog.d(TAG,"-----------BootCompletedReceiver-ScreenReceiver -------------- = "+action);
++               String str = mygetString(path);
++               Slog.d(TAG, "  BootCompletedReceiver acquire() str " + str + "\".");
++               if("1".equals(str)){
++                           Slog.d(TAG,"------BootCompletedReceiver------goToSleepNoUpdateLocked-----");
++                          Message msg = myHandler.obtainMessage(MSG_GOTOSLEEP_STATE);  
++             msg.setAsynchronous(true);  
++             myHandler.sendMessageAtTime(msg, SystemClock.uptimeMillis()+2000);
++//                             Slog.d(TAG,"-------BootCompletedReceiver-----goToSleepNoUpdateLocked----2222---");
++        }
++       }
++    }
+     private final class HdmiReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+                // TODO Auto-generated method stub
+                synchronized (mLock) {
+                        int state = intent.getIntExtra("state", 1);
+-                        Slog.d(TAG,"----------------------HdmiReceiver  state= "+state);
++                        Slog.d(TAG,"------HdmiReceiver  state= "+state);
+                        if(state==1){
+                                mHdmiConnect=true;
+                        }else{
+@@ -2937,6 +3040,7 @@ public final class PowerManagerService extends SystemService
+ 
+         @SuppressWarnings("deprecation")
+         private String getLockLevelString() {
++               Slog.i(TAG, "getLockFlagsString() mFlags = " + mFlags+",PowerManager.WAKE_LOCK_LEVEL_MASK ="+PowerManager.WAKE_LOCK_LEVEL_MASK);
+             switch (mFlags & PowerManager.WAKE_LOCK_LEVEL_MASK) {
+                 case PowerManager.FULL_WAKE_LOCK:
+                     return "FULL_WAKE_LOCK                ";
+@@ -2958,10 +3062,14 @@ public final class PowerManagerService extends SystemService
+         private String getLockFlagsString() {
+             String result = "";
+             if ((mFlags & PowerManager.ACQUIRE_CAUSES_WAKEUP) != 0) {
++                
+                 result += " ACQUIRE_CAUSES_WAKEUP";
++                
++                Slog.i(TAG, "getLockFlagsString() " + result);
+             }
+             if ((mFlags & PowerManager.ON_AFTER_RELEASE) != 0) {
+                 result += " ON_AFTER_RELEASE";
++                 Slog.i(TAG, "getLockFlagsString() " + result);
+             }
+             return result;
+         }
+@@ -3002,6 +3110,7 @@ public final class PowerManagerService extends SystemService
+                     }
+                     Trace.asyncTraceBegin(Trace.TRACE_TAG_POWER, mTraceName, 0);
+                     nativeAcquireSuspendBlocker(mName);
++                    
+                 }
+             }
+         }
+@@ -3506,6 +3615,7 @@ public final class PowerManagerService extends SystemService
+ 
+         @Override
+         public void setDozeOverrideFromDreamManager(int screenState, int screenBrightness) {
++                       Slog.w(TAG, "setDozeOverrideFromDreamManager screenState = "+screenState+",screenBrightness = " + screenBrightness);
+             switch (screenState) {
+                 case Display.STATE_UNKNOWN:
+                 case Display.STATE_OFF:
+diff --git a/services/usb/java/com/android/server/usb/UsbDeviceManager.java b/services/usb/java/com/android/server/usb/UsbDeviceManager.java
+old mode 100644
+new mode 100755
+index 25e112d..99219ab
+--- a/services/usb/java/com/android/server/usb/UsbDeviceManager.java
++++ b/services/usb/java/com/android/server/usb/UsbDeviceManager.java
+@@ -775,7 +775,7 @@ public class UsbDeviceManager {
+                             intent, 0, null, UserHandle.CURRENT);
+                     notification.color = mContext.getResources().getColor(
+                             com.android.internal.R.color.system_notification_accent_color);
+-                    notification.setLatestEventInfo(mContext, title, message, pi);
++                    notification.setLatestEventInfo(mContext, title, message, null);//pi
+                     notification.visibility = Notification.VISIBILITY_PUBLIC;
+                     mNotificationManager.notifyAsUser(null, id, notification,
+                             UserHandle.ALL);
+(END)

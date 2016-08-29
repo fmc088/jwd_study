@@ -14,7 +14,7 @@ index 25e112d..bcce2bf
                              UserHandle.ALL);
 
 
-（2）开启MTP模式  在packages/apps/Settings/ 开机启动放松
+（2）开启MTP模式  在packages/apps/Settings/ 开机启动
 diff --git a/AndroidManifest.xml b/AndroidManifest.xml
 index 021ae1d..7c5abd0 100755
 --- a/AndroidManifest.xml

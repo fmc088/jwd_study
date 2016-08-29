@@ -63,6 +63,8 @@ repo是管理这个项目，每一个repo下有多个.git，查看哪些.git文件在，在当前有.git才能
 			
 			c)删除本地分支，强制删除用-D
 				$ git branch -d branchName
+				
+			d)repo abandon <分支名>删除分支 repo分支
 (2）本地分支提交给本地另一个分支：
 			在本地 master 分支上做了一个commit ( 38361a68138140827b31b72f8bbfd88b3705d77a ) ， 如何把它放到 本地 old_cc 分支上
 			例如：
@@ -85,9 +87,9 @@ repo是管理这个项目，每一个repo下有多个.git，查看哪些.git文件在，在当前有.git才能
 			# Your branch is ahead of 'origin/old_cc' by 3 commits.
 （3）回复到某个版本
 		reset命令有3种方式：
-   1：git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息//需要再git add 和git commit
-   2：git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可
-   3：git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容
+   1：git reset --mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息//需要再git add 和git commit
+   2：git reset --soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可
+   3：git reset --hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容
    
    #回退所有内容到上一个版本 
    git reset HEAD^ 

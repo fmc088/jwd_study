@@ -28,3 +28,4 @@ adb reboot recovery 进入recovery模式
 tar -vczf bootable.tar.gz bootable //打包 并保存源文件
 tar -zxvf ......   //解包
 mv bootable.tar.gz /home/pub/. //移动，/home/pub/下文件是共享文件
+echo " " 节点文件  //这是“”下面信息写入设备文件节点

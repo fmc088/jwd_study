@@ -574,9 +574,9 @@ public final class PowerManagerService extends SystemService
             filter.addAction("android.intent.action.HDMI_PLUG");
             mContext.registerReceiver(new HdmiReceiver(), filter,null,mHandler);
             
-            filter=new IntentFilter();
-            filter.addAction(Intent.ACTION_SCREEN_ON);
-            mContext.registerReceiver(new ScreenReceiver(), filter,null,mHandler);
+//            filter=new IntentFilter();
+//            filter.addAction(Intent.ACTION_SCREEN_ON);
+//            mContext.registerReceiver(new ScreenReceiver(), filter,null,mHandler);
 
             // Register for settings changes.
             final ContentResolver resolver = mContext.getContentResolver();
@@ -2849,32 +2849,32 @@ public final class PowerManagerService extends SystemService
         }
     }
 
-		private final class ScreenReceiver extends BroadcastReceiver{
-    	@Override
-    	public void onReceive(Context context, Intent intent) {
-    		String action = intent.getAction();
-    		Slog.d(TAG,"------------------ScreenReceiver -------------- = "+action);
-    		String path = "/sys/devices/ff100000.adc/key.30/get_gsensor_value";
-    		String str = mygetString(path);
-    		Slog.d(TAG, "acquire() str " + str + "\".");
-    										if("1".equals(str)){
-									    			new Thread(){
-															@Override
-															public void run() {
-																super.run();
-																try {
-																Thread.sleep(2000);
-														} catch (InterruptedException e) {
-																e.printStackTrace();
-																		}
-																	goToSleepNoUpdateLocked(SystemClock.uptimeMillis(),PowerManager.GO_TO_SLEEP_REASON_POWER_BUTTON, 0,1000);
-																	updatePowerStateLocked();
-															    Slog.d(TAG, "acquire() goToSleep");
-																}
-													}.start();
-    										}
-    	}
-    }
+//		private final class ScreenReceiver extends BroadcastReceiver{
+//    	@Override
+//    	public void onReceive(Context context, Intent intent) {
+//    		String action = intent.getAction();
+//    		Slog.d(TAG,"------------------ScreenReceiver -------------- = "+action);
+//    		String path = "/sys/devices/ff100000.adc/key.30/get_gsensor_value";
+//    		String str = mygetString(path);
+//    		Slog.d(TAG, "acquire() str " + str + "\".");
+//    										if("1".equals(str)){
+//									    			new Thread(){
+//															@Override
+//															public void run() {
+//																super.run();
+//																try {
+//																Thread.sleep(2000);
+//														} catch (InterruptedException e) {
+//																e.printStackTrace();
+//																		}
+//																	goToSleepNoUpdateLocked(SystemClock.uptimeMillis(),PowerManager.GO_TO_SLEEP_REASON_POWER_BUTTON, 0,1000);
+//																	updatePowerStateLocked();
+//															    Slog.d(TAG, "acquire() goToSleep");
+//																}
+//													}.start();
+//    										}
+//    	}
+//    }
     private final class HdmiReceiver extends BroadcastReceiver{
     	@Override
     	public void onReceive(Context context, Intent intent) {
@@ -3091,11 +3091,12 @@ public final class PowerManagerService extends SystemService
 															public void run() {
 																super.run();
 																try {
-																Thread.sleep(1000);
+																Thread.sleep(2000);
 														} catch (InterruptedException e) {
 																e.printStackTrace();
 																		}
-																	goToSleepNoUpdateLocked(SystemClock.uptimeMillis(),PowerManager.GO_TO_SLEEP_REASON_POWER_BUTTON, 0,1000);
+																	goToSleepNoUpdateLocked(SystemClock.uptimeMillis(),PowerManager.GO_TO_SLEEP_REASON_POWER_BUTTON, 0,Process.SYSTEM_UID);
+																	updatePowerStateLocked();
 															    Slog.d(TAG, "acquire() goToSleep");
 																}
 													}.start();
