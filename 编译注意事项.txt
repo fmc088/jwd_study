@@ -7,7 +7,7 @@
   
   
   
-  RK3288开发板编译过程
+  RK3288开发编译过程
   1.kernel固件
 	  (1).cd kernel
 	  (2).make rockchip_defconfig
@@ -20,11 +20,12 @@
 		编译完成后， u-boot 根目录生成如 RK3288UbootLoader_V2.19.09.bin 的 loader 文件
 	3.Android编译
 	  （1）source build.sh
-		（2）lunch
+		（2）lunch             (选择5 -rk3288-eng 编译模式)
 		（3）make -j8
-		（4）./mkimage.sh
-		完成编译后，执行 SDK 根目录下的 mkimage.sh 脚本生成固件，位于 rockdev/Image-rk288 目
-		录。
+		（4）cp kernel/arch/arm/boot/zImage out/target/product/rk3288/kernel
+		（5）./mkimage.sh
+		完成编译后，执行 SDK 根目录下生成固件，位于 rockdev/Image-rk288 目
+		录下。
 		
 	launcher开发
 	 （1）apk放入 /VR/out/target/product/rk3288/system/app/..

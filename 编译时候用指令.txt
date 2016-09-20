@@ -29,3 +29,6 @@ mv Image Image_mc3xxx_11 生产Image修改为当前的内核镜像版本
 mv kernel.img kernel_mc3xx_11.img
 cp kernel/arch/arm/boot/Image_mc3xxx_11 ../out/target/product/rk3288/kerenel
 ./mkimage.sh ota
+
+make clean 删除out目录
+make -j

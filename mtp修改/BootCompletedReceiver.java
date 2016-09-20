@@ -11,10 +11,10 @@ public class BootCompletedReceiver extends BroadcastReceiver{
 	@Override
 	public void onReceive(Context context, Intent intent) {
 //		get
-		Log.i("BootCompletedReceiver", "onReceive");
+		//Log.i("BootCompletedReceiver", "onReceive");
 		mUsbManager = (UsbManager) context.getSystemService(Context.USB_SERVICE);
 		mUsbManager.setCurrentFunction(UsbManager.USB_FUNCTION_MTP, true);
-		Log.i("BootCompletedReceiver", "onReceive");
+	//	Log.i("BootCompletedReceiver", "onReceive");
 	}
 
 }
