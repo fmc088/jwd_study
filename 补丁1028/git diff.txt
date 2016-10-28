@@ -1,0 +1,36 @@
+1.开机启动
+framework/base/services/core/java/com/android/server/wm/WindowManagerService.java
+  diff --git a/services/core/java/com/android/server/wm/WindowManagerService.java b/services/core/java/com/android/server/wm/WindowManagerService.java
+index efbbb94..1644270 100755
+--- a/services/core/java/com/android/server/wm/WindowManagerService.java
++++ b/services/core/java/com/android/server/wm/WindowManagerService.java
+@@ -6842,7 +6842,10 @@ public class WindowManagerService extends IWindowManager.Stub
+             hideBootMessagesLocked();
+             // If the screen still doesn't come up after 30 seconds, give
+             // up and turn it on.
+-            mH.sendEmptyMessageDelayed(H.BOOT_TIMEOUT, 30*1000);
++            if(mRotateOnBoot)
++               mH.sendEmptyMessageDelayed(H.BOOT_TIMEOUT, 2*1000);
++            else
++               mH.sendEmptyMessageDelayed(H.BOOT_TIMEOUT, 30*1000);
+         }
+ 
+         mPolicy.systemBooted();
+         
+         
+2.按键声音关闭
+  设置-提示音和通知-其他提示音-触摸提示音 开关默认要关闭
+  framework/base/packages/SettingsProvider/res/values/defaults.xml
+  diff --git a/packages/SettingsProvider/res/values/defaults.xml b/packages/SettingsProvider/res/values/defaults.xml
+index 95cb12b..1d45183 100755
+--- a/packages/SettingsProvider/res/values/defaults.xml
++++ b/packages/SettingsProvider/res/values/defaults.xml
+@@ -173,7 +173,7 @@
+     <!-- Default for DTMF tones enabled -->
+     <bool name="def_dtmf_tones_enabled">true</bool>
+     <!-- Default for UI touch sounds enabled -->
+-    <bool name="def_sound_effects_enabled">true</bool>
++    <bool name="def_sound_effects_enabled">false</bool>
+ 
+     <!-- Development settings -->
+     <bool name="def_stay_on_while_plugged_in">false</bool>

@@ -2,3 +2,7 @@
   解决：2016.9.12 去瑞芯微方案，修改CameraIspAdapter.cpp,cam_board.xml
 2.2016.9.12左右，FV200 enter键不能使用？（可能原因是apk安装太多，对keycode接收有问题。但是具体原因还没找到。之前有几次遇到这情况）
   解决：2016.9.18，替换掉android.policy.jar，enter键能够正常使用。
+3.开机启动慢：
+  10.28日，原因：system/build.prop 中的旋转参数ro.sf.fakerotation=true ro.sf.hwrotation=180值的话，开机启动大概45s。
+  参数值改ro.sf.fakerotation=false ro.sf.hwrotation=0开机启动大概20s以内。
+  由于上层对于屏的处理还要在旋转一次，导致开机花更多时间。

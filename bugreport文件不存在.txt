@@ -1,5 +1,5 @@
 1.user编译过程中缺少bugreport.sh脚本文件
-out\target\product\PSP1100\system\lib，在当前文件下添加脚本文件
+out\target\product\PSP1100\system\bin，在当前文件下添加脚本文件
 2.在installed-files.txt添加配置信息  1184行 添加 594 /system/bin/bugreport.sh内容
 out\target\product\PSP1100\installed-files.txt
 3.在system/lib文件下，添加一些.so文件，这个可以根据out-eng-....对比添加进去

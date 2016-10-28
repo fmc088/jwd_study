@@ -121,5 +121,9 @@ repo是管理这个项目，每一个repo下有多个.git，查看哪些.git文件在，在当前有.git才能
     修改冲突的文件后，git add 文件 然后，git commit
     
     
+    git diff 434be32ff636eb5973b5e71201fd705777b40b68 src/com/android/settings/ethernet //对比ethernet文件夹下面的东西
+    
+    
+    
     
     
