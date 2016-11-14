@@ -6,3 +6,5 @@
   10.28日，原因：system/build.prop 中的旋转参数ro.sf.fakerotation=true ro.sf.hwrotation=180值的话，开机启动大概45s。
   参数值改ro.sf.fakerotation=false ro.sf.hwrotation=0开机启动大概20s以内。
   由于上层对于屏的处理还要在旋转一次，导致开机花更多时间。
+4.开机黑屏
+  gralloc.rk30board.so 和 hwcomposer.rk30board.so 推送到system/lib/hw/.下
