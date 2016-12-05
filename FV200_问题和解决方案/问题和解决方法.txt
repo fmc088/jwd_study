@@ -6,5 +6,11 @@
   10.28日，原因：system/build.prop 中的旋转参数ro.sf.fakerotation=true ro.sf.hwrotation=180值的话，开机启动大概45s。
   参数值改ro.sf.fakerotation=false ro.sf.hwrotation=0开机启动大概20s以内。
   由于上层对于屏的处理还要在旋转一次，导致开机花更多时间。
+  services/core/java/com/android/server/wm/WindowManagerService.java 开机补丁
 4.开机黑屏
   gralloc.rk30board.so 和 hwcomposer.rk30board.so 推送到system/lib/hw/.下
+5.4K视频补丁
+  libffmpeg.so 和 librkffplayer.so 推送到system/lib/.下
+6.1202日，收到生产异常单，语音声控没有"叮咚"声，出现问题大概是100台有三台左右。
+  后面重新启动，就有"叮咚"响，问题原因还未找到，后面就没有问题机器。
+7.1205日，收到生产异常单，关于复位键，死机掉启动不了，问题机器大概是200台有四台。原因是初始化出错，没有完全断电。
