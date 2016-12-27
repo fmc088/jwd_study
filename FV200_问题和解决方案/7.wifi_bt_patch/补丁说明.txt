@@ -1,0 +1,20 @@
+AP6212 wifi bluetooth
+1.AP6212_4.2 -new_a\BT\下文件拷贝到 vendor\rockchip\common\bluetooth\lib\firmware\下 和
+                             拷贝到 out/..../system/vendor/firmware/下
+2.AP6212_4.2 -new_a\Wi-Fi\下文件拷贝到 和external\wlan_loader\firmware\下 和
+                                拷贝到out\target\product\rk3288\system\etc\firmware\下
+                                                               
+3.AP6212_4.2 -new_a\hardware.c 与\device\common\bluetooth\libbt\src\hardware.c对比
+
+diff --git a/bluetooth/libbt/src/hardware.c b/bluetooth/libbt/src/hardware.c
+index e0b9882..f838c13 100755
+--- a/bluetooth/libbt/src/hardware.c
++++ b/bluetooth/libbt/src/hardware.c
+@@ -511,6 +511,8 @@ static uint8_t hw_config_findpatch(char *p_chip_id_str)
+             sprintf(p_chip_id_str, "bcm43241b4");
+         else if (!strcmp(p_chip_id_str, "BCM4350C0"))
+             sprintf(p_chip_id_str, "bcm4354a1");
++        else if (!strcmp(p_chip_id_str, "BCM43430A1"))
++            sprintf(p_chip_id_str, "bcm43438a1");
+     }
+     ALOGI("Target HCD file name is: %s.hcd", p_chip_id_str);

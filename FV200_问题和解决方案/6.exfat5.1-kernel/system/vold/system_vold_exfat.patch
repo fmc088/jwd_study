@@ -1,0 +1,70 @@
+diff --git a/Android.mk b/Android.mk
+index e846a49..65ea579 100755
+--- a/Android.mk
++++ b/Android.mk
+@@ -12,6 +12,7 @@ common_src_files := \
+ 	Ext4.cpp \
+ 	Ext3.cpp \
+ 	Ext2.cpp \
++	Exfat.cpp \
+ 	Fat.cpp \
+ 	Ntfs.cpp \
+ 	Loop.cpp \
+diff --git a/Volume.cpp b/Volume.cpp
+old mode 100755
+new mode 100644
+index 0df35f2..9f1fca4
+--- a/Volume.cpp
++++ b/Volume.cpp
+@@ -42,6 +42,7 @@
+ 
+ #include <string>
+ 
++#include "Exfat.h"
+ #include "Volume.h"
+ #include "VolumeManager.h"
+ #include "ResponseCode.h"
+@@ -600,7 +601,13 @@ int Volume::mountUdiskVol() {
+                             iMountRet =true;
+                             bUsbDiskMount =true;
+                     }                       
+-                }
++                }else if (strcmp(szType,"exfat")) {
++					if (Exfat::Mount(devicePath, (*it)->ucFilePathName, false, false, false,
++					1000, 1015, 0007, true) == 0) {
++						iMountRet =true;
++						bUsbDiskMount =true;
++						}
++				}
+ 
+                
+                 if(iMountRet ==false)
+@@ -1061,8 +1068,13 @@ int Volume::mountVol() {
+ 		             SLOGE("---------set mSkipAsec to disable app2sd because mount Vfat fail for %s, mountpoint =%s",getLabel(),getMountpoint());
+ 				}
+ 	      		if(Ntfs::doMount(devicePath, getMountpoint(), false,AID_SYSTEM,AID_SDCARD_RW)){ 
+-	            	SLOGE("%s failed to mount via VNTFS (%s)\n", devicePath, strerror(errno));
+-	            	continue;
++	            	SLOGE("%s failed to mount via VNTFS (%s), try exfat\n", devicePath, strerror(errno));
++					if (Exfat::Mount(devicePath, getMountpoint(), false, false, false,
++					AID_SYSTEM, AID_SDCARD_RW, 0007, true) ) {
++					    SLOGE("%s failed to mount via exfat (%s), continue\n", devicePath, strerror(errno));
++						continue;
++						}
++	            	
+ 	            }
+ 			}
+ 			else   //mount flash as fat succeed
+@@ -1080,7 +1092,11 @@ int Volume::mountVol() {
+     
+ 				if(Ntfs::doMount(devicePath, getMountpoint(), false,AID_SYSTEM,AID_MEDIA_RW)){
+                			SLOGE("%s failed to mount via VNTFS (%s)\n", devicePath, strerror(errno));
+-		       		continue;
++		       	if (Exfat::Mount(devicePath, getMountpoint(), false, false, false,
++					AID_SYSTEM, AID_SDCARD_RW, 0007, true)) {
++					    SLOGE("%s failed to mount via exfat (%s), continue\n", devicePath, strerror(errno));
++						continue;
++						}
+ 		     	}
+         	}
+ 	    }   
