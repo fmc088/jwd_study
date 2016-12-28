@@ -1,0 +1,48 @@
+1.inet_install.te文件拷贝到android\device\actions\v700_cxvr\sepolicy\下
+2.inet_install.sh文件拷贝到android\device\actions\v700_cxvr\下
+3.解包Settings_1220.tar.gz 并与android\packages\apps\Settings源码进行对比
+4.查看对比
+--- a/device/actions/v700_cxvr/BoardConfig.mk
++++ b/device/actions/v700_cxvr/BoardConfig.mk
+@@ -109,6 +109,7 @@ BOARD_SEPOLICY_UNION := \
+         rild.te \
+         recovery.te \
+         service.te \
++        inet_install.te \
+         service_contexts
+ 
+ BOARD_SEPOLICY_REPLACE := \
+diff --git a/device/actions/v700_cxvr/device.mk b/device/actions/v700_cxvr/device.mk
+index 4a3a34a..0b2da5b 100755
+--- a/device/actions/v700_cxvr/device.mk
++++ b/device/actions/v700_cxvr/device.mk
+@@ -46,6 +46,7 @@ PRODUCT_COPY_FILES += \
+     $(LOCAL_PATH)/cp_vendor_app.sh:root/cp_vendor_app.sh \
+     $(LOCAL_PATH)/init.modules.rc:root/init.modules.rc \
+     $(LOCAL_PATH)/usbmond.sh:root/usbmond.sh \
++    $(LOCAL_PATH)/inet_install.sh:system/bin/inet_install.sh \
+        $(LOCAL_PATH)/gslX680.idc:system/usr/idc/gslX680.idc \
+        $(LOCAL_PATH)/media_profiles.xml:system/etc/media_profiles.xml \
+        $(LOCAL_PATH)/readme:system/vendor/app/readme \
+diff --git a/device/actions/v700_cxvr/init.rc b/device/actions/v700_cxvr/init.rc
+index 0dfbe95..b9a3f0c 100755
+--- a/device/actions/v700_cxvr/init.rc
++++ b/device/actions/v700_cxvr/init.rc
+@@ -332,6 +332,15 @@ on post-fs-data
+     # Set indication (checked by vold) that we have finished this action
+     #setprop vold.post_fs_data_done 1
+ 
++       service  inet_install  /system/bin/sh /system/bin/inet_install.sh
++  user root
++  group root
++  disabled
++  oneshot
++  
++on property:sys.boot_completed=1
++    start inet_install
++
+ on boot
+     # basic network init
+     ifup lo
+     
+4.全编译完成后，把iflytek语音文件拷贝到out\target\product\v700_cxvr\system\下 重新打包

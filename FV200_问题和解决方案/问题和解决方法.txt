@@ -37,3 +37,5 @@
    参考9.驱动节点的创建和写入 里面是GPS和北斗节点的切换例子
 
 14.linux 软连接创建symlink /system/vendor /vendor  参考device/rochkchip/rk3288/init.rc里面就有相关软件的创建
+
+15.linux使用脚本拷贝system/iflytek,拷贝到sdcard卡，参考10.system_iflytek拷贝到sd卡。
