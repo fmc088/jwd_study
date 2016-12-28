@@ -2,17 +2,22 @@
   解决：2016.9.12 去瑞芯微方案，修改CameraIspAdapter.cpp,cam_board.xml
 2.2016.9.12左右，FV200 enter键不能使用？（可能原因是apk安装太多，对keycode接收有问题。但是具体原因还没找到。之前有几次遇到这情况）
   解决：2016.9.18，替换掉android.policy.jar，enter键能够正常使用。
+  
 3.开机启动慢：
   10.28日，原因：system/build.prop 中的旋转参数ro.sf.fakerotation=true ro.sf.hwrotation=180值的话，开机启动大概45s。
   参数值改ro.sf.fakerotation=false ro.sf.hwrotation=0开机启动大概20s以内。
   由于上层对于屏的处理还要在旋转一次，导致开机花更多时间。
   services/core/java/com/android/server/wm/WindowManagerService.java 开机补丁
+  
 4.开机黑屏
   gralloc.rk30board.so 和 hwcomposer.rk30board.so 推送到system/lib/hw/.下
-5.4K视频补丁
+  
+5.4K视频补丁（剑门神鸟视频）
   libffmpeg.so 和 librkffplayer.so 推送到system/lib/.下
+  
 6.1202日，收到生产异常单，语音声控没有"叮咚"声，出现问题大概是100台有三台左右。
   后面重新启动，就有"叮咚"响，问题原因还未找到，后面就没有问题机器。
+  
 7.1205日，收到生产异常单，关于复位键，死机掉启动不了，问题机器大概是200台有四台。原因是初始化出错，没有完全断电。
 
 8.摄像头有时调用不到，原因单独获取包名来调取应用的话，setflag空指针，后面同时使用包名和启动界面可以调用成功。
@@ -20,6 +25,15 @@
 9.logo.bmp 和 logo_kernel.bmp格式显示会出现花屏现象，rk方案不支持要转换格式
   解决：图片格式不对   convert -compress rle -colors 256 logo.bmp logo_rle8.bmp  转换格式
         可以参考RockChip_Uboot开发文档 V3.3.pdf文档25页-26页
+        
 10.FV200 exfat5.1-kernel是打TF卡exfat格式的识别补丁，查看6.exfat5.1-kernel文件
 
 11.AP6212 wifi和蓝牙补丁请查看 wifi_bt_patch文件，里面有具体说明，修改内容
+
+12.gps串口权限能够读取数据 可以参见8.串口权限文件下图片
+
+13.驱动节点的创建 通过jni写入节点,在init.rc 修改节点的权限 例如：chmod 0666 /dev/green_led
+                                                                 chmod 0666 /dev/philips_mic。
+   参考9.驱动节点的创建和写入 里面是GPS和北斗节点的切换例子
+
+14.linux 软连接创建symlink /system/vendor /vendor  参考device/rochkchip/rk3288/init.rc里面就有相关软件的创建
