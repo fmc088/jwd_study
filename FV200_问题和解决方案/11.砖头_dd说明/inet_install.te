@@ -1,0 +1,8 @@
+# run inet_install.sh
+type inet_install, domain;
+type inet_install_exec, exec_type, file_type;
+init_daemon_domain(inet_install)
+
+allow inet_install shell_exec:file {read entrypoint};
+allow inet_install system_file:file execute_no_trans;
+allow inet_install sysfs:file write;

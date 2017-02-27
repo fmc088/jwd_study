@@ -34,3 +34,9 @@ debug > console
 setprop sys_graphic.cam_trace 1
 
 dumpsys media.camera
+
+
+在开发模式下，进入Android studio 中的Terminal ， 输入如下命令：
+显示当前的Activity adb 指令
+ adb shell dumpsys activity | grep mFocusedActivity
+ adb shell "dumpsys window | grep mCurrentFocus"
