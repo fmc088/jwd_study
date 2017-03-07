@@ -47,7 +47,45 @@
 
 18.201702月生产烧入1月10日固件（FV200 1月10日国内版本是最稳定的，软件目前没出什么问题），主体来说是很稳定的，但是还是出现问题。总结：
             1.发现一台屏幕白屏或者灰色屏幕，显示不出来，但是adb 都能够打印，这种情况下一般都是DDR 出问题;
-            2.发现有三四台开机不了，打印信息时候，发现一直打印摄像头信息，后面供应商查出 摄像头模组出问题；
+            2.发现有三四台开机不了，打印信息时候，发现一直打印摄像头信息，后面供应商查出 摄像头模组出问题（排线断路）；
             3.发现两台开机不了，后面发现是没电了，只能通过适配器电源才能够开启（其他情况下，电压不够，启动不了）；
             4.发现一台电源键不起作用，原来是I2C 地方假焊，软件接收不到按键值。
+            5.发现百分之10出现闪屏和黑屏，主要PCB板出问题，DDR开路，越老化越严重甚至开机不了。
+            6.发现很多台机器，在老化过程中，不同程度的重启或者关机，最终回到主界面，PMIC达到一定温度，有安全保护机制。
+
+19.20170301 vr rk3288发现使用google官网cardboard SDK 例子出现陀螺仪不准确。经过测试以前的cardboard SDK 例子 不会出现不准确情况，最新SDK
+            出现不准确的情况，由于最早的例子对陀螺仪的采样率有优化过。这次主要修改加速度和陀螺仪的采样率从默认的1KHZ降低到500HZ，不会出现
+            不准确情况。（参考 13.carboard应用 陀螺仪不准确 源码）
+            sensor_params.h与vr_rk3288\hardware\rockchip\sensor\mpu\libsensors\sensor_params.h对比
+
+						diff --git a/mpu/libsensors/sensor_params.h b/mpu/libsensors/sensor_params.h
+						index 7fcffae..e440cae 100755
+						--- a/mpu/libsensors/sensor_params.h
+						+++ b/mpu/libsensors/sensor_params.h
+						@@ -97,9 +97,9 @@
+						 /*******************************************/
+						 //ACCEL_ID_MPU6500
+						 #define ACCEL_MPU6500_RANGE             (2.f * GRAVITY_EARTH)
+						-#define ACCEL_MPU6500_RESOLUTION        (0.004f * GRAVITY_EARTH)
+						+#define ACCEL_MPU6500_RESOLUTION        (2.f /32768.f * GRAVITY_EARTH)
+						 #define ACCEL_MPU6500_POWER             (0.5f)
+						-#define ACCEL_MPU6500_MINDELAY          (1000)
+						+#define ACCEL_MPU6500_MINDELAY          (2000)
+						 //ACCEL_ID_MPU9250
+						 #define ACCEL_MPU9250_RANGE             (2.f * GRAVITY_EARTH)
+						 #define ACCEL_MPU9250_RESOLUTION        (0.004f * GRAVITY_EARTH)
+						@@ -186,7 +186,7 @@
+						 #define GYRO_MPU6500_RANGE              (2000.f * RAD_P_DEG)
+						 #define GYRO_MPU6500_RESOLUTION         (2000.f / 32768.f * RAD_P_DEG)
+						 #define GYRO_MPU6500_POWER              (5.5f)
+						-#define GYRO_MPU6500_MINDELAY           (1000)
+						+#define GYRO_MPU6500_MINDELAY           (2000)
+						 //GYRO ITG3500
+						 #define GYRO_ITG3500_RANGE              (2000.f * RAD_P_DEG)
+						 #define GYRO_ITG3500_RESOLUTION         (2000.f / 32768.f * RAD_P_DEG)
+
+
+20.20170306 vr rk3288 关于电源818 芯片达到一定温度，有保护机制。（参考14.电源818 温度保护机制  有待验证）
+
+
             
