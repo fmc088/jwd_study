@@ -1,0 +1,33 @@
+常用的日志过滤方式
+			控制日志输出的几种方式：
+			? 控制日志输出优先级。
+			RK3399 Android7.1-Box 软件开发指南 7 系统调试
+			Copyright 2017 @Fuzhou Rockchip Electronics Co., Ltd. 7-4
+			示例如下：
+			adb shell
+			logcat *:W
+			示例说明：显示优先级为 warning 或更高的日志信息。
+			? 控制日志标签和输出优先级。
+			示例如下：
+			adb shell
+			logcat ActivityManager:I MyApp:D *:S
+			示例说明：支持所有的日志信息，除了那些标签为“ActivityManager”和优先级为“Info”
+			以上的、标签为“MyApp”和优先级为“Debug”以上的。
+			? 只输出特定标签的日志
+			示例如下：
+			adb shell
+			logcat WishTV:* *:S
+			或者
+			adb shell
+			logcat –s WishTV
+			示例说明：只输出标签为 WishTV 的日志。
+			? 只输出指定优先级和标签的日志
+			示例如下：
+			adb shell
+			logcat WishTV:I *:S
+			示例说明：只输出优先级为 I，标签为 WishTV 的日志。
+7.2.3 查看上次 log
+			可以加-L 参数来打印出上次系统复位前的 logcat 信息。若出现拷机异常或者异常掉电的情况，
+			可通过该命令打印出上一次 Android 运行状态的日志。命令如下：
+			adb shell
+			logcat -L

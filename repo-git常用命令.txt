@@ -1,0 +1,276 @@
+
+我们使用ssh来作为git通讯的协议。所以也使用ssh key 来授权和管理。
+IP:192.168.2.96
+		 
+		
+1：建立ssh key
+		首先检查 ls -l ~/.ssh,看有无id_rsa 和id_rsa.pub文件。
+		如果没有，请键入ssh-keygen，然后一直回车，保持默认值。
+		如下所示：			
+		
+		然后请把id_rsa.pub文件更名为id_rsa.pub_yourname通过Email发送给LBZ。
+		  
+		注：
+			在git服务器端使用		  
+			cat id_rsa.pub_paul >> .ssh/authorized_keys 
+			把用户的公钥放在服务器上，这样你就可以用自己的私钥id_rsa来访问了。这个就是原理。
+2：配置git 
+				git不欢迎没有name & email的陌生人。
+				请使用
+				git config --global user.name  thh
+				git config --global user.email thh@elinktek.com
+				来简单配置下git.
+				
+3、下载代码：
+
+	1> MT6577
+	repo init -u elink-code-server@192.168.2.96:/elink_code/sda/md77/manifest.git
+	 
+	2> MT6589
+	repo init -u elink-code-server@192.168.2.96:/elink_code/sda/mq89/manifest.git
+					
+	3>8312c
+	repo init -u elink-code-server@192.168.2.96:/elink_code/sdb/mc12/manifest.git
+	
+	4>8312
+    repo init -u elink-code-server@192.168.2.96:/elink_code/sda/mr12/manifest.git
+	
+	5>8312 4.4
+	repo init -u elink-code-server@192.168.2.96:/elink_code/sdb/mrx2/manifest.git
+
+
+	 repo sync	
+	 repo start mtk --all												//建立mtk分支
+	 repo forall -c "git checkout -b elink_sw md77/elink_sw"			//获取elink_sw分支
+	 repo forall -c "git checkout -b  yourbranchname  elink_sw"			//基于elink_sw分支创建客户分支				
+				
+	 你如果要开发新客户，请基于elink_sw分支做新的分支，例如分支newbranchname。命 令 repo forall -c "git checkout -b newbranchname elink_sw"
+	 
+4、查看分支
+   repo branch 分支名前有个星号且显示为绿色 表示现在所在分支
+   
+5、切换分支
+      repo checkout [分支名字] 如：repo checkout elink_sw   ※注：切换分支前务必提交先所在分支的所有修改
+    如切换分支后出现两个或多个绿色分支名代表切换前的分支有修改未提交，重新切换回之前的分支完成提交再切换
+
+6、 撤销分支
+	repo abandon  [分支名字] 如: repo abandon vido
+
+7、分支重命名
+	repo forall -c git branch -m [分支名]
+	
+8、把修改过的文件commit到各自的分支
+   git commit -am ["注释"] 如：git commit -am "update some apk"
+   
+   
+9、 撤销恢复状态
+
+	HEAD  指向最后一次提交的状态
+	
+	git reset --hard HEAD   恢复到最后一次提交 log 的状态 ※注意:此操作会覆盖所有未提交的修改 如不小心覆盖 请使用git reflog 恢复
+	git reset --soft [log ID]  恢复到指定ID状态，该ID之前的状态保存到暂存区 例如 log1  log2  log3 恢复到log3 则log2 log1的修改保存在暂存区 --hard则直接清除log2 log1
+    git reset --mixed（默认不加）  恢复到指定ID状态，该ID之前的状态保存到工作区区 例如 log1  log2  log3 恢复到log3 则log2 log1的修改保存在工作区
+
+	
+10、查看状态 
+	repo status 迭代查看所有git项目状态 
+	git status  查看项目状态           
+	git status -s 简化输出
+	
+	- 表示没有改变的文件
+	M 表示修改过的文件
+	A 表示新添加的文件
+	D 表示被删除的文件
+	R 表示被重命名的文件
+	C 表示复制的文件
+	
+11、查看提交日志
+   git log  显示提交的更新 默认显示提交者 提交时间 提交备注
+   参数
+   --author=xxxx    显示某个提交者提交的更新
+   --no-merges      不显示合并代码自动提交的更新
+   --merges         只显示合并的提交
+   -p               显示每条更新的详细信息
+   --stat           显示每条更新修改的文件统计
+   --dirstat        显示更新文件的目录比例
+   --name-only      显示修改过的文件路径
+   --oneline        只显示提交ID和提交备注
+   --date={local,relative,iso,rfc,short}         格式化输出日期
+		local       同本地的日期格式           Date:   Sat Sep 28 14:37:00 2013
+		relative    相对于今天的日期间隔       Date:   2 weeks ago
+		iso         iso标准时间                Date:   2013-09-28 14:27:08 +0800
+		rfc         RFC文档标准时间            Date:   Sat, 28 Sep 2013 14:37:00 +0800
+		short       精简输出                   Date:   2013-09-25
+   -<n>              限制输出记录数       例如：git log -2  只显示两条记录
+   --since=<date>,--after=<date> 显示指定日期后的修改  例如: git log --since=2013-09-12 
+   --util=<date>,--before=<date>  显示指定日期前的修改  例如: git log --util=2013-09-12 
+    指定某天提交的（例如指定2013.09.28号的提交）
+	git log --since=2013-09-27 --util=2013-09-28
+	
+	
+	git show [log ID] 显示某条更新的详细修改 
+ 
+ 
+ 
+ 
+12、更新代码
+   1、切换分支到mtk分支（repo checkout mtk） 
+   2、运行 repo sync
+   3、切换到elink_sw分支
+   4、运行repo forall -c git pull md77 elink_sw
+   5、切换项目分支
+   6、运行repo forall -c git merge elink_sw(如果有提示conflict，需要打开提示冲突的文件，手动处理相关文件并提交（repo forall -c git commit -am "自己的注释"）)
+  
+   
+13、编译代码
+    在alps目录下面：cp mediatek/config/common/make_user_project.sh ./
+    ./make_user_project.sh md706 机型名（MD7062HC2W1） new\systemimage\userdataimage
+
+	
+14、交互式提交修改到暂存区
+	repo stage -i
+	
+
+15、提交代码
+
+   在切换分支之前先把修改过的代码提交
+    
+    先运行repo status查看自己修改过的地方，确认是否OK
+    
+    然后运行repo forall -c git commit -am "自己的注释" 提交 （如果有新增加的文件，需要进入到该文件所在的目录。 运行git add .  然后 运行 git commit -am "自己的注释"）
+    
+    提交新增的文件：
+     
+        跳转到新增文件的仓库目录下面  如：cd alps/vendor/mediatek/md706/
+        
+        (1)运行 git add .
+        (2)运行 git commit -m "注释"
+        
+16，删除不追踪的多余文件
+	git clean -nd  查看执行该命令被删除的文件列表
+	git clean -fd  删除上一步命令显示的文件        
+           
+    
+17、 提交删除掉的文件：
+      
+       切换到删除过文件的分支;如： cd alps/vendor/mediatek/md706/
+       
+       逐一删除文件，命令：git rm 删除的文件;如：git rm artifacts/out/target/product/md706/data/app/com.adobe.reader.apk
+       
+       所有的文件执行上面的命令之后输入 repo status会出现类似如下的情况：
+       xx@elinktek:~/code/xx_repo_git/alps/vendor/mediatek/md706$ repo status
+				# on branch huama
+			project alps/vendor/mediatek/md706/             branch huama
+			 D-     artifacts/out/target/product/md706/data/app/aldiko.apk
+			 D-     artifacts/out/target/product/md706/data/app/com.adobe.reader.apk
+			 D-     artifacts/out/target/product/md706/data/app/documents.apk
+			 D-     artifacts/out/target/product/md706/data/app/flashplayer-2.apk
+			 D-     artifacts/out/target/product/md706/data/app/gps_test.1.2.4.apk
+			 D-     artifacts/out/target/product/md706/system/appbackup/aldiko.apk
+			 D-     artifacts/out/target/product/md706/system/appbackup/com.adobe.reader.apk
+			 D-     artifacts/out/target/product/md706/system/appbackup/documents.apk
+			 D-     artifacts/out/target/product/md706/system/appbackup/flashplayer-2.apk
+			 D-     artifacts/out/target/product/md706/system/appbackup/gps_test.1.2.4.apk
+			 
+			 
+			 然后输入git commit -m "注释" 来提交
+			 
+**************************************************************************************************************
+Elink 代码规范
+
+1:机型命名：
+	Elink 软件机型由内部自己定义，不和外部的外壳等等有关联。遵循简单、规律、好记的原则。
+	具体命名规则，请参考《Elink 机型命名规则》，项目前立项时，由项目经理提供配置单给蔡锦涛负责命名。
+	
+	在代码里面，请给与变量PRODUCT_MODEL赋值，
+	
+	例如
+	
+	PRODUCT_MODEL=MD7065HC,那么系统标准的属性
+	ro.product.model会变赋值为
+	ro.product.model=MD7065HC
+	
+2：软件版本号命名：
+	软件版本号分为两个版本，一个是中性版本号，一个是生成版本号。
+	
+	*中性版本号：
+		为了标示当前中性代码的版本情况，不随编译日期而改变，一般不随版型机型而变化，影响整份代码，一般不包含客户需求，乃Elink标准软件。
+		给属性ro.custom.build.version赋值即可，例如：
+		ro.custom.build.version=1.22_20130903
+		
+		这个版本号还和Readme对应起来，还和代码的TAG对应起来，便于管理。
+			
+	* 生成版本号
+	
+			表示软件工程师制作出来的软件版本号命名，和具体的版型机型有关，还和编译日期有关。
+		例如：
+			规则为：
+			芯片_版型_机型_(客户单号).YYYYMMDD
+			
+		例如标准软件：MT77_MD7062HC1.20130903
+		例如客制软件：MT77_MD7062HC1_123456.20130903
+			
+		它影响的属性为：
+		ro.build.display.id
+		
+		
+3：代码分支管理：
+
+		一般代码，我们有以下几种情况：
+		1：我们自己拿到的代码创建的仓库，我们简称为mtk分支，对应远程分支master。
+		2：Elink标准代码分支， 我们简称为elink_sw分支，一般对应远程分支为elink_sw分支。
+			
+
+4：目前代码管理存在的问题点：
+		
+	问题1：不同中性版本号之前的差异，无法快速切换？
+		
+	解决方案：使用git tag.
+						
+		每个repo 中的每个git使用一个tag，这个tag,使用中性版本号来表示，例如
+		当MT6577的代码，使用了1.22_20130903这个版本号，还需要在push上之前，打上这个tag信息。
+		
+		使用方法：
+		
+		git tag 1.22_20130903
+		
+		简单操作如下：repo checkout elink_sw
+		repo forall -c git tag 1.22_20130903
+		repo forall -c git push remotegitname elink_sw：elink_sw   //推代码到指定分支上去。
+		repo forall -c git push remotegitname 1.22_20130903
+		
+		具体请参考：
+		
+		git的tag，跟分支一样简单。
+		
+		
+		每次上线养成打tag好习惯 :)
+		$: git tag 1.22_20130903_publish 
+		
+		
+		加上-f覆盖原有的tag
+		$: git tag -f 1.22_20130903_publish 
+		
+				
+		显示所有的tag
+		$: git tag 
+		1.22_20130903_publish 
+		1.22_20130903_publish 
+		1.22_20130903_publish
+		
+		
+		删除tag
+		$: git tag -d 1.22_20130903_publish        		
+		       		
+		       		
+		tag要push上服务器，操作跟分支操作没有任何区别
+
+		# push 到服务器 
+		$: git push origin 1.22_20130903_publish  
+		
+		# 从服务器上删除 
+		$: git push origin :1.22_20130903_publish 
+		
+	
+		具体详细，可以参考git tag的帮助，或者参考其他资料获取。
+		

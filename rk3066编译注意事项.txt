@@ -5,3 +5,15 @@ build/core/product_config.mk:222: *** Can not locate config makefile for product
 
 mmm 会出现一些乱码的警告，可以忽视它，可以正常编译通过的
     出现一些缺少jar包错误时，这时就要把android重新编译一遍过，才能编译局部文件
+
+android 编译：
+     source build/envsetup.sh
+     lunch
+     
+     make -j20
+kernel编译：（3066没有uboot ）
+     make kernel.img -j24
+     cp kernel_jdm/arch/arm/boot/Image_mc3xxx_11 out/target/product/PSP1100/kernel
+
+
+./mkimage.sh ota     

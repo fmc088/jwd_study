@@ -40,3 +40,20 @@ dumpsys media.camera
 显示当前的Activity adb 指令
  adb shell dumpsys activity | grep mFocusedActivity
  adb shell "dumpsys window | grep mCurrentFocus"
+ 
+ adb shell getevent -l
+ getevent -l /dev/input/event0 （具体的按键）
+ 
+ git diff 608e120 4abe32e --name-only | xargs zip update.zip
+ 
+ dumpsys power (锁)
+ 
+ linux :df -h 查看储存空间
+ 
+ 查看当前alarm申请情况：dumpsys alarm 
+                        两种方式：ELAPSED_WAKEUP 和 RTC_WAKEUP
+                        
+ adb shell getprop//查看属性值
+ 
+ 
+logcat -s PowerManagerService

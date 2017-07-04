@@ -90,6 +90,43 @@
 21.测试过程中，语音出现没有识别，由于内置SD卡上没有iflytek语音文件夹，第一次开机时候可能是没电导致关机（就不会拷贝文件夹）
             后面开机就不会拷贝文件夹。
 
-22.系统应用和普通应用的通信可以通过创建属性来进行通信
+22.系统应用和普通应用的通信可以通过创建系统属性进行通信
    系统应用可以使用创建与修改android属性用Systemproperties.set(name, value)，获取android属性用Systemproperties.get(name)，
    普通应用可以通过 jni 读取系统属性值进行判断（参考15.上层使用Systemproperties属性_jni 源码）
+
+23.20170424 生产一批FV200 发现三台显示花屏（出现现象：点击应用，返回键，来回操作两三次，就会出现花屏现象）。发现是DDR出现问题。
+            老化机器两三天左右，发现7台左右，进不了本地播放器应用，出现闪退现象（原因：温度过高，导致CPU DDR出现不同程度的资源不足，
+            高温回到主界面时候，影响到性能，导致很多进程都被杀死，有的出现黑屏（launcher应用被杀死），有的是本地播放器应用打不开（应用被杀死））
+            <6>[139757.587260] lowmemorykiller: Killing 'android.camera2' (24931), adj 58,
+						<6>[139757.587260]    to free 51028kB on behalf of 'kswapd0' (69) because
+						<6>[139757.587260]    cache 91600kB is below limit 92160kB for oom_score_adj 58
+						<6>[139757.587260]    Free memory is -27424kB above reserved
+						<6>[139757.614339] lowmemorykiller: Killing 'android.smspush' (942), adj 58,
+						<6>[139757.614339]    to free 20360kB on behalf of 'kswapd0' (69) because
+						<6>[139757.614339]    cache 89464kB is below limit 92160kB for oom_score_adj 58
+						<6>[139757.614339]    Free memory is -22256kB above reserved
+						<6>[139757.633365] lowmemorykiller: Killing 'u.vr.sdk.config' (25103), adj 58,
+						<6>[139757.633365]    to free 20288kB on behalf of 'kswapd0' (69) because
+						<6>[139757.633365]    cache 87696kB is below limit 92160kB for oom_score_adj 58
+						<6>[139757.633365]    Free memory is -21436kB above reserved
+						<38>[139758.697766] type=1400 audit(1492991298.020:14): avc: denied { open } for pid=25133 comm="SharedPreferenc" path="/data/data/com.android.nibiru.settings.vr/shared_prefs/Theme.xml" dev="mmcblk0p13" ino=32851 scontext=u:r:untrusted_app:s0 tcontext=u:object_r:system_app_data_file:s0 tclass=file p
+						ermissive=1
+						<6>[139758.931178] vcodec_service: ff9a0000.vpu_service: power on
+						<6>[139760.882393] lowmemorykiller: Killing 'uiyue.nibiruudp' (25134), adj 294,
+						<6>[139760.882393]    to free 21932kB on behalf of 'kswapd0' (69) because
+						<6>[139760.882393]    cache 85600kB is below limit 92160kB for oom_score_adj 58
+						<6>[139760.882393]    Free memory is -7344kB above reserved
+						<6>[139760.895266] lowmemorykiller: Killing 'FinalizerDaemon' (25143), adj 294,
+						<6>[139760.895266]    to free 22412kB on behalf of 'kswapd0' (69) because
+						<6>[139760.895266]    cache 85968kB is below limit 92160kB for oom_score_adj 58
+						<6>[139760.895266]    Free memory is -9296kB above reserved
+						<6>[139762.870911] vcodec_service: ff9a0000.vpu_service: power off...
+						<6>[139762.871021] vcodec_service: done
+						<6>[139765.591666] lowmemorykiller: Killing 'biru.launcher3d' (25066), adj 58,
+						<6>[139765.591666]    to free 109312kB on behalf of 'kswapd0' (69) because
+						<6>[139765.591666]    cache 88436kB is below limit 92160kB for oom_score_adj 58
+						<6>[139765.591666]    Free memory is -7240kB above reserved
+
+
+24.系统应用和普通应用的通信可以通过创建系统属性进行通信
+   系统应用可以使用创建与修改android属性Systemproperties.set(name, value)，普通应用则可以通过jni来设置（参考16.上层使用Systempropetier属性Settings 源码）
