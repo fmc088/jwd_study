@@ -19,7 +19,7 @@ cp arch/arm/boot/zImage ../out/target/product/rk3288/kerenel
 打包前：cp kernel/arch/arm/boot/zImage ../out/target/product/rk3288/kerenel
 ./mkimage.sh
 
-rk3066
+rk3066 【Image_mc3xxx_11 新陀螺仪(目前都是这款)，7660 旧陀螺仪】
 	kernel编译
 	make menuconfig // 配置陀螺仪： device drives - Input device support - handle...... psensor etc - g_sensor device support
 	make clean (清除)
@@ -27,7 +27,7 @@ rk3066
 	cd arch/arm/boot
 	mv Image Image_mc3xxx_11 生产Image修改为当前的内核镜像版本
 	mv kernel.img kernel_mc3xx_11.img
-	cp kernel/arch/arm/boot/Image_mc3xxx_11 ../out/target/product/rk3288/kerenel
+	cp kernel/arch/arm/boot/Image_mc3xxx_11 ../out/target/product/PSP1100/kernel
 	./mkimage.sh ota
 	
 	make clean 删除out目录

@@ -1,0 +1,27 @@
+diff --git a/CameraHal/CameraHal_Module.cpp b/CameraHal/CameraHal_Module.cpp
+index 27e0f54..1fff5f6 100755
+--- a/CameraHal/CameraHal_Module.cpp
++++ b/CameraHal/CameraHal_Module.cpp
+@@ -794,7 +794,7 @@ int camera_get_number_of_cameras(void)
+                        unsigned int width, height;
+                        unsigned int sensor_resolution_w=0,sensor_resolution_h=0;
+                        unsigned int CameraHal_SupportFmt[6];
+-                       unsigned int mCamDriverSupportFmt[CAMERA_DRIVER_SUPPORT_FORMAT_MAX];
++                       unsigned int mCamDriverSupportFmt[CAMERA_DRIVER_SUPPORT_FORMAT_MAX] = {0x00};
+                        unsigned int mCamDriverPreviewFmt=0;
+                        unsigned int maxfps;
+ 
+
+@@ -877,9 +884,18 @@ int camera_get_number_of_cameras(void)
+                     mCamDriverPreviewFmt = CameraHal_SupportFmt[i];
+                                        }
+ 
++                 if(mCamDriverPreviewFmt == 0)
++                 {
++                  LOGD("mCamDriverPreviewFmt = %d, no support fmt so go to end",mCamDriverPreviewFmt);
++                  goto loop_continue;
++
++                  }
++
+                   fsize.index = 0;
+                   fsize.pixel_format = mCamDriverPreviewFmt

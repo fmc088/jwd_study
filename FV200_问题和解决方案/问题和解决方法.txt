@@ -130,3 +130,22 @@
 
 24.系统应用和普通应用的通信可以通过创建系统属性进行通信
    系统应用可以使用创建与修改android属性Systemproperties.set(name, value)，普通应用则可以通过jni来设置（参考16.上层使用Systempropetier属性Settings 源码）
+
+25.rk3399 recovery包含充电显示devcice/rockchip/rk3399/...mk 参数修改：DOUBLE_SCREEN ?= YES ROTATE_SCREEN ?= rotate_270
+
+26.user模式要debug模式的话 build/core/main.mk 修改参数：ADDITIONAL_DEFAULT_PROPERTIES += ro.debuggable=0
+
+27.ubuntu 16.04 对android 5.1 系统编译 会出现
+   error: unsupported reloc 43
+   clang: error: linker command failed with exit code 1 (use -v to see invocation)
+   修改：
+   在build/core/clang/HOST_x86_common.mk 
+   在第7 - 11行左右位置
+   ifeq ($(HOST_OS),linux)
+CLANG_CONFIG_x86_LINUX_HOST_EXTRA_ASFLAGS := \
+  --gcc-toolchain=$($(clang_2nd_arch_prefix)HOST_TOOLCHAIN_FOR_CLANG) \
+  --sysroot=$($(clang_2nd_arch_prefix)HOST_TOOLCHAIN_FOR_CLANG)/sysroot \
++  -B$($(clang_2nd_arch_prefix)HOST_TOOLCHAIN_FOR_CLANG)/x86_64-linux/bin \
+  -no-integrated-as
+  
+   添加 -B$($(clang_2nd_arch_prefix)HOST_TOOLCHAIN_FOR_CLANG)/x86_64-linux/bin \ 这行

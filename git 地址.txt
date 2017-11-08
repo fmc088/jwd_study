@@ -1,3 +1,5 @@
+git push origin master
+
 https://github.com/fmc088/jwd_study.git
 
 
