@@ -1,0 +1,152 @@
+1.2016.9.9，摄像头GS5604 500W 预览时间比较长时间4-5s优化？
+  解决：2016.9.12 去瑞芯微方案，修改CameraIspAdapter.cpp,cam_board.xml
+  
+2.2016.9.12左右，FV200 enter键不能使用？
+  解决：2016.9.18，替换掉android.policy.jar，enter键能够正常使用。
+  
+3.开机启动慢：
+  10.28日，原因：system/build.prop 中的旋转参数ro.sf.fakerotation=true ro.sf.hwrotation=180值的话，开机启动大概45s。
+  参数值改ro.sf.fakerotation=false ro.sf.hwrotation=0开机启动大概20s以内。
+  由于上层对于屏的处理还要在旋转一次，导致开机花更多时间。
+  services/core/java/com/android/server/wm/WindowManagerService.java 开机补丁
+  
+4.开机黑屏
+  gralloc.rk30board.so 和 hwcomposer.rk30board.so 推送到system/lib/hw/.下
+  
+5.4K视频补丁（剑门神鸟视频）
+  libffmpeg.so 和 librkffplayer.so 推送到system/lib/.下
+  
+6.1202日，收到生产异常单，语音声控没有"叮咚"声，出现问题大概是100台有三台左右。
+      后面重新启动，就有"叮咚"响，问题原因播报服务被杀死了，VR性能有限，会杀掉一些服务。
+  
+7.1205日，收到生产异常单，关于复位键，死机掉启动不了，问题机器大概是200台有四台。原因是初始化出错，没有完全断电。
+
+8.摄像头有时调用不到，原因单独获取包名来调取应用的话，setflag空指针，后面同时使用包名和启动界面可以调用成功。
+
+9.logo.bmp 和 logo_kernel.bmp格式显示会出现花屏现象，rk方案，要转换格式
+  解决：图片格式不对   convert -compress rle -colors 256 logo.bmp logo_rle8.bmp  转换格式
+        可以参考RockChip_Uboot开发文档 V3.3.pdf文档25页-26页
+        
+10.FV200 exfat5.1-kernel是打TF卡exfat格式的识别补丁，查看6.exfat5.1-kernel文件
+
+11.AP6212 wifi和蓝牙补丁请查看 wifi_bt_patch文件，里面有具体说明，修改内容
+
+12.gps串口权限能够读取数据 可以参见8.串口权限文件下图片
+
+13.驱动节点的创建 通过jni写入节点,在init.rc 修改节点的权限 例如：chmod 0666 /dev/green_led
+                                                                 chmod 0666 /dev/philips_mic。
+   参考9.驱动节点的创建和写入 里面是GPS和北斗节点的切换例子
+
+14.linux 软连接创建symlink /system/vendor /vendor  参考device/rochkchip/rk3288/init.rc里面就有相关软件的创建
+
+15.linux使用脚本拷贝system/iflytek,拷贝到sdcard卡，参考10.system_iflytek拷贝到sd卡。
+
+16.17年1月3日让系统变砖头使用到dd简单的使用（参考11.砖头_dd说明）
+
+17.rk3288 RK U盘升级和ota升级源码 和 rk 任务管理器源码 （参考 12.rk3288_update源码）
+
+18.201702月生产烧入1月10日固件（FV200 1月10日国内版本是最稳定的，软件目前没出什么问题），主体来说是很稳定的，但是还是出现问题。总结：
+            1.发现一台屏幕白屏或者灰色屏幕，显示不出来，但是adb 都能够打印，这种情况下一般都是DDR 出问题;
+            2.发现有三四台开机不了，打印信息时候，发现一直打印摄像头信息，后面供应商查出 摄像头模组出问题（排线断路）；
+            3.发现两台开机不了，后面发现是没电了，只能通过适配器电源才能够开启（其他情况下，电压不够，启动不了）；
+            4.发现一台电源键不起作用，原来是I2C 地方假焊，软件接收不到按键值。
+            5.发现百分之10出现闪屏和黑屏，主要PCB板出问题，DDR开路，越老化越严重甚至开机不了。
+            6.发现很多台机器，在老化过程中，不同程度的重启或者关机，最终回到主界面，PMIC达到一定温度，有安全保护机制。
+
+19.20170301 vr rk3288发现使用google官网cardboard SDK 例子出现陀螺仪不准确。经过测试以前的cardboard SDK 例子 不会出现不准确情况，最新SDK
+            出现不准确的情况，由于最早的例子对陀螺仪的采样率有优化过。这次主要修改加速度和陀螺仪的采样率从默认的1KHZ降低到500HZ，不会出现
+            不准确情况。（参考 13.carboard应用 陀螺仪不准确 源码）
+            sensor_params.h与vr_rk3288\hardware\rockchip\sensor\mpu\libsensors\sensor_params.h对比
+
+						diff --git a/mpu/libsensors/sensor_params.h b/mpu/libsensors/sensor_params.h
+						index 7fcffae..e440cae 100755
+						--- a/mpu/libsensors/sensor_params.h
+						+++ b/mpu/libsensors/sensor_params.h
+						@@ -97,9 +97,9 @@
+						 /*******************************************/
+						 //ACCEL_ID_MPU6500
+						 #define ACCEL_MPU6500_RANGE             (2.f * GRAVITY_EARTH)
+						-#define ACCEL_MPU6500_RESOLUTION        (0.004f * GRAVITY_EARTH)
+						+#define ACCEL_MPU6500_RESOLUTION        (2.f /32768.f * GRAVITY_EARTH)
+						 #define ACCEL_MPU6500_POWER             (0.5f)
+						-#define ACCEL_MPU6500_MINDELAY          (1000)
+						+#define ACCEL_MPU6500_MINDELAY          (2000)
+						 //ACCEL_ID_MPU9250
+						 #define ACCEL_MPU9250_RANGE             (2.f * GRAVITY_EARTH)
+						 #define ACCEL_MPU9250_RESOLUTION        (0.004f * GRAVITY_EARTH)
+						@@ -186,7 +186,7 @@
+						 #define GYRO_MPU6500_RANGE              (2000.f * RAD_P_DEG)
+						 #define GYRO_MPU6500_RESOLUTION         (2000.f / 32768.f * RAD_P_DEG)
+						 #define GYRO_MPU6500_POWER              (5.5f)
+						-#define GYRO_MPU6500_MINDELAY           (1000)
+						+#define GYRO_MPU6500_MINDELAY           (2000)
+						 //GYRO ITG3500
+						 #define GYRO_ITG3500_RANGE              (2000.f * RAD_P_DEG)
+						 #define GYRO_ITG3500_RESOLUTION         (2000.f / 32768.f * RAD_P_DEG)
+
+
+21.测试过程中，语音出现没有识别，由于内置SD卡上没有iflytek语音文件夹，第一次开机时候可能是没电导致关机（就不会拷贝文件夹）
+            后面开机就不会拷贝文件夹,创建好文件夹，但是里面内容都没来得及拷贝。
+
+22.系统应用和普通应用的通信可以通过创建系统属性进行通信
+   系统应用可以使用创建与修改android属性用Systemproperties.set(name, value)，获取android属性用Systemproperties.get(name)，
+   普通应用可以通过 jni 读取系统属性值进行判断（参考15.上层使用Systemproperties属性_jni 源码）
+
+23.20170424 生产一批FV200 发现三台显示花屏（出现现象：点击应用，返回键，来回操作两三次，就会出现花屏现象）。发现是DDR出现问题。
+            老化机器两三天左右，发现7台左右，进不了本地播放器应用，出现闪退现象（原因：温度过高，导致CPU DDR出现不同程度的资源不足，
+            高温回到主界面时候，影响到性能，导致很多进程都被杀死，有的出现黑屏（launcher应用被杀死），有的是本地播放器应用打不开（应用被杀死））
+            <6>[139757.587260] lowmemorykiller: Killing 'android.camera2' (24931), adj 58,
+						<6>[139757.587260]    to free 51028kB on behalf of 'kswapd0' (69) because
+						<6>[139757.587260]    cache 91600kB is below limit 92160kB for oom_score_adj 58
+						<6>[139757.587260]    Free memory is -27424kB above reserved
+						<6>[139757.614339] lowmemorykiller: Killing 'android.smspush' (942), adj 58,
+						<6>[139757.614339]    to free 20360kB on behalf of 'kswapd0' (69) because
+						<6>[139757.614339]    cache 89464kB is below limit 92160kB for oom_score_adj 58
+						<6>[139757.614339]    Free memory is -22256kB above reserved
+						<6>[139757.633365] lowmemorykiller: Killing 'u.vr.sdk.config' (25103), adj 58,
+						<6>[139757.633365]    to free 20288kB on behalf of 'kswapd0' (69) because
+						<6>[139757.633365]    cache 87696kB is below limit 92160kB for oom_score_adj 58
+						<6>[139757.633365]    Free memory is -21436kB above reserved
+						<38>[139758.697766] type=1400 audit(1492991298.020:14): avc: denied { open } for pid=25133 comm="SharedPreferenc" path="/data/data/com.android.nibiru.settings.vr/shared_prefs/Theme.xml" dev="mmcblk0p13" ino=32851 scontext=u:r:untrusted_app:s0 tcontext=u:object_r:system_app_data_file:s0 tclass=file p
+						ermissive=1
+						<6>[139758.931178] vcodec_service: ff9a0000.vpu_service: power on
+						<6>[139760.882393] lowmemorykiller: Killing 'uiyue.nibiruudp' (25134), adj 294,
+						<6>[139760.882393]    to free 21932kB on behalf of 'kswapd0' (69) because
+						<6>[139760.882393]    cache 85600kB is below limit 92160kB for oom_score_adj 58
+						<6>[139760.882393]    Free memory is -7344kB above reserved
+						<6>[139760.895266] lowmemorykiller: Killing 'FinalizerDaemon' (25143), adj 294,
+						<6>[139760.895266]    to free 22412kB on behalf of 'kswapd0' (69) because
+						<6>[139760.895266]    cache 85968kB is below limit 92160kB for oom_score_adj 58
+						<6>[139760.895266]    Free memory is -9296kB above reserved
+						<6>[139762.870911] vcodec_service: ff9a0000.vpu_service: power off...
+						<6>[139762.871021] vcodec_service: done
+						<6>[139765.591666] lowmemorykiller: Killing 'biru.launcher3d' (25066), adj 58,
+						<6>[139765.591666]    to free 109312kB on behalf of 'kswapd0' (69) because
+						<6>[139765.591666]    cache 88436kB is below limit 92160kB for oom_score_adj 58
+						<6>[139765.591666]    Free memory is -7240kB above reserved
+
+
+24.系统应用和普通应用的通信可以通过创建系统属性进行通信
+   系统应用可以使用创建与修改android属性Systemproperties.set(name, value)，普通应用则可以通过jni来设置（参考16.上层使用Systempropetier属性Settings 源码）
+
+25.rk3399 recovery包含充电显示devcice/rockchip/rk3399/...mk 参数修改：DOUBLE_SCREEN ?= YES ROTATE_SCREEN ?= rotate_270
+
+26.user模式要debug模式的话 build/core/main.mk 修改参数：ADDITIONAL_DEFAULT_PROPERTIES += ro.debuggable=0
+
+27.ubuntu 16.04 对android 5.1 系统编译 会出现
+   error: unsupported reloc 43
+   clang: error: linker command failed with exit code 1 (use -v to see invocation)
+   修改：
+   在build/core/clang/HOST_x86_common.mk 
+   在第7 - 11行左右位置
+   ifeq ($(HOST_OS),linux)
+CLANG_CONFIG_x86_LINUX_HOST_EXTRA_ASFLAGS := \
+  --gcc-toolchain=$($(clang_2nd_arch_prefix)HOST_TOOLCHAIN_FOR_CLANG) \
+  --sysroot=$($(clang_2nd_arch_prefix)HOST_TOOLCHAIN_FOR_CLANG)/sysroot \
++  -B$($(clang_2nd_arch_prefix)HOST_TOOLCHAIN_FOR_CLANG)/x86_64-linux/bin \
+  -no-integrated-as
+  
+   添加 -B$($(clang_2nd_arch_prefix)HOST_TOOLCHAIN_FOR_CLANG)/x86_64-linux/bin \ 这行
+
+28.“类似PC端拔出U盘需要“安全删除”之后才能弹出。Android平板也需要手动卸载掉U盘之后才能拔掉U盘，防止数据在未卸载的情况下出现丢失。强制拔插是正常的”
+   补丁对比"17.插入U盘（多次手动卸载），读取不到"补丁，补充。

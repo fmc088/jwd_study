@@ -1,0 +1,79 @@
+cat /proc/kmsg  控制器获取debug信息指令
+
+grep "   " ./ -rn  搜索文本工具
+
+find -name " " 当前目录下查找文件
+
+
+locate " " 根目录查询
+
+net use * /DEL  连接服务端断开，才能重新连接另一个用户(如果不成功，就重新启动电脑)
+ 
+java -jar signapk.jar platform.x509.pem platform.pk8  your.apk your_signed.apk   系统签名
+
+adb remount   初始化
+
+adb push E:\3D.so\libvision-jni.so system/lib 把本地文件推送到安卓系统
+
+adb push E:\3D.so\libGLES.so system/lib/egl/
+
+adb -s emulator-5556 install helloWorld.apk  安装本地的apk
+
+adb logcat *:E                               显示安装时log
+
+adb install E:\android.armeabi-v7a-1033\bin\SpeechJNI_NoEnc_1034.apk  安装本地的apk软件
+
+adb reboot recovery 进入recovery模式
+
+tar -zcvf bootable.tar.gz bootable //打包 并保存源文件
+
+这里大家要注意的时候，在我们使用tar 的--exclude 命令排除打包的时候，不能加“/”，否则还是会把logs目录以及其下的文件打包进去。
+错误写法：
+tar -zcvf tomcat.tar.gz --exclude=tomcat/logs/ --exclude=tomcat/libs/ tomcat
+正确写法：
+tar -zcvf tomcat.tar.gz --exclude=tomcat/logs --exclude=tomcat/libs tomcat
+
+tar -zxvf ......   //解包 tar -vxzf ..
+mv bootable.tar.gz /home/pub/. //移动，/home/pub/下文件是共享文件
+echo " " 节点文件  //这是""下面信息写入设备文件节点
+debug > console
+
+setprop sys_graphic.cam_trace 1
+
+dumpsys media.camera
+
+
+在开发模式下，进入Android studio 中的Terminal ， 输入如下命令：
+显示当前的Activity adb 指令
+ adb shell dumpsys activity | grep mFocusedActivity
+ adb shell "dumpsys window | grep mCurrentFocus"
+ 
+ adb shell getevent -l
+ getevent -l /dev/input/event0 （具体的按键）
+ 
+ git diff 608e120 4abe32e --name-only | xargs zip update.zip
+ 
+ dumpsys power (锁)
+ 
+ linux :df -h 查看储存空间
+ 
+ 查看当前alarm申请情况：dumpsys alarm 
+                        两种方式：ELAPSED_WAKEUP 和 RTC_WAKEUP
+                        
+ adb shell getprop//查看属性值
+ 
+ 
+logcat -s PowerManagerService
+
+dumpsys activity | grep mFocusedActivity  （获取当前的包名和Activity 界面）
+
+parameter 分区大小算法
+0x1000     -2M  
+0x2000     -4M
+0x10000    -32M
+0x20000    -64M
+0x100000   -512M
+
+2*512*4 = 4M 先删除后面三个0，再提取第四个数字
+0x10000
+16*512*4 =32M

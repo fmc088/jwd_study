@@ -1,0 +1,55 @@
+diff --git a/arch/arm/mach-rockchip/ddr_rk30.c b/arch/arm/mach-rockchip/ddr_rk30.c
+index 000b07e..291c0fa 100755
+--- a/arch/arm/mach-rockchip/ddr_rk30.c
++++ b/arch/arm/mach-rockchip/ddr_rk30.c
+@@ -3987,6 +3987,9 @@ static int ddr_init(uint32_t dram_speed_bin, uint32_t freq)
+     }
+     //get capability per chip, not total size, used for calculate tRFC
+     ddr_capability_per_die = ddr_get_cap()/(ddr_get_cs()*die);
++	if (ddr_capability_per_die < 0x20000000)
++		ddr_capability_per_die = 0x20000000;
++
+     ddr_print("Bus Width=%d Col=%d Bank=%d Row=%d CS=%d Total Capability=%dMB\n",
+                                                                     ddr_get_bw()*16,\
+                                                                     ddr_get_col(), \
+diff --git a/arch/arm/mach-rockchip/ddr_rk3126.c b/arch/arm/mach-rockchip/ddr_rk3126.c
+index 4f8904b..ae35d95 100755
+--- a/arch/arm/mach-rockchip/ddr_rk3126.c
++++ b/arch/arm/mach-rockchip/ddr_rk3126.c
+@@ -2677,6 +2677,8 @@ static int ddr_init(uint32_t dram_speed_bin, uint32 freq)
+ 	}
+ 	die = 1 << (READ_BW_INFO() - READ_DIE_BW_INFO());
+ 	p_ddr_reg->ddr_capability_per_die = ddr_get_cap() / (cs * die);
++	if (p_ddr_reg->ddr_capability_per_die < 0x20000000)
++		p_ddr_reg->ddr_capability_per_die = 0x20000000;
+ 	ddr_print("%d CS, ROW=%d, Bank=%d, COL=%d, Total Capability=%dMB\n",
+ 						cs, READ_CS0_ROW_INFO(),
+ 						(0x1 << (READ_BK_INFO())),
+diff --git a/arch/arm/mach-rockchip/ddr_rk3126b.c b/arch/arm/mach-rockchip/ddr_rk3126b.c
+index 9cba6f0..025abdf 100755
+--- a/arch/arm/mach-rockchip/ddr_rk3126b.c
++++ b/arch/arm/mach-rockchip/ddr_rk3126b.c
+@@ -2290,6 +2290,9 @@ static int ddr_init(uint32_t dram_speed_bin, uint32 freq)
+ 	}
+ 	die = 1 << (READ_BW_INFO() - READ_DIE_BW_INFO());
+ 	p_ddr_reg->ddr_capability_per_die = ddr_get_cap() / (cs * die);
++	if (p_ddr_reg->ddr_capability_per_die < 0x20000000)
++		p_ddr_reg->ddr_capability_per_die = 0x20000000;
++
+ 	ddr_print("%d CS, ROW=%d, Bank=%d, COL=%d, Total Capability=%dMB\n",
+ 						cs, READ_CS0_ROW_INFO(),
+ 						(0x1 << (READ_BK_INFO())),
+diff --git a/arch/arm/mach-rockchip/ddr_rk32.c b/arch/arm/mach-rockchip/ddr_rk32.c
+index c11c2bb..abe00bb 100755
+--- a/arch/arm/mach-rockchip/ddr_rk32.c
++++ b/arch/arm/mach-rockchip/ddr_rk32.c
+@@ -4613,6 +4613,9 @@ static int ddr_init(uint32 dram_speed_bin, uint32 freq)
+             cap = cap*3/4;
+         }
+         p_ddr_ch[ch]->ddr_capability_per_die = cs_cap/die;
++		if (p_ddr_ch[ch]->ddr_capability_per_die < 0x20000000)
++			p_ddr_ch[ch]->ddr_capability_per_die = 0x20000000;
++
+         ddr_print("Bus Width=%d Col=%d Bank=%d Row=%d CS=%d Total Capability=%dMB\n",
+                                                                         READ_BW_INFO(ch)*16,\
+                                                                         READ_COL_INFO(ch), \

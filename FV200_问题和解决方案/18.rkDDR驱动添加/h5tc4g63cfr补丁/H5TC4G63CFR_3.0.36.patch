@@ -1,0 +1,26 @@
+diff --git a/arch/arm/mach-rk2928/ddr.c b/arch/arm/mach-rk2928/ddr.c
+index d89bbd2..4a45c88 100755
+--- a/arch/arm/mach-rk2928/ddr.c
++++ b/arch/arm/mach-rk2928/ddr.c
+@@ -2506,6 +2506,8 @@ int ddr_init(uint32_t dram_speed_bin, uint32_t freq)
+     
+     //get capability per chip, not total size, used for calculate tRFC
+     ddr_capability_per_die = ddr_get_cap()/(cs * die);
++	if (ddr_capability_per_die < 0x20000000)
++		ddr_capability_per_die = 0x20000000;
+     ddr_print("%d CS, ROW=%d, Bank=%d, COL=%d, Total Capability=%dMB\n", 
+                                                                     cs, \
+                                                                     ddr_get_row(), \
+diff --git a/arch/arm/mach-rk30/ddr.c b/arch/arm/mach-rk30/ddr.c
+index 4ea1b21..71a58af 100755
+--- a/arch/arm/mach-rk30/ddr.c
++++ b/arch/arm/mach-rk30/ddr.c
+@@ -3912,6 +3912,8 @@ int ddr_init(uint32_t dram_speed_bin, uint32_t freq)
+     }
+     //get capability per chip, not total size, used for calculate tRFC
+     ddr_capability_per_die = ddr_get_cap()/(ddr_get_cs()*die);
++	if (ddr_capability_per_die < 0x20000000)
++		ddr_capability_per_die = 0x20000000;
+     ddr_print("Bus Width=%d Col=%d Bank=%d Row=%d CS=%d Total Capability=%dMB\n",
+                                                                     ddr_get_bw()*16,\
+                                                                     ddr_get_col(), \
