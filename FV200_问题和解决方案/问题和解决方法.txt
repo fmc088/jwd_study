@@ -150,3 +150,6 @@ CLANG_CONFIG_x86_LINUX_HOST_EXTRA_ASFLAGS := \
 
 28.“类似PC端拔出U盘需要“安全删除”之后才能弹出。Android平板也需要手动卸载掉U盘之后才能拔掉U盘，防止数据在未卸载的情况下出现丢失。强制拔插是正常的”
    补丁对比"17.插入U盘（多次手动卸载），读取不到"补丁，补充。
+   
+29.rk3288 root
+   http://dev.t-firefly.com/thread-12627-1-1.html

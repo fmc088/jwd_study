@@ -1,0 +1,86 @@
+diff --git a/DirectVolume.cpp b/DirectVolume.cpp
+index 7991169..d4a6315 100755
+--- a/DirectVolume.cpp
++++ b/DirectVolume.cpp
+@@ -263,7 +263,7 @@ void DirectVolume::handleAllUdiskPartitionRemoved() {
+ 		/*
+ 		* Finally, unmount the actual block device from the staging dir
+ 		*/
+-		if (0 !=doUnmount(pUdiskPartiton->ucFilePathName, true)) {
++		/*if (0 !=doUnmount(pUdiskPartiton->ucFilePathName, true)) {
+ 			SLOGE("handleUdiskPartitionRemoved Failed to unmount %s (%s)", pUdiskPartiton->ucFilePathName, strerror(errno));
+ 		}
+ 		else
+@@ -272,7 +272,7 @@ void DirectVolume::handleAllUdiskPartitionRemoved() {
+ 		CHANGE_ANDROIDFILESYSTEM_TO_READWRITE;
+ 		if(pUdiskPartiton->ucFilePathName)
+ 			rmdir(pUdiskPartiton->ucFilePathName);
+-		CHANGE_ANDROIDFILESYSTEM_TO_READONLY;
++		CHANGE_ANDROIDFILESYSTEM_TO_READONLY;*/
+ 		//RemoveUdiskPartition(pMountpoint);
+ 		sprintf(devicePath, "/dev/block/vold/%d:%d", major,
+ 				minor);
+@@ -707,12 +707,22 @@ void DirectVolume::handleDiskRemoved(const char * /*devpath*/,
+     char msg[255];
+     char devicePath[255];
+     bool enabled;
+-
++    int state;
++	
+     if (mVm->shareEnabled(getLabel(), "ums", &enabled) == 0 && enabled) {
+         mVm->unshareVolume(getLabel(), "ums");
+     }
+ 
+ 	if ( 0 == mDiskNumParts ) {
++			state = getState();
++			if (state == Volume::State_Idle) {
++				SLOGD("umount");
++				handleAllUdiskPartitionRemoved();
++				setUuid(NULL);
++				setUserLabel(NULL);
++				setDevPath(NULL);
++			    return;
++			}
+ 			SLOGD("####################################Volume %s %s disk %d:%d removed\n", getLabel(), getMountpoint(), major, minor);
+ 			snprintf(msg, sizeof(msg), "Volume %s %s bad removal (%d:%d)",
+ 					getLabel(), getMountpoint(), major, minor);
+@@ -822,7 +832,13 @@ void DirectVolume::handlePartitionRemoved(const char * /*devpath*/,
+         } else {
+             SLOGD("Crisis averted");
+         }
+-    }else{
++    }else if(state == Volume::State_Idle) {
++		SLOGD("umount");
++		handleAllUdiskPartitionRemoved();
++        setUuid(NULL);
++		setUserLabel(NULL);
++		setDevPath(NULL);
++	} else {
+ 	     bool providesAsec = (getFlags() & VOL_PROVIDES_ASEC) != 0;
+         if (providesAsec && mVm->cleanupAsec(this, true)) {
+             SLOGE("Failed to cleanup ASEC - unmount will probably fail!");
+			 
+			 
+diff --git a/packages/SystemUI/src/com/android/systemui/usb/StorageNotification.java b/packages/SystemUI/src/com/android/systemui
+index 073a173..2bd42a4 100755
+--- a/packages/SystemUI/src/com/android/systemui/usb/StorageNotification.java
++++ b/packages/SystemUI/src/com/android/systemui/usb/StorageNotification.java
+@@ -212,7 +212,18 @@ public class StorageNotification extends SystemUI {
+             Intent intent = new Intent();
+             intent.setClass(mContext, com.android.systemui.usb.UsbStorageUnmountDialog.class);
+             intent.putExtra("mount-point", path);
+-            PendingIntent pi = PendingIntent.getActivity(mContext, 0, intent, 0);
++             //modify by lzq for set PendingIntent requestCode to update mount-point path
++            //PendingIntent pi = PendingIntent.getActivity(mContext, 0, intent, 0);
++            int piId = 0;
++            if (path.equals(Environment.getHostStorage_Extern_0_Directory().toString())) {
++               piId = 12345;
++                       } else if (path.equals(Environment.getHostStorage_Extern_1_Directory().toString())) {
++               piId = 12346;
++                       } else if (path.equals(Environment.getHostStorage_Extern_2_Directory().toString())) {
++               piId = 12347;
++                       }
++            PendingIntent pi = PendingIntent.getActivity(mContext, piId, intent, 0);
++            //end
+             setMassStorageNotification(path, 0, 0, 0, false, false, null);
+             if (Environment.getExternalStorageState().equals(Environment.MEDIA_SHARED)) {

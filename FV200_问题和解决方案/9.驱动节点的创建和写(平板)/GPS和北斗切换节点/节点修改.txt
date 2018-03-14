@@ -1,0 +1,34 @@
+static const struct file_operations codec_recmode_reg_fops = {
+	.open = codec_recmode_reg_open_file,
+	//.read = codec_recmode_reg_read_file,
+	.write = codec_recmode_reg_write_file,
+};
+
+
+static int __init snd_soc_recmode_init(void)
+{
+  /*注册一个 LED 设备，参数 0 表示让操作系统分配主设备号，分配好了之后返回给 major */
+  mic_major = register_chrdev(0, "philips_mic", &codec_recmode_reg_fops);
+  //printk("major=%d\n",major);
+  /*创建设备节点，有了这两个函数，我们在文件系统里面就会看到/dev/led */
+  philips_mic_drv_class = class_create(THIS_MODULE,"philips_mic");
+  device_create(philips_mic_drv_class,NULL,MKDEV(mic_major,0),NULL,"philips_mic");
+
+	//printk("snd_soc_recmode_init\n");
+  //snd_soc_util_init();
+	return 0;// platform_driver_register(&soc_driver);
+}
+
+static void __exit snd_soc_recmode_exit(void)
+{
+	/*注销 LED 设备*/
+	unregister_chrdev(mic_major, "philips_mic"); // 卸载
+
+	/*销毁创建的设备节点*/
+  device_destroy(philips_mic_drv_class,MKDEV(mic_major,0));
+  class_destroy(philips_mic_drv_class);
+  //printk("philips_mic_drv_class unregister\n");	
+}
+
+module_init(snd_soc_recmode_init);
+module_exit(snd_soc_recmode_exit);
